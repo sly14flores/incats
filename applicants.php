@@ -174,7 +174,7 @@ require_once 'authentication.php';
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="javascript:;" logout-account>
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -439,6 +439,7 @@ require_once 'authentication.php';
 		<script src="modules/block-ui.js"></script>
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
+		<script src="modules/account.js"></script>
 		
 		<script src="controllers/applicants.js"></script>		
 	</body>

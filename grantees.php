@@ -335,6 +335,8 @@ require_once 'authentication.php';
 			</a>
 		</div><!-- /.main-container -->
 
+		<script src="angularjs/angular.min.js"></script>		
+		
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -380,6 +382,16 @@ require_once 'authentication.php';
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
 
+		<script src="jquery/jquery.blockUI.js"></script>
+		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
+		
+		<script src="modules/block-ui.js"></script>
+		<script src="modules/bootstrap-notify.js"></script>
+		<script src="modules/bootstrap-modal.js"></script>
+		<script src="modules/account.js"></script>
+		
+		<script src="controllers/grantees.js"></script>		
+		
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {

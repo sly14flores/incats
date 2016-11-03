@@ -1,4 +1,4 @@
-var app = angular.module('applicants', ['block-ui','bootstrap-notify','bootstrap-modal']);
+var app = angular.module('applicants', ['block-ui','bootstrap-notify','bootstrap-modal','account-module']);
 
 app.service('crud',function($compile) {
 	

@@ -49,7 +49,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin">
+	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -174,7 +174,7 @@ require_once 'authentication.php';
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="javascript:;" logout-account>
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -335,6 +335,8 @@ require_once 'authentication.php';
 			</a>
 		</div><!-- /.main-container -->
 
+		<script src="angularjs/angular.min.js"></script>		
+		
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -376,15 +378,21 @@ require_once 'authentication.php';
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
 
+		<script src="assets/js/bootbox.min.js"></script>		
+		
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
-		<script type="text/javascript">
-			jQuery(function($) {
-			
-			});
-		</script>
+		<script src="jquery/jquery.blockUI.js"></script>
+		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
+		
+		<script src="modules/block-ui.js"></script>
+		<script src="modules/bootstrap-notify.js"></script>
+		<script src="modules/bootstrap-modal.js"></script>
+		<script src="modules/account.js"></script>
+		
+		<script src="controllers/dashboard.js"></script>		
+
 	</body>
 </html>
