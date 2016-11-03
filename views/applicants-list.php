@@ -19,24 +19,24 @@
 												</thead>
 
 												<tbody>
-													<tr>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
+													<tr ng-repeat="applicant in applicants">
+														<td>{{applicant.student_id}}</td>
+														<td>{{applicant.full_name}}</td>
+														<td>{{applicant.gender}}</td>
+														<td>{{applicant.contact_no}}</td>
+														<td></td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="#">
+																<a class="green" href="javascript:;" ng-click="view(applicant.id)">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 
-																<a class="red" href="#">
+																<a class="red" href="javascript:;" ng-click="del(applicant.id)">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
 															</div>														
 														</td>
-													</tr>
+													</tr>													
 												</tbody>
 											</table>
 										</div>

@@ -17,6 +17,8 @@ require_once 'authentication.php';
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 
+		<link rel="stylesheet" href="assets/css/datepicker.min.css" />		
+		
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
@@ -312,15 +314,12 @@ require_once 'authentication.php';
 						</div><!-- /.page-header -->
 						<div id="crud" class="row">
 							<div class="col-xs-12">
-								<button class="btn btn-primary btn-sm no-radius">Add</button>							
+								<button class="btn btn-primary btn-sm no-radius" ng-click="add()">Add</button>
 							</div>
 						</div>
 						<hr />
 						<div class="row">
-							<div id="content" class="col-xs-12">
-
-							
-							
+							<div id="content" class="col-xs-12" ng-include="activeTemplate">							
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 						
@@ -393,45 +392,15 @@ require_once 'authentication.php';
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
 
-		<script src="assets/js/bootbox.min.js"></script>		
+		<script src="assets/js/bootbox.min.js"></script>
+
+		<script src="assets/js/bootstrap-datepicker.min.js"></script>
 		
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
-		<script type="text/javascript">
-			jQuery(function($) {
-				
-				//initiate dataTables plugin
-				
-				var oTable1 = 
-				$('#dynamic-table')
-				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-				.dataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  null, null, null, null, null,
-					  { "bSortable": false }
-					],
-					"aaSorting": [],
-			
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
-			
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-			
-					//"iDisplayLength": 50
-			    } );
-				//oTable1.fnAdjustColumnSizing();								
-				
-			});
-		</script>
 				
 		<script src="jquery/jquery.blockUI.js"></script>
 		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
