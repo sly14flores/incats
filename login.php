@@ -3,34 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <title>Integrated Campus Testing &amp; Scholarship System - Login</title>
-  
+  <link rel="icon" href="favicon.ico">	  
   <link rel="stylesheet" href="css/login.css">
 </head>
 
-<body>
+<body ng-app="appLogin" ng-controller="appLoginCtrl" keypress-events>
 <hgroup>
   <img id="logo" src="images/logo.png">
   <h1>Sign in to InCaTS</h1>
 </hgroup>
-<form>
+<form name="view.frmLogin">
   <div class="group">
-    <input type="text"><span class="highlight"></span><span class="bar"></span>
+    <input type="text" name="username" ng-model="account.username"><span class="highlight"></span><span class="bar"></span>
     <label>Username</label>
   </div>
   <div class="group">
-    <input type="password"><span class="highlight"></span><span class="bar"></span>
+    <input type="password" name="password" ng-model="account.password"><span class="highlight"></span><span class="bar"></span>
     <label>Password</label>
   </div>
-  <button type="button" class="button buttonBlue">Login
+  <button type="button" class="button buttonBlue" ng-click="login()">Login
     <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
   </button>
+<div class="info" ng-show="view.incorrect">Username or password incorrect.</div>  
 </form>
 <footer>
   <p>InCaTS &copy; 2016-2017</p>
 </footer>
-  <script src="jquer/jquery-2.2.4.min.js"></script>
+  <script src="angularjs/angular.min.js"></script>
+  <script src="assets/js/jquery.2.1.1.min.js"></script>
 
-      <script src="js/index.js"></script>
-
+  <script src="js/index.js"></script>
+  <script type="text/javascript">
+	
+	var app = angular.module('appLogin', []);
+	
+	app.directive('keypressEvents', function($document, $rootScope, $scope) {
+		return {
+		  restrict: 'A',
+		  link: function(scope) {
+			$document.bind('keypress', function(e) {	
+				if (e.which == 13) {
+					$scope.login();
+				}
+				$rootScope.$broadcast('keypress', e);
+				$rootScope.$broadcast('keypress:' + e.which, e);
+			});
+		  }
+		};
+	  }
+	);	
+	
+	app.controller('appLoginCtrl', function($scope, $http, $window) {
+		
+		$scope.view = {};
+		
+		$scope.account = {
+			username: '', password: ''
+		}		
+		
+		$scope.view.incorrect = false;
+		
+		$scope.login = function() {
+			
+			$http({
+			  method: 'POST',
+			  url: 'ajax.php?r=login',
+			  data: $scope.account,
+			  headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function mySucces(response) {
+				if (response.data['id'] == "0") {
+					$scope.view.incorrect = true;
+				} else {
+					$scope.view.incorrect = false;
+					$window.location.href = 'index.php';
+				}
+			},
+			function myError(response) {
+				console.log(response);
+			});
+			
+		}
+		
+	});
+	
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 01, 2016 at 03:00 AM
+-- Generation Time: Nov 03, 2016 at 04:57 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -23,11 +23,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `applicants`
+-- Table structure for table `accounts`
 --
 
-CREATE TABLE IF NOT EXISTS `applicants` (
+CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `account_type` varchar(50) NOT NULL,
   `student_id` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
@@ -39,8 +40,7 @@ CREATE TABLE IF NOT EXISTS `applicants` (
   `age` int(2) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

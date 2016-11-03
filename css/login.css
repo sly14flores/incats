@@ -8,7 +8,6 @@ body {
 
 hgroup { 
 	text-align:center;
-	margin-top: 4em;
 }
 
 #logo {
@@ -264,3 +263,10 @@ footer img {
 footer img:hover { opacity: .83; }
 
 footer img:focus , footer a:focus { outline: none; }
+
+.info {
+	padding: 10px 20px;
+	background-color: #fcbfbf;
+	color: #db2e2e !important;
+	font-size: 14px;
+}

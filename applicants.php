@@ -1,3 +1,8 @@
+<?php
+
+require_once 'authentication.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -30,7 +35,8 @@
 
 		<!-- inline styles related to this page -->
 
-		<link rel="stylesheet" href="css/style.css">		
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="icon" href="favicon.ico">
 		
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
@@ -189,7 +195,8 @@
 				<script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
-
+				
+				<!--
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 						<button class="btn btn-success">
