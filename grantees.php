@@ -49,7 +49,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin">
+	<body class="no-skin" ng-app="grantees" ng-controller="granteesCtrl">
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -69,7 +69,7 @@ require_once 'authentication.php';
 				<div class="navbar-header pull-left">
 					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
-							<div id="logo-container"><img id="company-logo" src="images/logo.png">InCaTS</div>
+							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
 						</small>
 					</a>
 				</div>
@@ -150,7 +150,7 @@ require_once 'authentication.php';
 								<img class="nav-user-photo" src="assets/avatars/avatar2.png" alt="Profile Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
-									Admin
+									{{account.name}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>

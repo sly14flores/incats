@@ -1,7 +1,7 @@
 <?php
 
 /**
-* INSER, UPDATE, DELETE SQL Generator
+* INSERT, UPDATE, DELETE SQL Generator
 *
 * @package    db.php
 * @author     Sly Flores

@@ -169,7 +169,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 	
 });
 
-app.controller('applicantsCtrl',function($scope,crud,blockUI,bootstrapNotify,bootstrapModal) {
+app.controller('applicantsCtrl',function($scope,crud,blockUI,bootstrapNotify,bootstrapModal,accountInfo) {
 
 $scope.views = {};
 $scope.validation = {};
@@ -281,5 +281,8 @@ $scope.validatePassword = function() {
 }
 
 crud.list($scope);
+
+$scope.account = {};
+accountInfo.get($scope);
 	
 });

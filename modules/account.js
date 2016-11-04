@@ -19,4 +19,23 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 	   }
 	};
 
+}).service('accountInfo',function($http) {
+	
+	this.get = function(scope) {
+	
+		$http({
+		  method: 'POST',
+		  url: 'modules/accounts.php?r=info'
+		}).then(function mySucces(response) {
+		
+			scope.account.name = response.data['name'];
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});	
+	
+	}
+	
 });
