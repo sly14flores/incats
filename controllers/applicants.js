@@ -7,6 +7,8 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		blockUI.show();
 		scope.activeTemplate = 'views/applicants-list.php';
 		
+		scope.views.add = false;
+		
 		$http({
 		  method: 'POST',
 		  url: 'controllers/applicants.php?r=list'
@@ -55,6 +57,8 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 	
 	this.add = function(scope) {
 		
+		scope.views.add = true;
+		
 		scope.applicant = {};
 		scope.applicant.id = 0;
 		
@@ -62,15 +66,21 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		scope.activeTemplate = 'views/applicant-form.php';
 		scope.views.mode = 'Save';
 		
+		scope.validation.birthday = false;
+		scope.validation.age = false;
+		scope.validation.password = false;
+		
 		$timeout(function() {
-			scope.applicant.gender = "-";
+			scope.applicant.gender = "";
 			$('#birthday').datepicker({
 				autoclose: true,
 				todayHighlight: true
 			}).next().on(ace.click_event, function(){
 					$(this).prev().focus();
-			});			
+			});
+			scope.computeAge();			
 		},1000);
+		
 		
 		blockUI.hide();
 		
@@ -81,6 +91,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		blockUI.show();
 		scope.activeTemplate = 'views/applicant-form.php';	
 		scope.views.mode = 'Update';
+		scope.views.add = true;		
 		
 		$http({
 		  method: 'POST',
@@ -161,6 +172,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 app.controller('applicantsCtrl',function($scope,crud,blockUI,bootstrapNotify,bootstrapModal) {
 
 $scope.views = {};
+$scope.validation = {};
 	
 $scope.applicant = {};
 $scope.applicant.id = 0;
@@ -190,6 +202,41 @@ $scope.cancel = function() {
 };
 
 $scope.save = function() {
+	
+	$scope.views.frmApplicant.student_id.$touched = true;
+	$scope.views.frmApplicant.first_name.$touched = true;
+	$scope.views.frmApplicant.middle_name.$touched = true;
+	$scope.views.frmApplicant.last_name.$touched = true;
+	$scope.views.frmApplicant.gender.$touched = true;
+	$scope.views.frmApplicant.username.$touched = true;
+	$scope.views.frmApplicant.address.$touched = true;
+	$scope.views.frmApplicant.contact_no.$touched = true;
+	$scope.views.frmApplicant.password.$touched = true;
+	$scope.views.frmApplicant.re_type_password.$touched = true;
+	
+	/*
+	** additional validations
+	*/
+	$scope.validation.isOk = true;
+	if ($('#birthday').val() == '') {
+		$scope.validation.birthday = true;
+		$scope.validation.isOk = false;
+	}
+	if ($('#age').val() == '') {
+		$scope.validation.age = true;
+		$scope.validation.isOk = false;
+	}
+	
+	if (!$scope.validation.isOk) return;
+	$scope.validation.birthday = false;
+	$scope.validation.age = false;	
+	
+	/*
+	** password validation	
+	*/
+	$scope.validatePassword();
+	
+	if (!$scope.views.frmApplicant.$valid) return;
 	
 	delete $scope.applicant.re_type_password;
 	$scope.applicant.account_type = 'Applicant';
@@ -222,6 +269,16 @@ $scope.computeAge = function() {
 	}	
 	
 };
+
+$scope.validatePassword = function() {
+	
+	if ( (($scope.views.frmApplicant.password.$invalid) || ($scope.views.frmApplicant.re_type_password.$invalid)) || ($scope.applicant.password != $scope.applicant.re_type_password) ) {
+		$scope.validation.password = true;
+		return;
+	}
+	$scope.validation.password = false;	
+	
+}
 
 crud.list($scope);
 	

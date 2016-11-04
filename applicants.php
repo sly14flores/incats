@@ -314,7 +314,7 @@ require_once 'authentication.php';
 						</div><!-- /.page-header -->
 						<div id="crud" class="row">
 							<div class="col-xs-12">
-								<button class="btn btn-primary btn-sm no-radius" ng-click="add()">Add</button>
+								<button class="btn btn-primary btn-sm no-radius" ng-click="add()" ng-disabled="views.add">Add</button>
 							</div>
 						</div>
 						<hr />

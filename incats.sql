@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 03, 2016 at 04:57 PM
+-- Generation Time: Nov 04, 2016 at 04:19 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -41,7 +41,14 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_no`, `birthdate`, `age`, `username`, `password`) VALUES
+(1, 'Administrator', '', 'Admin', '', '', '', '', '', '0000-00-00', 0, 'admin', 'admin');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
