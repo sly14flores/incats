@@ -2,6 +2,6 @@ var app = angular.module('grantees', ['block-ui','bootstrap-notify','bootstrap-m
 
 app.controller('granteesCtrl',function($scope,blockUI,bootstrapNotify,bootstrapModal) {
 
-$scope.view = {};
+$scope.views = {};
 	
 });

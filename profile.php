@@ -8,7 +8,7 @@ require_once 'authentication.php';
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Dashboard - InCaTS</title>
+		<title>Profile - InCaTS</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -17,6 +17,8 @@ require_once 'authentication.php';
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 
+		<link rel="stylesheet" href="assets/css/datepicker.min.css" />		
+		
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
@@ -49,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
+	<body class="no-skin" ng-app="profile" ng-controller="profileCtrl">
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -181,7 +183,7 @@ require_once 'authentication.php';
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="active">
+					<li class="">
 						<a href="index.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
@@ -189,7 +191,7 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>
-					<li class="" ng-show="privileges.profile">
+					<li class="active" ng-show="privileges.profile">
 						<a href="profile.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
 							<span class="menu-text"> Profile </span>
@@ -252,8 +254,8 @@ require_once 'authentication.php';
 
 						<ul class="breadcrumb">
 							<li class="active">
-								<i class="ace-icon fa fa-tachometer"></i>
-								<a href="#">Dashboard</a>
+								<i class="ace-icon glyphicon glyphicon-user"></i>
+								<a href="#">Profile</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -263,16 +265,195 @@ require_once 'authentication.php';
 
 						<div class="page-header">
 							<h1>
-								Dashboard
+								Profile
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									events &amp; announcements
+									manage profile
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
 
 						<div class="row">
-							<div class="col-xs-12"><!-- dashboard content here --></div><!-- /.col -->
+							<div class="col-xs-12">
+							
+								<div class="space-4"></div>
+								
+								<form class="form-horizontal">
+									<div class="tabbable">
+										<ul class="nav nav-tabs padding-16">
+											<li class="active">
+												<a data-toggle="tab" href="#edit-basic">
+													<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+													Basic Info
+												</a>
+											</li>
+
+											<li>
+												<a data-toggle="tab" href="#edit-password">
+													<i class="blue ace-icon fa fa-key bigger-125"></i>
+													Account Info
+												</a>
+											</li>
+										</ul>
+
+										<div class="tab-content profile-edit-tab-content">
+											<div id="edit-basic" class="tab-pane in active">
+												<h4 class="header blue bolder smaller">General</h4>
+
+												<div class="row">
+
+													<div class="vspace-12-sm"></div>
+
+													<div class="col-xs-12 col-sm-8">		
+														<div class="form-group has-error">
+															<label class="col-sm-4 control-label no-padding-right">School ID</label>
+
+															<div class="col-sm-8">
+																<input class="col-xs-6 col-sm-6 col-md-8" type="text">
+																<div class="help-block inline" style="margin-left: 5px;"> School ID is required </div>																															
+															</div>															
+														</div>
+
+														<div class="space-4"></div>
+
+														<div class="form-group">
+															<label class="col-sm-4 control-label no-padding-right">Name</label>
+
+															<div class="col-sm-8">
+																<input class="input-small" type="text" placeholder="First">
+																<input class="input-small" type="text" placeholder="Middle">
+																<input class="input-small" type="text" placeholder="Last">
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<hr />
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Gender</label>
+
+													<div class="col-sm-9">
+														<label class="inline">
+															<input name="form-field-radio" type="radio" class="ace" />
+															<span class="lbl middle"> Male</span>
+														</label>
+
+														&nbsp; &nbsp; &nbsp;
+														<label class="inline">
+															<input name="form-field-radio" type="radio" class="ace" />
+															<span class="lbl middle"> Female</span>
+														</label>
+													</div>
+												</div>												
+												
+												<div class="space-4"></div>
+												
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right" for="form-field-date">Birth Date</label>
+
+													<div class="col-sm-9">
+														<div class="input-medium">
+															<div class="input-group">
+																<input class="input-medium date-picker" id="birthday" type="text" data-date-format="mm/dd/yyyy" value="01/01/2000">
+																<span class="input-group-addon">
+																	<i class="ace-icon fa fa-calendar"></i>
+																</span>
+															</div>															
+														</div>
+													</div>
+												</div>
+
+												<div class="space-4"></div>
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Age</label>
+													<div class="col-sm-4">
+														<input class="col-xs-6 col-sm-6 col-md-8" type="text">
+													</div>
+												</div>
+												
+												<div class="space"></div>
+												<h4 class="header blue bolder smaller">Contact</h4>
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Address</label>
+
+													<div class="col-sm-9">
+														<span class="input-icon input-icon-right">
+															<textarea style="width: 190px; height: 100px;"></textarea>
+														</span>
+													</div>
+												</div>												
+												
+												<div class="space-4"></div>												
+												
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Email</label>
+
+													<div class="col-sm-9">
+														<span class="input-icon input-icon-right">
+															<input type="email">
+														</span>
+													</div>
+												</div>
+												
+												<div class="space-4"></div>												
+												
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Contact No</label>
+
+													<div class="col-sm-9">
+														<span class="input-icon input-icon-right">
+															<input type="text">
+														</span>
+													</div>
+												</div>												
+
+											</div>
+
+											<div id="edit-password" class="tab-pane">
+												<div class="space-10"></div>
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Username</label>
+
+													<div class="col-sm-9">
+														<input type="text">
+													</div>
+												</div>												
+												
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Password</label>
+
+													<div class="col-sm-9">
+														<input type="password">
+													</div>
+												</div>
+
+												<div class="space-4"></div>
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label no-padding-right">Re-type Password</label>
+
+													<div class="col-sm-9">
+														<input type="password">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="clearfix form-actions">
+										<div class="col-xs-offset-10 col-xs-9 col-sm-offset-10 col-sm-9 col-md-offset-10 col-md-9">
+											<button class="btn btn-info" type="button">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												Update
+											</button>
+										</div>
+									</div>
+								</form>
+							
+							</div><!-- /.col -->
 						</div><!-- /.row -->
 						
 					</div><!-- /.page-content -->
@@ -338,7 +519,9 @@ require_once 'authentication.php';
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
 
-		<script src="assets/js/bootbox.min.js"></script>		
+		<script src="assets/js/bootbox.min.js"></script>
+		
+		<script src="assets/js/bootstrap-datepicker.min.js"></script>		
 		
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
@@ -353,7 +536,7 @@ require_once 'authentication.php';
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
 		
-		<script src="controllers/dashboard.js"></script>		
+		<script src="controllers/profile.js"></script>		
 
 	</body>
 </html>

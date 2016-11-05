@@ -2,6 +2,6 @@ var app = angular.module('dashboard', ['block-ui','bootstrap-notify','bootstrap-
 
 app.controller('dashboardCtrl',function($scope,blockUI,bootstrapNotify,bootstrapModal) {
 
-$scope.view = {};
+$scope.views = {};
 	
 });
