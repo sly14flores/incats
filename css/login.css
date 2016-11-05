@@ -264,7 +264,18 @@ footer img:hover { opacity: .83; }
 
 footer img:focus , footer a:focus { outline: none; }
 
+.register {
+	font-size: 16px;
+	color: #635d5d;	
+	text-align: right;
+}
+
+.register a {
+	color: #635d5d;
+}
+
 .info {
+	margin-top: 16px;
 	padding: 10px 20px;
 	background-color: #fcbfbf;
 	color: #db2e2e !important;

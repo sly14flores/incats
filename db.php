@@ -26,7 +26,7 @@ class pdo_db {
 		$db_name = "incats";
 		$dsn = "mysql:host=$server;dbname=$db_name;charset=utf8";
 		$username = "root";
-		$password = "";
+		$password = "sly";
 
 		$this->db = new PDO($dsn, $username, $password, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		$this->table = $table;

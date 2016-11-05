@@ -1,4 +1,4 @@
-var app = angular.module('applicants', ['block-ui','bootstrap-notify','bootstrap-modal','account-module']);
+var app = angular.module('applicants', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
 
 app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 	
@@ -169,7 +169,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 	
 });
 
-app.controller('applicantsCtrl',function($scope,crud,blockUI,bootstrapNotify,bootstrapModal,accountInfo) {
+app.controller('applicantsCtrl',function($scope,crud,blockUI,bootstrapNotify,bootstrapModal) {
 
 $scope.views = {};
 $scope.validation = {};
@@ -281,8 +281,5 @@ $scope.validatePassword = function() {
 }
 
 crud.list($scope);
-
-$scope.account = {};
-accountInfo.get($scope);
 	
 });

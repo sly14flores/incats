@@ -24,6 +24,7 @@
   <button type="button" class="button buttonBlue" ng-click="login()">Login
     <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
   </button>
+  <div class="register">Don't have an account yet? <a href="javascript:;" ng-click="register()">Register</a></div>
 <div class="info" ng-show="view.incorrect">Username or password incorrect.</div>  
 </form>
 <footer>
@@ -92,7 +93,13 @@
 			
 			loginService.login($scope);
 			
-		}		
+		}
+
+		$scope.register = function() {
+			
+			$window.location.href = 'register.php';
+			
+		}
 		
 	});
 	

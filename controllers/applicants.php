@@ -17,7 +17,9 @@ switch ($_GET['r']) {
 	
 	case "Save":
 	
-	$_POST['birthdate'] = date("Y-m-d",strtotime($_POST['birthdate']));
+	if ($_POST['birthdate'] != "0000-00-00") $_POST['birthdate'] = date("Y-m-d",strtotime($_POST['birthdate']));
+
+	if (isset($_POST['re_type_password'])) unset($_POST['re_type_password']);
 	
 	$con = new pdo_db('accounts');
 	$applicant = $con->insertData($_POST);

@@ -77,77 +77,37 @@ require_once 'authentication.php';
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
 
-						<li class="green">
+						<li class="green" ng-show="notifications.show" notify-user>
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
+								<span class="badge badge-important">{{notifications.count}}</span>
 							</a>
 
 							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="ace-icon fa fa-exclamation-triangle"></i>
-									8 Notifications
+									{{notifications.count}} Notification{{notifications.many}}
 								</li>
 
 								<li class="dropdown-content">
 									<ul class="dropdown-menu dropdown-navbar navbar-pink">
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-													<span class="pull-right badge badge-info">+12</span>
-												</div>
-											</a>
-										</li>
 
-										<li>
+										<li ng-repeat="notification in notifications.results">
 											<a href="#">
 												<i class="btn btn-xs btn-primary fa fa-user"></i>
-												Bob just signed up as an editor ...
+												{{notification.content}}
 											</a>
 										</li>
 
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-													<span class="pull-right badge badge-success">+8</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-													<span class="pull-right badge badge-info">+11</span>
-												</div>
-											</a>
-										</li>
 									</ul>
 								</li>
 
-								<li class="dropdown-footer">
-									<a href="#">
-										See all notifications
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
 							</ul>
 						</li>
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/avatar2.png" alt="Profile Photo" />
+								<!--<img class="nav-user-photo" src="assets/avatars/avatar2.png" alt="Profile Photo" />-->
 								<span class="user-info">
 									<small>Welcome,</small>
 									{{account.name}}
@@ -174,7 +134,7 @@ require_once 'authentication.php';
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="javascript:;" logout-account>
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -236,7 +196,14 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>
+					<li class="" ng-show="privileges.profile">
+						<a href="profile.php">
+							<i class="menu-icon glyphicon glyphicon-user"></i>
+							<span class="menu-text"> Profile </span>
+						</a>
 
+						<b class="arrow"></b>
+					</li>
 					<li class="active open">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-certificate"></i>
@@ -378,6 +345,8 @@ require_once 'authentication.php';
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
 
+		<script src="assets/js/bootbox.min.js"></script>		
+		
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
@@ -389,6 +358,7 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
+		<script src="modules/notifications.js"></script>		
 		
 		<script src="controllers/grantees.js"></script>		
 		
