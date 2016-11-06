@@ -11,27 +11,39 @@ switch ($_GET['r']) {
 	case "view":
 	
 	$con = new pdo_db();
-	$result = $con->getData("SELECT *, password re_type_password FROM accounts WHERE id = '$_SESSION[id]'");
+	$perinfo = $con->getData("SELECT id, account_type, student_id, first_name, middle_name, last_name, gender, address, contact_no, birthdate, age, email FROM accounts WHERE id = '$_SESSION[id]'");
 	
-	if ($result[0]['birthdate'] == "0000-00-00") $result[0]['birthdate'] = "";
-	else $result[0]['birthdate'] = date("m/d/Y",strtotime($result[0]['birthdate']));
+	if ($perinfo[0]['birthdate'] == "0000-00-00") $perinfo[0]['birthdate'] = "";
+	else $perinfo[0]['birthdate'] = date("m/d/Y",strtotime($perinfo[0]['birthdate']));
 	
-	if ($result[0]['age'] == 0) $result[0]['age'] = "";
+	if ($perinfo[0]['age'] == 0) $perinfo[0]['age'] = "";
+
+	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = '$_SESSION[id]'");	
 	
-	echo json_encode($result[0]);
+	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0]);
+	
+	echo json_encode($results);
 	
 	break;
 	
-	case "update":
+	case "update_perinfo":
 	
 	$_POST['birthdate'] = date("Y-m-d",strtotime($_POST['birthdate']));
 	$_POST['built_in'] = 0;
+	
+	$con = new pdo_db('accounts');
+	$applicant = $con->updateData($_POST,'id');
+	
+	break;
+	
+	case "update_accinfo":
+	
 	if (isset($_POST['re_type_password'])) unset($_POST['re_type_password']);
 	
 	$con = new pdo_db('accounts');
 	$applicant = $con->updateData($_POST,'id');
 	
-	break;	
+	break;		
 
 }
 

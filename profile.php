@@ -314,7 +314,7 @@ require_once 'authentication.php';
 															<label class="col-sm-4 control-label no-padding-right">Student ID</label>
 
 															<div class="col-sm-8">
-																<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="student_id" ng-model="applicant.student_id" required>
+																<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="student_id" ng-model="perinfo.student_id" required>
 																<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.student_id.$touched && views.frmApplicant.student_id.$invalid"> Student ID is required </div>
 															</div>															
 														</div>
@@ -325,9 +325,9 @@ require_once 'authentication.php';
 															<label class="col-sm-4 control-label no-padding-right">Name</label>
 
 															<div class="col-sm-8">
-																<input class="input-small" type="text" placeholder="First" name="first_name" ng-model="applicant.first_name" required>
-																<input class="input-small" type="text" placeholder="Middle" name="middle_name" ng-model="applicant.middle_name" required>
-																<input class="input-small" type="text" placeholder="Last" name="last_name" ng-model="applicant.last_name" required>
+																<input class="input-small" type="text" placeholder="First" name="first_name" ng-model="perinfo.first_name" required>
+																<input class="input-small" type="text" placeholder="Middle" name="middle_name" ng-model="perinfo.middle_name" required>
+																<input class="input-small" type="text" placeholder="Last" name="last_name" ng-model="perinfo.last_name" required>
 																<div class="help-block inline" style="margin-left: 5px;" ng-show="(views.frmApplicant.first_name.$touched && views.frmApplicant.first_name.$invalid) || (views.frmApplicant.middle_name.$touched && views.frmApplicant.middle_name.$invalid) || (views.frmApplicant.last_name.$touched && views.frmApplicant.last_name.$invalid)"> Full name is required </div>
 															</div>
 														</div>
@@ -340,13 +340,13 @@ require_once 'authentication.php';
 
 													<div class="col-sm-9">
 														<label class="inline">
-															<input type="radio" value="Male" class="ace" name="gender" ng-model="applicant.gender" required>
+															<input type="radio" value="Male" class="ace" name="gender" ng-model="perinfo.gender" required>
 															<span class="lbl middle"> Male</span>
 														</label>
 
 														&nbsp; &nbsp; &nbsp;
 														<label class="inline">
-															<input type="radio" value="Female" class="ace" name="gender" ng-model="applicant.gender" required>
+															<input type="radio" value="Female" class="ace" name="gender" ng-model="perinfo.gender" required>
 															<span class="lbl middle"> Female</span>
 														</label>
 														<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.gender.$invalid"> Gender is required </div>
@@ -361,7 +361,7 @@ require_once 'authentication.php';
 													<div class="col-sm-9">
 														<div class="input-medium">
 															<div class="input-group">
-																<input class="input-medium date-picker" id="birthday" name="birthdate" ng-model="applicant.birthdate" type="text" data-date-format="mm/dd/yyyy">
+																<input class="input-medium date-picker" id="birthday" name="birthdate" type="text" data-date-format="mm/dd/yyyy">
 																<span class="input-group-addon">
 																	<i class="ace-icon fa fa-calendar"></i>
 																</span>																
@@ -376,7 +376,7 @@ require_once 'authentication.php';
 												<div ng-class="{'form-group': true, 'has-error': views.frmApplicant.age.$touched && views.frmApplicant.age.$invalid}">
 													<label class="col-sm-3 control-label no-padding-right">Age</label>
 													<div class="col-sm-4">
-														<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="age" ng-model="applicant.age" ng-click="computeAge()" required>
+														<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="age" ng-model="perinfo.age" ng-click="computeAge()" required>
 														<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.age.$touched && views.frmApplicant.age.$invalid"> Age is required </div>
 													</div>
 												</div>
@@ -389,7 +389,7 @@ require_once 'authentication.php';
 
 													<div class="col-sm-9">
 														<span class="input-icon input-icon-right">
-															<textarea style="width: 190px; height: 100px;" name="address" ng-model="applicant.address" required></textarea>
+															<textarea style="width: 190px; height: 100px;" name="address" ng-model="perinfo.address" required></textarea>
 														</span>
 														<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.address.$touched && views.frmApplicant.address.$invalid"> Address is required </div>
 													</div>
@@ -402,7 +402,7 @@ require_once 'authentication.php';
 
 													<div class="col-sm-9">
 														<span class="input-icon input-icon-right">
-															<input type="email" name="email" ng-model="applicant.email" required>
+															<input type="email" name="email" ng-model="perinfo.email" required>
 															<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.email.$touched && views.frmApplicant.email.$invalid"> Email is required </div>
 														</span>
 													</div>
@@ -415,12 +415,21 @@ require_once 'authentication.php';
 
 													<div class="col-sm-9">
 														<span class="input-icon input-icon-right">
-															<input type="text" name="contact_no" ng-model="applicant.contact_no" required>
+															<input type="text" name="contact_no" ng-model="perinfo.contact_no" required>
 															<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.contact_no.$touched && views.frmApplicant.contact_no.$invalid"> Contact no is required </div>
 														</span>
 													</div>
-												</div>												
-
+												</div>
+												<div class="space-8"></div>												
+												<div class="form-group">
+													<div class="col-sm-12 col-md-12 col-lg-12 col-md-offset-6 col-lg-offset-6">
+														<button class="btn btn-sm btn-info" type="button" ng-click="updatePerInfo()">
+															<i class="ace-icon fa fa-check bigger-110"></i>
+															Update
+														</button>
+													</div>
+												</div>
+												<div class="space-4"></div>
 											</div>
 
 											<div id="edit-scholarship" class="tab-pane">
@@ -434,7 +443,7 @@ require_once 'authentication.php';
 													<label class="col-sm-3 control-label no-padding-right">Username</label>
 
 													<div class="col-sm-9">
-														<input type="text" name="username" ng-model="applicant.username" required>
+														<input type="text" name="username" ng-model="accinfo.username" required>
 														<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.username.$touched && views.frmApplicant.username.$invalid"> Username is required </div>
 													</div>
 												</div>												
@@ -443,7 +452,7 @@ require_once 'authentication.php';
 													<label class="col-sm-3 control-label no-padding-right">Password</label>
 
 													<div class="col-sm-9">
-														<input type="password" name="password" ng-model="applicant.password" required>
+														<input type="password" name="password" ng-model="accinfo.password" required>
 														<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.password.$touched && views.frmApplicant.password.$invalid"> Password is required </div>
 													</div>
 												</div>
@@ -454,22 +463,26 @@ require_once 'authentication.php';
 													<label class="col-sm-3 control-label no-padding-right">Re-type Password</label>
 
 													<div class="col-sm-9">
-														<input type="password" name="re_type_password" ng-model="applicant.re_type_password" required>
+														<input type="password" name="re_type_password" ng-model="accinfo.re_type_password" required>
 														<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.re_type_password.$touched && views.frmApplicant.re_type_password.$invalid"> Please re-type password </div>
 													</div>
 												</div>
+												<div class="space-8"></div>
+												<div class="form-group">
+													<div class="col-sm-12 col-md-12 col-lg-12 col-md-offset-8 col-lg-offset-8">
+														<button class="btn btn-sm btn-info" type="button" ng-click="updateAccInfo()">
+															<i class="ace-icon fa fa-check bigger-110"></i>
+															Update
+														</button>
+													</div>
+												</div>
+												<div class="space-4"></div>												
 											</div>
 										</div>
 									</div>
 
-									<div class="clearfix form-actions">
-										<div class="col-xs-offset-10 col-xs-9 col-sm-offset-10 col-sm-9 col-md-offset-10 col-md-9">
-											<button class="btn btn-info" type="button" ng-click="update()">
-												<i class="ace-icon fa fa-check bigger-110"></i>
-												Update
-											</button>
-										</div>
-									</div>
+									<div class="clearfix form-actions"></div>
+									
 								</form>
 							
 							</div><!-- /.col -->

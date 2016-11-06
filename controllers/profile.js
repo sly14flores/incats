@@ -4,7 +4,8 @@ app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNot
 
 $scope.views = {};
 
-$scope.applicant = {};
+$scope.perinfo = {};
+$scope.accinfo = {};
 $scope.validation = {};
 $scope.validation.birthday = false;
 $scope.validation.passwordMatches = false;
@@ -19,7 +20,9 @@ $http({
   url: 'controllers/profile.php?r=view'
 }).then(function mySucces(response) {			
 	
-	$scope.applicant = response.data;
+	$scope.perinfo = response.data['perinfo'];
+	$('#birthday').val(response.data['perinfo']['birthdate']);
+	$scope.accinfo = response.data['accinfo'];
 	blockUI.hide();
 	
 }, function myError(response) {
@@ -42,7 +45,7 @@ $timeout(function() {
 $scope.computeAge = function() {
 	
 	$scope.validationBday();
-	$scope.applicant.age = getAge($('#birthday').val());
+	$scope.perinfo.age = getAge($('#birthday').val());
 	
 	function getAge(dateString) {
 		var today = new Date();
@@ -60,7 +63,7 @@ $scope.computeAge = function() {
 
 $scope.validatePassword = function() {
 	
-	if ( (($scope.views.frmApplicant.password.$invalid) || ($scope.views.frmApplicant.re_type_password.$invalid)) || ($scope.applicant.password != $scope.applicant.re_type_password) ) {
+	if ( (($scope.views.frmApplicant.password.$invalid) || ($scope.views.frmApplicant.re_type_password.$invalid)) || ($scope.accinfo.password != $scope.accinfo.re_type_password) ) {
 		bootstrapNotify.show('danger','Password does not match');
 		return;
 	} else {
@@ -76,7 +79,11 @@ $scope.validationBday = function() {
 	}
 }
 
-$scope.update = function() {
+$scope.updatePerInfo = function() {
+
+	$scope.views.frmApplicant.username.$valid = true;	
+	$scope.views.frmApplicant.password.$valid = true;
+	$scope.views.frmApplicant.re_type_password.$valid = true;
 
 	$scope.views.frmApplicant.student_id.$touched = true;
 	$scope.views.frmApplicant.first_name.$touched = true;
@@ -84,10 +91,11 @@ $scope.update = function() {
 	$scope.views.frmApplicant.last_name.$touched = true;
 	$scope.views.frmApplicant.gender.$touched = true;
 	$scope.views.frmApplicant.age.$touched = true;
-	$scope.views.frmApplicant.username.$touched = true;
 	$scope.views.frmApplicant.email.$touched = true;
 	$scope.views.frmApplicant.address.$touched = true;
 	$scope.views.frmApplicant.contact_no.$touched = true;
+	
+	$scope.views.frmApplicant.username.$touched = true;	
 	$scope.views.frmApplicant.password.$touched = true;
 	$scope.views.frmApplicant.re_type_password.$touched = true;
 	
@@ -96,17 +104,15 @@ $scope.update = function() {
 	*/
 	$scope.validationBday();
 	
-	$scope.validatePassword();
-	console.log($scope.views.frmApplicant.$valid+':'+$scope.validation.birthday+':'+$scope.validation.passwordMatches);
-	if ((!$scope.views.frmApplicant.$valid) && ($scope.validation.birthday) && (!$scope.validation.passwordMatches)) return;	
+	if ((!$scope.views.frmApplicant.$valid) && ($scope.validation.birthday)) return;	
 
-	$scope.applicant.birthdate = $('#birthday').val();	
+	$scope.perinfo.birthdate = $('#birthday').val();	
 	
 	blockUI.show();
 	$http({
 	  method: 'POST',
-	  data: $scope.applicant,
-	  url: 'controllers/profile.php?r=update'
+	  data: $scope.perinfo,
+	  url: 'controllers/profile.php?r=update_perinfo'
 	}).then(function mySucces(response) {			
 
 		blockUI.hide();
@@ -117,6 +123,49 @@ $scope.update = function() {
 		
 	});	
 	
-}	
+}
+
+$scope.updateAccInfo = function() {
+	
+	//
+	$scope.views.frmApplicant.student_id.$valid = true;
+	$scope.views.frmApplicant.first_name.$valid = true;
+	$scope.views.frmApplicant.middle_name.$valid = true;
+	$scope.views.frmApplicant.last_name.$valid = true;
+	$scope.views.frmApplicant.gender.$valid = true;
+	$scope.views.frmApplicant.age.$valid = true;
+	$scope.views.frmApplicant.email.$valid = true;
+	$scope.views.frmApplicant.address.$valid = true;
+	$scope.views.frmApplicant.contact_no.$valid = true;
+	//
+	
+	$scope.views.frmApplicant.username.$touched = true;
+	$scope.views.frmApplicant.password.$touched = true;
+	$scope.views.frmApplicant.re_type_password.$touched = true;
+	
+	/*
+	** additional validations
+	*/
+	
+	$scope.validatePassword();
+	console.log($scope.views.frmApplicant.$valid+':'+$scope.validation.passwordMatches);
+	if ((!$scope.views.frmApplicant.$valid) && (!$scope.validation.passwordMatches)) return;
+	
+	blockUI.show();
+	$http({
+	  method: 'POST',
+	  data: $scope.accinfo,
+	  url: 'controllers/profile.php?r=update_accinfo'
+	}).then(function mySucces(response) {			
+
+		blockUI.hide();
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});	
+	
+}
 
 });
