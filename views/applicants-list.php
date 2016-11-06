@@ -24,7 +24,7 @@
 														<td>{{applicant.full_name}}</td>
 														<td>{{applicant.gender}}</td>
 														<td>{{applicant.contact_no}}</td>
-														<td></td>
+														<td>&nbsp;</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
 																<a class="green" href="javascript:;" ng-click="view(applicant.id)">

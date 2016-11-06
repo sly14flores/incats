@@ -13,7 +13,6 @@ $scope.validation.passwordMatches = false;
 /*
 ** load profile
 */
-blockUI.show();
 $http({
   method: 'POST',
   data: {},
@@ -23,7 +22,6 @@ $http({
 	$scope.perinfo = response.data['perinfo'];
 	$('#birthday').val(response.data['perinfo']['birthdate']);
 	$scope.accinfo = response.data['accinfo'];
-	blockUI.hide();
 	
 }, function myError(response) {
 	 
@@ -41,6 +39,45 @@ $timeout(function() {
 	});
 	
 },1000);
+
+/*
+** load scholarship
+*/
+
+// $scope.activeTemplate = 'views/scholarships-list.php';
+$scope.activeTemplate = 'views/scholarship-form.php';
+
+//initiate dataTables plugin
+$timeout(function() {
+
+var oTable1 = 
+$('#dynamic-table')
+//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+.dataTable( {
+	bAutoWidth: false,
+	"aoColumns": [
+	  null, null, null, null, null, null, null,
+	  { "bSortable": false }
+	],
+	"aaSorting": [],
+
+	//,
+	//"sScrollY": "200px",
+	//"bPaginate": false,
+
+	//"sScrollX": "100%",
+	//"sScrollXInner": "120%",
+	//"bScrollCollapse": true,
+	//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+	//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+
+	//"iDisplayLength": 50
+} );
+//oTable1.fnAdjustColumnSizing();
+
+
+},1000);
+
 
 $scope.computeAge = function() {
 	
@@ -165,6 +202,34 @@ $scope.updateAccInfo = function() {
 	  // error
 		
 	});	
+	
+}
+
+$scope.scholarshipAdd = function() {
+	
+}
+
+$scope.scholarship = {};
+
+$scope.views.scholarship_programs = {
+	"University Scholarships": "University",
+	"Government": "Government"
+};
+
+$scope.views.scholarship_program_select = {
+	"University": {
+		"Academic":"Academic",
+		"Dependent":"Dependent"
+	},
+	"Government": {
+		"Local Code":"Local Code",
+		"DA ACEF": "DA ACEF"
+	}
+};
+
+$scope.selectProgram = function() {
+	
+	$scope.views.scholarship_program = $scope.views.scholarship_program_select[$scope.scholarship.programs];
 	
 }
 

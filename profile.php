@@ -433,7 +433,12 @@ require_once 'authentication.php';
 											</div>
 
 											<div id="edit-scholarship" class="tab-pane">
+												<div class="space-10"></div>												
+												<button class="btn btn-primary btn-sm no-radius" ng-click="add()">Add</button>
 												<div class="space-10"></div>
+												
+												<div id="scholarship-content" ng-include="activeTemplate"></div>
+												
 											</div>											
 											
 											<div id="edit-password" class="tab-pane">
@@ -539,6 +544,11 @@ require_once 'authentication.php';
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+		<!-- page specific plugin scripts -->
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="assets/js/dataTables.tableTools.min.js"></script>
+		<script src="assets/js/dataTables.colVis.min.js"></script>			
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>

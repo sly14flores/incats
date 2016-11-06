@@ -272,12 +272,12 @@ require_once 'authentication.php';
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
-						<div id="crud" class="row">
+						<!--<div id="crud" class="row">
 							<div class="col-xs-12">
 								<button class="btn btn-primary btn-sm no-radius" ng-click="add()" ng-disabled="views.add">Add</button>
 							</div>
 						</div>
-						<hr />
+						<hr />-->
 						<div class="row">
 							<div id="content" class="col-xs-12" ng-include="activeTemplate">							
 							</div><!-- /.col -->
