@@ -12,7 +12,7 @@
 		<div class="space-10"></div>	
 		<div class="col-md-4 col-lg-4">
 			<label>Application</label>
-			<select class="form-control">
+			<select class="form-control" name="application_type" ng-model="scholarship.application_type">
 				<option value="">-</option>
 				<option value="New">New</option>
 				<option value="Renewal">Renewal</option>
@@ -29,21 +29,21 @@
 			<select class="form-control" name="program" ng-model="scholarship.program" ng-options="x for (x,y) in views.scholarship_program track by y">
 				<option value="">-</option>
 			</select>
-		</div>		
+		</div>
 	</div>
 	<div class="row">
 		<div class="space-10"></div>	
 		<div class="col-md-4 col-lg-4">
 			<label>Course</label>
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" name="course" ng-model="scholarship.course">
 		</div>
 		<div class="col-md-4 col-lg-4">
 			<label>College</label>
-			<input type="text" class="form-control">			
+			<input type="text" class="form-control" name="college" ng-model="scholarship.college">			
 		</div>
 		<div class="col-md-4 col-lg-4">
 			<label>Year Level</label>
-			<select class="form-control" name="level" ng-model="scholarship.level" ng-options="x for (x,y) in views.levels track by y">
+			<select class="form-control" name="year_level" ng-model="scholarship.year_level" ng-options="x for (x,y) in views.levels track by y">
 				<option value="">-</option>				
 			</select>
 		</div>
@@ -71,7 +71,7 @@
 		<div class="space-10"></div>
 		<div class="col-md-3 col-lg-3">
 			<label>File</label>
-			<input type="file" name="doc" id="doc" fileread="views.doc">
+			<input type="file" name="doc_file" id="doc_file" fileread="views.doc_file">
 		</div>
 		<div class="col-md-3 col-lg-3">
 			<label>Description</label>
@@ -108,10 +108,10 @@
 		<tbody>
 			<tr ng-repeat="requirement in requirements">
 				<td>
-					<input type="text" class="form-control" value="{{requirement.description}}" ng-disabled="requirement.disabled">
+					<input type="text" class="form-control" value="{{requirement.description}}" ng-disabled="true">
 				</td>
 				<td>
-					<input type="text" class="form-control" value="{{requirement.rating}}" ng-disabled="requirement.disabled">
+					<input type="text" class="form-control" value="{{requirement.rating}}" ng-disabled="true">
 				</td>
 				<td>{{views.doc_title}}</td>
 				<td>

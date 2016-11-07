@@ -43,7 +43,23 @@ switch ($_GET['r']) {
 	$con = new pdo_db('accounts');
 	$applicant = $con->updateData($_POST,'id');
 	
-	break;		
+	break;
+
+	case "save_scholarship":
+	
+	if (isset($_POST['scholarship']['programs'])) unset($_POST['scholarship']['programs']);
+	
+	$_POST['scholarship']['account_id'] = $_SESSION['id'];
+	
+	$con1 = new pdo_db('scholarships');
+	$profile = $con1->insertData($_POST['scholarship']);
+	
+	$_POST['requirements']['scholarship_id'] = $con1->insertId;
+	
+	$con2 = new pdo_db('requirements');
+	$requirements = $con2->insertData($_POST['requirements']);
+	
+	break;
 
 }
 

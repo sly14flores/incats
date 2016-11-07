@@ -278,11 +278,11 @@ $scope.selectProgram = function() {
 
 $scope.requirementAdd = function() {
 	
-	$scope.views.doc_title = $('#doc')[0].files[0]['name'];
-	$scope.requirements.push({disabled: true, description: $scope.views.description, rating: $scope.views.rating, doc: $scope.views.doc, doc_title: $scope.views.doc_title});
+	$scope.views.doc_title = $('#doc_file')[0].files[0]['name'];
+	$scope.requirements.push({description: $scope.views.description, rating: $scope.views.rating, doc_file: $scope.views.doc_file, doc_title: $scope.views.doc_title});
 	$scope.views.description = '';
 	$scope.views.rating = '';
-	$('#doc').val(null);
+	$('#doc_file').val(null);
 	
 };
 
@@ -305,6 +305,21 @@ $scope.scholarshipCancel = function() {
 
 $scope.scholarshipSave = function() {
 	
+	blockUI.show();
+	
+	$http({
+	  method: 'POST',
+	  data: {scholarship: $scope.scholarship, requirements: $scope.requirements},
+	  url: 'controllers/profile.php?r=save_scholarship'
+	}).then(function mySucces(response) {			
+		
+		blockUI.hide();
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});	
 	
 }
 

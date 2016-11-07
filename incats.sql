@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2016 at 10:12 PM
+-- Generation Time: Nov 08, 2016 at 12:18 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -52,6 +52,49 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_no`, `birthdate`, `age`, `username`, `password`, `email`, `built_in`) VALUES
 (1, 'Administrator', '', 'Admin', '', '', '', '', '', '0000-00-00', 0, 'admin', 'admin', '', 1),
 (2, 'Applicant', '', 'Sly', 'Bulilan', 'Flores', '', '', '', '0000-00-00', 0, 'sly', 'legend', 'sly@christian.com.ph', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requirements`
+--
+
+CREATE TABLE IF NOT EXISTS `requirements` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `scholarship_id` int(10) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `rating` varchar(50) NOT NULL,
+  `doc_title` varchar(100) NOT NULL,
+  `doc_file` longblob NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `scholarship_id` (`scholarship_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scholarships`
+--
+
+CREATE TABLE IF NOT EXISTS `scholarships` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `account_id` int(10) NOT NULL,
+  `application_type` varchar(50) NOT NULL,
+  `program` varchar(50) NOT NULL,
+  `course` varchar(50) NOT NULL,
+  `college` varchar(50) NOT NULL,
+  `year_level` varchar(50) NOT NULL,
+  `semester` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `scholarships`
+--
+
+INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `program`, `course`, `college`, `year_level`, `semester`) VALUES
+(1, 2, 'New', 'Academic', 'BSIT', 'CIT', '1', '1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
