@@ -1,6 +1,66 @@
 var app = angular.module('profile', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
 
-app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNotify,bootstrapModal) {
+app.directive('fileread', [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;						
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);
+
+app.service('profileService',function($timeout) {
+	
+	this.list = function(scope) {
+		
+		scope.activeTemplate = 'views/scholarships-list.php';
+		
+		//initiate dataTables plugin
+		$timeout(function() {
+
+		var oTable1 = 
+		$('#dynamic-table-scholarships')
+		//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+		.dataTable( {
+			bAutoWidth: false,
+			"aoColumns": [
+			  null, null, null, null, null, null, null,
+			  { "bSortable": false }
+			],
+			"aaSorting": [],
+
+			//,
+			//"sScrollY": "200px",
+			//"bPaginate": false,
+
+			//"sScrollX": "100%",
+			//"sScrollXInner": "120%",
+			//"bScrollCollapse": true,
+			//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+			//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+
+			//"iDisplayLength": 50
+		} );
+		//oTable1.fnAdjustColumnSizing();
+
+
+		},1000);	
+		
+	}
+	
+});
+
+app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNotify,bootstrapModal,profileService) {
 
 $scope.views = {};
 
@@ -43,41 +103,6 @@ $timeout(function() {
 /*
 ** load scholarship
 */
-
-// $scope.activeTemplate = 'views/scholarships-list.php';
-$scope.activeTemplate = 'views/scholarship-form.php';
-
-//initiate dataTables plugin
-$timeout(function() {
-
-var oTable1 = 
-$('#dynamic-table')
-//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-.dataTable( {
-	bAutoWidth: false,
-	"aoColumns": [
-	  null, null, null, null, null, null, null,
-	  { "bSortable": false }
-	],
-	"aaSorting": [],
-
-	//,
-	//"sScrollY": "200px",
-	//"bPaginate": false,
-
-	//"sScrollX": "100%",
-	//"sScrollXInner": "120%",
-	//"bScrollCollapse": true,
-	//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-	//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-	//"iDisplayLength": 50
-} );
-//oTable1.fnAdjustColumnSizing();
-
-
-},1000);
-
 
 $scope.computeAge = function() {
 	
@@ -207,30 +232,82 @@ $scope.updateAccInfo = function() {
 
 $scope.scholarshipAdd = function() {
 	
+	$scope.activeTemplate = 'views/scholarship-form.php';
+	
+	$scope.scholarship = {};
+
+	$scope.views.scholarship_programs = {
+		"University Scholarships": "University",
+		"Government": "Government"
+	};
+
+	$scope.views.scholarship_program_select = {
+		"University": {
+			"Academic":"Academic",
+			"Dependent":"Dependent"
+		},
+		"Government": {
+			"Local Code":"Local Code",
+			"DA ACEF": "DA ACEF"
+		}
+	};
+
+	$scope.views.levels = {
+		"1st Year": 1,
+		"2nd Year": 2,
+		"3rd Year": 3,
+		"4th Year": 4,
+		"5th Year": 5
+	};
+
+	$scope.views.semesters = {
+		"First Semester": 1,
+		"Second Semester": 2,
+	};
+	
+	$scope.requirements = [];
+	$scope.views.doc_title = '';
+	
 }
-
-$scope.scholarship = {};
-
-$scope.views.scholarship_programs = {
-	"University Scholarships": "University",
-	"Government": "Government"
-};
-
-$scope.views.scholarship_program_select = {
-	"University": {
-		"Academic":"Academic",
-		"Dependent":"Dependent"
-	},
-	"Government": {
-		"Local Code":"Local Code",
-		"DA ACEF": "DA ACEF"
-	}
-};
 
 $scope.selectProgram = function() {
 	
-	$scope.views.scholarship_program = $scope.views.scholarship_program_select[$scope.scholarship.programs];
+	$scope.views.scholarship_program = $scope.views.scholarship_program_select[$scope.scholarship.programs];	
+	
+};
+
+$scope.requirementAdd = function() {
+	
+	$scope.views.doc_title = $('#doc')[0].files[0]['name'];
+	$scope.requirements.push({disabled: true, description: $scope.views.description, rating: $scope.views.rating, doc: $scope.views.doc, doc_title: $scope.views.doc_title});
+	$scope.views.description = '';
+	$scope.views.rating = '';
+	$('#doc').val(null);
+	
+};
+
+$scope.requirementDel = function(item) {
+	
+	var index = $scope.requirements.indexOf(item);
+	$scope.requirements.splice(index, 1);
+	
+/* 	if (item.id > 0) {
+		$scope.purposesDelete.push(item.id);
+	}	 */
 	
 }
+
+$scope.scholarshipCancel = function() {
+	
+	profileService.list($scope);
+	
+};
+
+$scope.scholarshipSave = function() {
+	
+	
+}
+
+profileService.list($scope);
 
 });

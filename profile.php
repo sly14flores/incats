@@ -52,7 +52,7 @@ require_once 'authentication.php';
 	</head>
 
 	<body class="no-skin" ng-app="profile" ng-controller="profileCtrl">
-		<div id="navbar" class="navbar navbar-default">
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
@@ -433,9 +433,6 @@ require_once 'authentication.php';
 											</div>
 
 											<div id="edit-scholarship" class="tab-pane">
-												<div class="space-10"></div>												
-												<button class="btn btn-primary btn-sm no-radius" ng-click="add()">Add</button>
-												<div class="space-10"></div>
 												
 												<div id="scholarship-content" ng-include="activeTemplate"></div>
 												

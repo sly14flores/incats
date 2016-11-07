@@ -50,7 +50,7 @@ require_once 'authentication.php';
 	</head>
 
 	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
-		<div id="navbar" class="navbar navbar-default">
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>

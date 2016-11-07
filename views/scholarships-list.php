@@ -1,3 +1,7 @@
+<div class="space-10"></div>												
+<button class="btn btn-primary btn-sm no-radius" ng-click="scholarshipAdd()">Add</button>
+<div class="space-10"></div>
+
 <div class="table-header">
 	Your Scholarships
 </div>
@@ -6,7 +10,7 @@
 
 <!-- div.dataTables_borderWrap -->
 <div>
-	<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+	<table id="dynamic-table-scholarships" class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>Scholarship No</th>
