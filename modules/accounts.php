@@ -15,7 +15,27 @@ case "info":
 	
 	echo json_encode($result[0]);
 
-break;	
+break;
+
+case "settings":
+	
+	$con = new pdo_db();
+	$result = $con->getData("SELECT username, password, password re_type_password FROM accounts WHERE id = '$_SESSION[id]'");
+	
+	echo json_encode($result[0]);	
+	
+break;
+
+case "update":
+
+	$con = new pdo_db("accounts");
+	if (isset($_POST['re_type_password'])) unset($_POST['re_type_password']);
+	
+	$_POST['id'] = $_SESSION['id'];
+	
+	$update = $con->updateData($_POST,'id');	
+
+break;
 	
 }
 

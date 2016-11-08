@@ -117,8 +117,8 @@ require_once 'authentication.php';
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
-									<a href="#">
+								<li ng-show="privileges.settings">
+									<a href="javascript:;" settings>
 										<i class="ace-icon fa fa-cog"></i>
 										Settings
 									</a>
