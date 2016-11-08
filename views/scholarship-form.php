@@ -79,7 +79,7 @@
 		</div>
 		<div class="col-md-3 col-lg-3">
 			<label>Rating</label>
-			<input type="text" class="form-control" name="rating" ng-model="views.rating">
+			<input type="text" class="form-control" name="doc_rating" ng-model="views.doc_rating">
 		</div>
 		<div class="col-md-3 col-lg-3" style="padding-top: 27px;">
 			<button class="btn btn-primary btn-xs inline" ng-click="requirementAdd()">Add</button>		
@@ -111,9 +111,9 @@
 					<input type="text" class="form-control" value="{{requirement.description}}" ng-disabled="true">
 				</td>
 				<td>
-					<input type="text" class="form-control" value="{{requirement.rating}}" ng-disabled="true">
+					<input type="text" class="form-control" value="{{requirement.doc_rating}}" ng-disabled="true">
 				</td>
-				<td>{{views.doc_title}}</td>
+				<td>{{requirement.doc_title}}</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">
 						<!--<a class="green" href="javascript:;">

@@ -54,10 +54,12 @@ switch ($_GET['r']) {
 	$con1 = new pdo_db('scholarships');
 	$profile = $con1->insertData($_POST['scholarship']);
 	
-	$_POST['requirements']['scholarship_id'] = $con1->insertId;
-	
+	foreach ($_POST['requirements'] as $key => $requirement) {
+		$_POST['requirements'][$key]['scholarship_id'] = $con1->insertId;
+	}
+
 	$con2 = new pdo_db('requirements');
-	$requirements = $con2->insertData($_POST['requirements']);
+	$requirements = $con2->insertDataMulti($_POST['requirements']);
 	
 	break;
 

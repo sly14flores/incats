@@ -266,7 +266,7 @@ $scope.scholarshipAdd = function() {
 	};
 	
 	$scope.requirements = [];
-	$scope.views.doc_title = '';
+	$scope.requirements_files = [];
 	
 }
 
@@ -277,12 +277,12 @@ $scope.selectProgram = function() {
 };
 
 $scope.requirementAdd = function() {
-	
-	$scope.views.doc_title = $('#doc_file')[0].files[0]['name'];
-	$scope.requirements.push({description: $scope.views.description, rating: $scope.views.rating, doc_file: $scope.views.doc_file, doc_title: $scope.views.doc_title});
+
+	$scope.requirements.push({description: $scope.views.description, doc_rating: $scope.views.doc_rating, doc_title: $('#doc_file')[0].files[0]['name']});
+	$scope.requirements_files.push({title: $('#doc_file')[0].files[0]['name'], doc: $scope.views.doc_file});
 	$scope.views.description = '';
-	$scope.views.rating = '';
-	$('#doc_file').val(null);
+	$scope.views.doc_rating = '';
+	$timeout(function() { $('#doc_file').val(null); },1000);
 	
 };
 
@@ -304,7 +304,7 @@ $scope.scholarshipCancel = function() {
 };
 
 $scope.scholarshipSave = function() {
-	
+
 	blockUI.show();
 	
 	$http({
@@ -313,7 +313,13 @@ $scope.scholarshipSave = function() {
 	  url: 'controllers/profile.php?r=save_scholarship'
 	}).then(function mySucces(response) {			
 		
-		blockUI.hide();
+		angular.forEach($scope.requirements_files, function(value, key) {
+			
+			$scope.uploadImage(value['doc'],value['title']);
+			
+		});
+		
+		blockUI.hide();	
 		
 	}, function myError(response) {
 		 
@@ -322,6 +328,39 @@ $scope.scholarshipSave = function() {
 	});	
 	
 }
+
+function dataURItoBlob(dataURI) {
+	var binary = atob(dataURI.split(',')[1]);
+	var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+	var array = [];
+	for (var i = 0; i < binary.length; i++) {
+		array.push(binary.charCodeAt(i));
+	}
+	return new Blob([new Uint8Array(array)], {
+		type: mimeString
+	});
+}
+
+$scope.uploadImage = function(img,fn) {
+  var fd = new FormData();
+  var imgBlob = dataURItoBlob(img);
+  fd.append('file', imgBlob);
+  $http.post(
+	  'controllers/upload.php?fn='+fn,
+	  fd, {
+		transformRequest: angular.identity,
+		headers: {
+		  'Content-Type': undefined
+		}
+	  }
+	)
+	.success(function(response) {
+	  console.log('success', response);
+	})
+	.error(function(response) {
+	  console.log('error', response);
+	});
+};
 
 profileService.list($scope);
 

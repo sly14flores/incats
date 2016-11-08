@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 08, 2016 at 12:18 AM
+-- Generation Time: Nov 08, 2016 at 04:09 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -63,12 +63,10 @@ CREATE TABLE IF NOT EXISTS `requirements` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `scholarship_id` int(10) NOT NULL,
   `description` varchar(50) NOT NULL,
-  `rating` varchar(50) NOT NULL,
+  `doc_rating` varchar(50) NOT NULL,
   `doc_title` varchar(100) NOT NULL,
-  `doc_file` longblob NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `scholarship_id` (`scholarship_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -88,13 +86,6 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `scholarships`
---
-
-INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `program`, `course`, `college`, `year_level`, `semester`) VALUES
-(1, 2, 'New', 'Academic', 'BSIT', 'CIT', '1', '1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

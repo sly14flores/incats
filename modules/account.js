@@ -37,8 +37,13 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 			
 			function privileges(account_type) {
 				
-				if (account_type == 'Administrator') scope.privileges.scholarship_services = true;
-				if (account_type == 'Applicant') scope.privileges.profile = true;
+				if (account_type == 'Administrator') {
+					scope.privileges.scholarship_services = true;
+				}
+				
+				if (account_type == 'Applicant') {
+					scope.privileges.profile = true;
+				}
 				
 			}
 
