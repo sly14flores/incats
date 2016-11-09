@@ -19,11 +19,24 @@ app.directive('fileread', [function () {
     }
 }]);
 
-app.service('profileService',function($timeout) {
+app.service('profileService',function($http,$timeout) {
 	
 	this.list = function(scope) {
 		
 		scope.activeTemplate = 'views/scholarships-list.php';
+		
+		$http({
+		  method: 'POST',
+		  url: 'controllers/profile.php?r=list'
+		}).then(function mySucces(response) {	
+
+			scope.scholarships = response.data;
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});		
 		
 		//initiate dataTables plugin
 		$timeout(function() {
@@ -69,6 +82,41 @@ $scope.accinfo = {};
 $scope.validation = {};
 $scope.validation.birthday = false;
 $scope.validation.passwordMatches = false;
+
+$scope.scholarship = {};
+$scope.requirements = [];
+$scope.requirements_files = [];
+$scope.requirementsDelete = [];
+$scope.requirementsFilenames = [];
+
+$scope.views.scholarship_programs = {
+	"University Scholarships": "University",
+	"Government": "Government"
+};
+
+$scope.views.scholarship_program_select = {
+	"University": {
+		"Academic":"Academic",
+		"Dependent":"Dependent"
+	},
+	"Government": {
+		"Local Code":"Local Code",
+		"DA ACEF": "DA ACEF"
+	}
+};
+
+$scope.views.levels = {
+	"1st Year": 1,
+	"2nd Year": 2,
+	"3rd Year": 3,
+	"4th Year": 4,
+	"5th Year": 5
+};
+
+$scope.views.semesters = {
+	"First Semester": 1,
+	"Second Semester": 2,
+};
 
 /*
 ** load profile
@@ -232,41 +280,49 @@ $scope.updateAccInfo = function() {
 
 $scope.scholarshipAdd = function() {
 	
-	$scope.activeTemplate = 'views/scholarship-form.php';
+	blockUI.show();
+	
+	$scope.views.ok = 'Save';
+	$scope.views.cancel = 'Cancel';
 	
 	$scope.scholarship = {};
-
-	$scope.views.scholarship_programs = {
-		"University Scholarships": "University",
-		"Government": "Government"
-	};
-
-	$scope.views.scholarship_program_select = {
-		"University": {
-			"Academic":"Academic",
-			"Dependent":"Dependent"
-		},
-		"Government": {
-			"Local Code":"Local Code",
-			"DA ACEF": "DA ACEF"
-		}
-	};
-
-	$scope.views.levels = {
-		"1st Year": 1,
-		"2nd Year": 2,
-		"3rd Year": 3,
-		"4th Year": 4,
-		"5th Year": 5
-	};
-
-	$scope.views.semesters = {
-		"First Semester": 1,
-		"Second Semester": 2,
-	};
-	
 	$scope.requirements = [];
-	$scope.requirements_files = [];
+	$scope.requirements_files = [];	
+	
+	$scope.activeTemplate = 'views/scholarship-form.php';
+	
+	blockUI.hide();	
+	
+};
+
+$scope.scholarshipView = function(id) {
+	
+	blockUI.show();	
+	
+	$scope.views.ok = 'Update';
+	$scope.views.cancel = 'Close';
+	
+	$scope.requirementsDelete = [];
+	$scope.requirementsFilenames = [];	
+	
+	$scope.activeTemplate = 'views/scholarship-form.php';
+	
+	$http({
+	  method: 'POST',
+	  data: {id: id},
+	  url: 'controllers/profile.php?r=view_scholarship'
+	}).then(function mySucces(response) {			
+
+		$scope.scholarship = response.data['scholarship'];
+		$scope.requirements = response.data['requirements'];
+		
+		blockUI.hide();
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});	
 	
 }
 
@@ -278,7 +334,7 @@ $scope.selectProgram = function() {
 
 $scope.requirementAdd = function() {
 
-	$scope.requirements.push({description: $scope.views.description, doc_rating: $scope.views.doc_rating, doc_title: $('#doc_file')[0].files[0]['name']});
+	$scope.requirements.push({id: 0, description: $scope.views.description, doc_rating: $scope.views.doc_rating, doc_title: $('#doc_file')[0].files[0]['name']});
 	$scope.requirements_files.push({title: $('#doc_file')[0].files[0]['name'], doc: $scope.views.doc_file});
 	$scope.views.description = '';
 	$scope.views.doc_rating = '';
@@ -289,11 +345,13 @@ $scope.requirementAdd = function() {
 $scope.requirementDel = function(item) {
 	
 	var index = $scope.requirements.indexOf(item);
-	$scope.requirements.splice(index, 1);
 	
-/* 	if (item.id > 0) {
-		$scope.purposesDelete.push(item.id);
-	}	 */
+	if (item.id > 0) {
+		$scope.requirementsDelete.push(item.id);
+		$scope.requirementsFilenames.push(item['doc_title']);
+	}
+	
+	$timeout(function() { $scope.requirements.splice(index, 1); },500);
 	
 }
 
@@ -304,20 +362,26 @@ $scope.scholarshipCancel = function() {
 };
 
 $scope.scholarshipSave = function() {
-
+	
 	blockUI.show();
+	
+	var to = $scope.requirements_files.length;	
+	if ($scope.views.ok == 'Save') var r = 'save_scholarship';
+	else var r = 'update_scholarship';
 	
 	$http({
 	  method: 'POST',
-	  data: {scholarship: $scope.scholarship, requirements: $scope.requirements},
-	  url: 'controllers/profile.php?r=save_scholarship'
-	}).then(function mySucces(response) {			
+	  data: {scholarship: $scope.scholarship, requirements: $scope.requirements, requirementsDelete: $scope.requirementsDelete, requirementsFilenames: $scope.requirementsFilenames},
+	  url: 'controllers/profile.php?r='+r
+	}).then(function mySucces(response) {
 		
-		angular.forEach($scope.requirements_files, function(value, key) {
-			
-			$scope.uploadImage(value['doc'],value['title']);
-			
-		});
+		for (i=0; i<to; ++i) {
+		
+			$scope.uploadImage($scope.requirements_files[i]['doc'],$scope.requirements_files[i]['title']);
+		
+		}
+		
+		profileService.list($scope);
 		
 		blockUI.hide();	
 		

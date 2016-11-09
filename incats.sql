@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 08, 2016 at 04:09 PM
+-- Generation Time: Nov 09, 2016 at 11:36 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -78,14 +78,21 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `account_id` int(10) NOT NULL,
   `application_type` varchar(50) NOT NULL,
+  `programs` varchar(100) NOT NULL,
   `program` varchar(50) NOT NULL,
   `course` varchar(50) NOT NULL,
   `college` varchar(50) NOT NULL,
   `year_level` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `account_id` (`account_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `scholarships`
+--
+
+INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, `program`, `course`, `college`, `year_level`, `semester`) VALUES
+(1, 2, 'New', 'University', 'Academic', 'bsit', 'cit', '1', '1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

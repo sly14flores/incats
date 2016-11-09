@@ -135,8 +135,8 @@
 		<div id="tButtons" class="row" style="margin-left: 15px; margin-right: 15px;">
 			<div class="space-10"></div>	
 			<div class="col-md-12">
-				<button class="btn btn-success" ng-click="scholarshipSave()">Save</button>
-				<button class="btn btn-default" ng-click="scholarshipCancel()">Cancel</button>
+				<button class="btn btn-success" ng-click="scholarshipSave()">{{views.ok}}</button>
+				<button class="btn btn-default" ng-click="scholarshipCancel()">{{views.cancel}}</button>
 			</div>
 		</div>
 	</div>		

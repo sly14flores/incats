@@ -25,23 +25,23 @@
 		</thead>
 
 		<tbody>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
+			<tr ng-repeat="scholar in scholarships">
+				<td>{{scholar.id}}</td>
+				<td>{{scholar.application_type}}</td>
+				<td>{{scholar.program}}</td>
+				<td>{{scholar.course}}</td>
+				<td>{{scholar.college}}</td>
+				<td>{{scholar.year_level}}</td>
 				<td>&nbsp;</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="javascript:;">
+						<a class="green" href="javascript:;" ng-click="scholarshipView(scholar.id)">
 							<i class="ace-icon fa fa-search bigger-130"></i>
 						</a>
 
-						<!--<a class="red" href="javascript:;">
+						<a class="red" href="javascript:;" ng-click="scholarshipDel(scholar.id)">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
-						</a>-->
+						</a>
 					</div>														
 				</td>
 			</tr>													
