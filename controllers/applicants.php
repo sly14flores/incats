@@ -9,7 +9,7 @@ switch ($_GET['r']) {
 	case "list":
 	
 	$con = new pdo_db();
-	$results = $con->getData("SELECT id, student_id, CONCAT(first_name, ' ', middle_name, ' ', last_name) full_name, gender, contact_no FROM accounts WHERE account_type != 'Administrator'");
+	$results = $con->getData("SELECT accounts.student_id, CONCAT(accounts.first_name, ' ', accounts.middle_name, ' ', accounts.last_name) full_name, scholarships.program, scholarships.course, scholarships.college, scholarships.semester, scholarships.year_level FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE application_type = 'New' AND account_type != 'Administrator'");
 	
 	echo json_encode($results);	
 	

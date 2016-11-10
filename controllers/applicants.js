@@ -9,6 +9,19 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		
 		scope.views.add = false;
 		
+	scope.views.levels = {
+		1: "1st Year",
+		2: "2nd Year",
+		3: "3rd Year",
+		4: "4th Year",
+		5: "5th Year"
+	};
+
+	scope.views.semesters = {
+		1: "First Semester",
+		2: "Second Semester"
+	};		
+		
 		$http({
 		  method: 'POST',
 		  url: 'controllers/applicants.php?r=list'
@@ -30,7 +43,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		.dataTable( {
 			bAutoWidth: false,
 			"aoColumns": [
-			  null, null, null, null, null,
+			  null, null, null, null, null, null, null, null,
 			  { "bSortable": false }
 			],
 			"aaSorting": [],

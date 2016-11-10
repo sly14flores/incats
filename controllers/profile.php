@@ -100,6 +100,19 @@ switch ($_GET['r']) {
 	}
 	
 	break;
+	
+	case "delete_scholarship":
+
+	$con = new pdo_db('scholarships');
+	
+	$requirements = $con->getData("SELECT id, doc_title FROM requirements WHERE scholarship_id = ".$_POST['id'][0]);
+	foreach ($requirements as $key => $requirement) {
+		unlink("../requirements/".$requirement['doc_title']);
+	}	
+	
+	$con->deleteData(array("id"=>implode(",",$_POST['id'])));
+	
+	break;
 
 }
 

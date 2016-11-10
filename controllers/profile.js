@@ -326,6 +326,34 @@ $scope.scholarshipView = function(id) {
 	
 }
 
+$scope.scholarshipDel = function(id) {
+	
+	bootstrapModal.confirm($scope,'Confirmation','Are you sure you want to delete this scholarship?',function() { delScholarship(id); },function() {});
+	
+	function delScholarship(id) {
+		
+		blockUI.show();
+		
+		$http({
+		  method: 'POST',
+		  data: {id: [id]},
+		  url: 'controllers/profile.php?r=delete_scholarship'
+		}).then(function mySucces(response) {			
+			
+			$('#dynamic-table-scholarships').dataTable().fnDestroy();			
+			profileService.list($scope);			
+			blockUI.hide();
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});			
+		
+	}
+	
+}
+
 $scope.selectProgram = function() {
 	
 	$scope.views.scholarship_program = $scope.views.scholarship_program_select[$scope.scholarship.programs];	
@@ -353,7 +381,7 @@ $scope.requirementDel = function(item) {
 	
 	$timeout(function() { $scope.requirements.splice(index, 1); },500);
 	
-}
+};
 
 $scope.scholarshipCancel = function() {
 	
@@ -391,7 +419,7 @@ $scope.scholarshipSave = function() {
 		
 	});	
 	
-}
+};
 
 function dataURItoBlob(dataURI) {
 	var binary = atob(dataURI.split(',')[1]);
@@ -403,7 +431,7 @@ function dataURItoBlob(dataURI) {
 	return new Blob([new Uint8Array(array)], {
 		type: mimeString
 	});
-}
+};
 
 $scope.uploadImage = function(img,fn) {
   var fd = new FormData();
@@ -425,6 +453,12 @@ $scope.uploadImage = function(img,fn) {
 	  console.log('error', response);
 	});
 };
+
+$scope.viewFile = function(img) {
+	
+	window.open('requirements/'+img);
+	
+}
 
 profileService.list($scope);
 

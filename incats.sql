@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 09, 2016 at 11:36 PM
+-- Generation Time: Nov 10, 2016 at 12:49 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `email` varchar(50) NOT NULL,
   `built_in` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `accounts`
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `requirements` (
   `doc_rating` varchar(50) NOT NULL,
   `doc_title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -85,14 +85,23 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `year_level` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `scholarships`
+-- Constraints for dumped tables
 --
 
-INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, `program`, `course`, `college`, `year_level`, `semester`) VALUES
-(1, 2, 'New', 'University', 'Academic', 'bsit', 'cit', '1', '1');
+--
+-- Constraints for table `requirements`
+--
+ALTER TABLE `requirements`
+  ADD CONSTRAINT `requirements_ibfk_1` FOREIGN KEY (`id`) REFERENCES `scholarships` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `scholarships`
+--
+ALTER TABLE `scholarships`
+  ADD CONSTRAINT `scholarships_ibfk_1` FOREIGN KEY (`id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

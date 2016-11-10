@@ -113,7 +113,7 @@
 				<td>
 					<input type="text" class="form-control" value="{{requirement.doc_rating}}" ng-disabled="true">
 				</td>
-				<td>{{requirement.doc_title}}</td>
+				<td><a href="javascript:;" ng-click="viewFile(requirement.doc_title)">{{requirement.doc_title}}</a></td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">
 						<!--<a class="green" href="javascript:;">

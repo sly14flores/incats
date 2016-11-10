@@ -11,8 +11,11 @@
 													<tr>
 														<th>Student ID</th>
 														<th>Fullname</th>
-														<th>Gender</th>
-														<th>Contact</th>
+														<th>Program</th>
+														<th>Course</th>
+														<th>College</th>
+														<th>Semester</th>
+														<th>Year Level</th>
 														<th>Status</th>
 														<th>&nbsp;</th>
 													</tr>
@@ -22,13 +25,16 @@
 													<tr ng-repeat="applicant in applicants">
 														<td>{{applicant.student_id}}</td>
 														<td>{{applicant.full_name}}</td>
-														<td>{{applicant.gender}}</td>
-														<td>{{applicant.contact_no}}</td>
+														<td>{{applicant.program}}</td>
+														<td>{{applicant.course}}</td>
+														<td>{{applicant.college}}</td>
+														<td>{{views.semesters[applicant.semester]}}</td>
+														<td>{{views.levels[applicant.year_level]}}</td>
 														<td>&nbsp;</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
 																<a class="green" href="javascript:;" ng-click="view(applicant.id)">
-																	<i class="ace-icon fa fa-pencil bigger-130"></i>
+																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>
 
 																<a class="red" href="javascript:;" ng-click="del(applicant.id)">
