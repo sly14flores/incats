@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2016 at 12:49 PM
+-- Generation Time: Nov 10, 2016 at 10:05 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_no`, `birthdate`, `age`, `username`, `password`, `email`, `built_in`) VALUES
 (1, 'Administrator', '', 'Admin', '', '', '', '', '', '0000-00-00', 0, 'admin', 'admin', '', 1),
-(2, 'Applicant', '', 'Sly', 'Bulilan', 'Flores', '', '', '', '0000-00-00', 0, 'sly', 'legend', 'sly@christian.com.ph', 0);
+(2, 'Applicant', '82156', 'Sylvester', 'Bulilan', 'Flores', 'Male', 'Tanqui', '09179245040', '1982-11-14', 33, 'sly', 'legend', 'sly@christian.com.ph', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -65,8 +65,9 @@ CREATE TABLE IF NOT EXISTS `requirements` (
   `description` varchar(50) NOT NULL,
   `doc_rating` varchar(50) NOT NULL,
   `doc_title` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  PRIMARY KEY (`id`),
+  KEY `scholarship_id` (`scholarship_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,9 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `college` varchar(50) NOT NULL,
   `year_level` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `school_year` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -95,13 +98,13 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
 -- Constraints for table `requirements`
 --
 ALTER TABLE `requirements`
-  ADD CONSTRAINT `requirements_ibfk_1` FOREIGN KEY (`id`) REFERENCES `scholarships` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `requirements_ibfk_1` FOREIGN KEY (`scholarship_id`) REFERENCES `scholarships` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `scholarships`
 --
 ALTER TABLE `scholarships`
-  ADD CONSTRAINT `scholarships_ibfk_1` FOREIGN KEY (`id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `scholarships_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

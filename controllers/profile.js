@@ -19,9 +19,11 @@ app.directive('fileread', [function () {
     }
 }]);
 
-app.service('profileService',function($http,$timeout) {
+app.service('profileService',function($http,$timeout,blockUI) {
 	
 	this.list = function(scope) {
+		
+		blockUI.show();
 		
 		scope.activeTemplate = 'views/scholarships-list.php';
 		
@@ -64,10 +66,11 @@ app.service('profileService',function($http,$timeout) {
 
 			//"iDisplayLength": 50
 		} );
-		//oTable1.fnAdjustColumnSizing();
+		//oTable1.fnAdjustColumnSizing();	
 
-
-		},1000);	
+		},1000);
+		
+		$timeout(function() {blockUI.hide();},2000);
 		
 	}
 	
@@ -303,7 +306,8 @@ $scope.scholarshipView = function(id) {
 	$scope.views.cancel = 'Close';
 	
 	$scope.requirementsDelete = [];
-	$scope.requirementsFilenames = [];	
+	$scope.requirementsFilenames = [];
+	$scope.requirements_files = [];	
 	
 	$scope.activeTemplate = 'views/scholarship-form.php';
 	
@@ -332,8 +336,6 @@ $scope.scholarshipDel = function(id) {
 	
 	function delScholarship(id) {
 		
-		blockUI.show();
-		
 		$http({
 		  method: 'POST',
 		  data: {id: [id]},
@@ -341,8 +343,7 @@ $scope.scholarshipDel = function(id) {
 		}).then(function mySucces(response) {			
 			
 			$('#dynamic-table-scholarships').dataTable().fnDestroy();			
-			profileService.list($scope);			
-			blockUI.hide();
+			profileService.list($scope);
 			
 		}, function myError(response) {
 			 
@@ -391,8 +392,6 @@ $scope.scholarshipCancel = function() {
 
 $scope.scholarshipSave = function() {
 	
-	blockUI.show();
-	
 	var to = $scope.requirements_files.length;	
 	if ($scope.views.ok == 'Save') var r = 'save_scholarship';
 	else var r = 'update_scholarship';
@@ -410,8 +409,6 @@ $scope.scholarshipSave = function() {
 		}
 		
 		profileService.list($scope);
-		
-		blockUI.hide();	
 		
 	}, function myError(response) {
 		 

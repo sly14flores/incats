@@ -89,10 +89,18 @@ switch ($_GET['r']) {
 	$_POST['scholarship']['account_id'] = $_SESSION['id'];
 	
 	$con1 = new pdo_db('scholarships');
-	$profile = $con1->updateData($_POST['scholarship'],'id');
+	$profile = $con1->updateData($_POST['scholarship'],'id');	
 	
-	if (count($_POST['requirementsDelete']) > 0) {
-		$con2 = new pdo_db('requirements');			
+	$con2 = new pdo_db('requirements');		
+	foreach($_POST['requirements'] as $key => $value) {
+		if ($value['id'] == 0) {
+			$_POST['requirements'][$key]['scholarship_id'] = $_POST['scholarship']['id'];
+			unset($_POST['requirements'][$key]['id']);			
+			$requirements = $con2->insertData($_POST['requirements'][$key]);
+		}
+	}
+	
+	if (count($_POST['requirementsDelete']) > 0) {		
 		$con2->deleteData(array("id"=>implode(",",$_POST['requirementsDelete'])));
 		foreach($_POST['requirementsFilenames'] as $key => $filename) {
 			unlink("../requirements/$filename");
