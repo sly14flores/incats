@@ -19,6 +19,7 @@
 				<th>Course</th>
 				<th>College</th>
 				<th>Year Level</th>
+				<th>School Year</th>
 				<th>Status</th>
 				<th>&nbsp;</th>
 			</tr>
@@ -31,7 +32,8 @@
 				<td>{{scholar.program}}</td>
 				<td>{{scholar.course}}</td>
 				<td>{{scholar.college}}</td>
-				<td>{{scholar.year_level}}</td>
+				<td>{{views.level[scholar.year_level]}}</td>
+				<td>{{scholar.school_year}}</td>
 				<td>&nbsp;</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">

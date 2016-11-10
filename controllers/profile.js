@@ -31,7 +31,7 @@ app.service('profileService',function($http,$timeout,blockUI) {
 		  method: 'POST',
 		  url: 'controllers/profile.php?r=list'
 		}).then(function mySucces(response) {	
-
+			console.log(scope);
 			scope.scholarships = response.data;
 			
 		}, function myError(response) {
@@ -49,7 +49,7 @@ app.service('profileService',function($http,$timeout,blockUI) {
 		.dataTable( {
 			bAutoWidth: false,
 			"aoColumns": [
-			  null, null, null, null, null, null, null,
+			  null, null, null, null, null, null, null, null,
 			  { "bSortable": false }
 			],
 			"aaSorting": [],
@@ -116,10 +116,25 @@ $scope.views.levels = {
 	"5th Year": 5
 };
 
+$scope.views.level = {
+	1: "1st Year",
+	2: "2nd Year",
+	3: "3rd Year",
+	4: "4th Year",
+	5: "5th Year"
+};
+
 $scope.views.semesters = {
 	"First Semester": 1,
 	"Second Semester": 2,
 };
+
+var semYear = (new Date()).getFullYear();
+$scope.views.school_years = {};
+for (i=1; i<=4; ++i) {
+	if (i > 1) $scope.views.school_years[(semYear+(i-1))+'-'+(semYear+i)] = (semYear+(i-1))+'-'+(semYear+i);
+	else $scope.views.school_years[semYear+'-'+(semYear+i)] = semYear+'-'+(semYear+i);
+}
 
 /*
 ** load profile
@@ -318,6 +333,7 @@ $scope.scholarshipView = function(id) {
 	}).then(function mySucces(response) {			
 
 		$scope.scholarship = response.data['scholarship'];
+		$scope.views.scholarship_program = $scope.views.scholarship_program_select[response.data['scholarship']['programs']];
 		$scope.requirements = response.data['requirements'];
 		
 		blockUI.hide();

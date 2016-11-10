@@ -9,7 +9,7 @@ switch ($_GET['r']) {
 	case "list":
 	
 	$con = new pdo_db();
-	$results = $con->getData("SELECT accounts.student_id, CONCAT(accounts.first_name, ' ', accounts.middle_name, ' ', accounts.last_name) full_name, scholarships.program, scholarships.course, scholarships.college, scholarships.semester, scholarships.year_level FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE application_type = 'New' AND account_type != 'Administrator'");
+	$results = $con->getData("SELECT scholarships.id, accounts.student_id, CONCAT(accounts.first_name, ' ', accounts.middle_name, ' ', accounts.last_name) full_name, scholarships.program, scholarships.course, scholarships.college, scholarships.semester, scholarships.year_level, scholarships.school_year FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE application_type = 'New' AND account_type != 'Administrator'");
 	
 	echo json_encode($results);	
 	
@@ -48,8 +48,14 @@ switch ($_GET['r']) {
 	
 	case "delete":
 	
-	$con = new pdo_db('accounts');
-	$delete = $con->deleteData($_POST);	
+	$con = new pdo_db('scholarships');
+	
+	$requirements = $con->getData("SELECT id, doc_title FROM requirements WHERE scholarship_id = ".$_POST['id'][0]);
+	foreach ($requirements as $key => $requirement) {
+		unlink("../requirements/".$requirement['doc_title']);
+	}	
+	
+	$con->deleteData(array("id"=>implode(",",$_POST['id'])));	
 	
 	break;
 	

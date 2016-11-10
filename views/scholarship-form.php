@@ -55,7 +55,13 @@
 			<select class="form-control" name="semester" ng-model="scholarship.semester" ng-options="x for (x,y) in views.semesters track by y">
 				<option value="">-</option>
 			</select>
-		</div>	
+		</div>
+		<div class="col-md-4 col-lg-4">
+			<label>School Year</label>
+			<select class="form-control" name="school_year" ng-model="scholarship.school_year" ng-options="x for (x,y) in views.school_years track by y">
+				<option value="">-</option>
+			</select>
+		</div>		
 	</div>
 </form>
 <div class="space-10"></div>

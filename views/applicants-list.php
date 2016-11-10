@@ -16,6 +16,7 @@
 														<th>College</th>
 														<th>Semester</th>
 														<th>Year Level</th>
+														<th>School Year</th>
 														<th>Status</th>
 														<th>&nbsp;</th>
 													</tr>
@@ -30,6 +31,7 @@
 														<td>{{applicant.college}}</td>
 														<td>{{views.semesters[applicant.semester]}}</td>
 														<td>{{views.levels[applicant.year_level]}}</td>
+														<td>{{applicant.school_year}}</td>
 														<td>&nbsp;</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">

@@ -20,7 +20,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 	scope.views.semesters = {
 		1: "First Semester",
 		2: "Second Semester"
-	};		
+	};	
 		
 		$http({
 		  method: 'POST',
@@ -43,7 +43,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		.dataTable( {
 			bAutoWidth: false,
 			"aoColumns": [
-			  null, null, null, null, null, null, null, null,
+			  null, null, null, null, null, null, null, null, null,
 			  { "bSortable": false }
 			],
 			"aaSorting": [],
@@ -62,9 +62,9 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		} );
 		//oTable1.fnAdjustColumnSizing();
 		
-		blockUI.hide();
-		
 		}, 500);
+		
+		$timeout(function() { blockUI.hide(); },1000);
 		
 	}
 	
@@ -163,7 +163,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 			
 			$http({
 			  method: 'POST',
-			  data: {id: id},
+			  data: {id: [id]},
 			  url: 'controllers/applicants.php?r=delete'
 			}).then(function mySucces(response) {
 				

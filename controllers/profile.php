@@ -11,7 +11,7 @@ switch ($_GET['r']) {
 	case "list":
 	
 	$con = new pdo_db();
-	$scholarships = $con->getData("SELECT id, application_type, program, course, college, year_level FROM scholarships WHERE account_id = '$_SESSION[id]'");
+	$scholarships = $con->getData("SELECT id, application_type, program, course, college, year_level, school_year FROM scholarships WHERE account_id = '$_SESSION[id]'");
 	
 	echo json_encode($scholarships);
 	
@@ -57,7 +57,7 @@ switch ($_GET['r']) {
 	case "view_scholarship":
 
 	$con = new pdo_db();
-	$scholarship = $con->getData("SELECT id, application_type, programs, program, course, college, year_level, semester FROM scholarships WHERE id = $_POST[id]");
+	$scholarship = $con->getData("SELECT id, application_type, programs, program, course, college, year_level, semester, school_year FROM scholarships WHERE id = $_POST[id]");
 	
 	$requirements = $con->getData("SELECT id, description, doc_rating, doc_title FROM requirements WHERE scholarship_id = ".$scholarship[0]['id']);
 	
