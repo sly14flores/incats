@@ -156,7 +156,7 @@
 
 			<div id="edit-scholarship" class="tab-pane">
 				
-				<div id="scholarship-content"></div>
+				<div id="scholarship-content" ng-include="scholarshipContent"></div>
 				
 			</div>											
 			

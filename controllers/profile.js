@@ -80,6 +80,8 @@ app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNot
 
 $scope.views = {};
 
+$scope.views.cancelShow = true;
+
 $scope.perinfo = {};
 $scope.accinfo = {};
 $scope.validation = {};
@@ -198,14 +200,14 @@ $scope.validatePassword = function() {
 		$scope.validation.passwordMatches = true;	
 	}
 
-}
+};
 
 $scope.validationBday = function() {
 	$scope.validation.birthday = false;
 	if ($('#birthday').val() == '') {
 		$scope.validation.birthday = true;
 	}
-}
+};
 
 $scope.updatePerInfo = function() {
 
@@ -232,7 +234,7 @@ $scope.updatePerInfo = function() {
 	*/
 	$scope.validationBday();
 	
-	if ((!$scope.views.frmApplicant.$valid) && ($scope.validation.birthday)) return;	
+	$timeout(function() { if ((!$scope.views.frmApplicant.$valid) && ($scope.validation.birthday)) return; },500);
 
 	$scope.perinfo.birthdate = $('#birthday').val();	
 	
@@ -251,7 +253,7 @@ $scope.updatePerInfo = function() {
 		
 	});	
 	
-}
+};
 
 $scope.updateAccInfo = function() {
 	
@@ -276,8 +278,7 @@ $scope.updateAccInfo = function() {
 	*/
 	
 	$scope.validatePassword();
-	console.log($scope.views.frmApplicant.$valid+':'+$scope.validation.passwordMatches);
-	if ((!$scope.views.frmApplicant.$valid) && (!$scope.validation.passwordMatches)) return;
+	if ((!$scope.views.frmApplicant.$valid) || (!$scope.validation.passwordMatches)) return;
 	
 	blockUI.show();
 	$http({
@@ -294,7 +295,7 @@ $scope.updateAccInfo = function() {
 		
 	});	
 	
-}
+};
 
 $scope.scholarshipAdd = function() {
 	

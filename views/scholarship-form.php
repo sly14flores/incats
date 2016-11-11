@@ -142,7 +142,7 @@
 			<div class="space-10"></div>	
 			<div class="col-md-12">
 				<button class="btn btn-success" ng-click="scholarshipSave()">{{views.ok}}</button>
-				<button class="btn btn-default" ng-click="scholarshipCancel()">{{views.cancel}}</button>
+				<button class="btn btn-default" ng-click="scholarshipCancel()" ng-show="views.cancelShow">{{views.cancel}}</button>
 			</div>
 		</div>
 	</div>		
