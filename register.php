@@ -94,6 +94,7 @@
 
 						<div class="row">
 							<div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">								
+							<div class="well well-lg">	
 								<form id="frmRegistration" name="views.frmRegistration" novalidate>										
 									<div class="form-group">
 										<div class="row">
@@ -150,7 +151,7 @@
 										</div>
 									</div>									
 								</form>
-								
+							</div>
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 						

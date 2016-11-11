@@ -1,5 +1,24 @@
 var app = angular.module('applicants', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
 
+app.directive('fileread', [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;						
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);
+
 app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 	
 	this.list = function(scope) {
@@ -75,9 +94,9 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		scope.views.cancel = 'Close';
 		scope.views.cancelShow = false;
 		
-		scope.requirementsDelete = [];
-		scope.requirementsFilenames = [];
 		scope.requirements_files = [];
+		scope.requirementsDelete = [];
+		scope.requirementsFilenames = [];		
 		
 		scope.views.scholarship_program_select = {
 			"University": {
@@ -316,13 +335,81 @@ $scope.updatePerInfo = function() {
 	  url: 'controllers/profile.php?r=update_perinfo'
 	}).then(function mySucces(response) {
 		
-		blockUI.hide();
+		blockUI.hide();		
+		bootstrapNotify.show('success','Application successfully update');		
 		
 	}, function myError(response) {
 		 
 	  // error
 		
 	});	
+	
+}
+
+$scope.scholarshipSave = function() {
+	
+	var to = $scope.requirements_files.length;	
+	
+	blockUI.show();	
+	$http({
+	  method: 'POST',
+	  data: {scholarship: $scope.scholarship, requirements: $scope.requirements, requirementsDelete: $scope.requirementsDelete, requirementsFilenames: $scope.requirementsFilenames},
+	  url: 'controllers/applicants.php?r=update_scholarship'
+	}).then(function mySucces(response) {
+		
+		for (i=0; i<to; ++i) {
+		
+			$scope.uploadImage($scope.requirements_files[i]['doc'],$scope.requirements_files[i]['title']);
+		
+		}
+		
+		blockUI.hide();
+		bootstrapNotify.show('success','Application successfully update');		
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});	
+	
+};
+
+function dataURItoBlob(dataURI) {
+	var binary = atob(dataURI.split(',')[1]);
+	var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+	var array = [];
+	for (var i = 0; i < binary.length; i++) {
+		array.push(binary.charCodeAt(i));
+	}
+	return new Blob([new Uint8Array(array)], {
+		type: mimeString
+	});
+};
+
+$scope.uploadImage = function(img,fn) {
+  var fd = new FormData();
+  var imgBlob = dataURItoBlob(img);
+  fd.append('file', imgBlob);
+  $http.post(
+	  'controllers/upload.php?fn='+fn,
+	  fd, {
+		transformRequest: angular.identity,
+		headers: {
+		  'Content-Type': undefined
+		}
+	  }
+	)
+	.success(function(response) {
+	  console.log('success', response);
+	})
+	.error(function(response) {
+	  console.log('error', response);
+	});
+};
+
+$scope.viewFile = function(img) {
+	
+	window.open('requirements/'+img);
 	
 }
 
@@ -359,13 +446,43 @@ $scope.updateAccInfo = function() {
 	  url: 'controllers/profile.php?r=update_accinfo'
 	}).then(function mySucces(response) {			
 
-		blockUI.hide();
+		blockUI.hide();	
+		bootstrapNotify.show('success','Application successfully update');	
 		
 	}, function myError(response) {
 		 
 	  // error
 		
 	});	
+	
+};
+
+$scope.selectProgram = function() {
+	
+	$scope.views.scholarship_program = $scope.views.scholarship_program_select[$scope.scholarship.programs];	
+	
+};
+
+$scope.requirementAdd = function() {
+
+	$scope.requirements.push({id: 0, description: $scope.views.description, doc_rating: $scope.views.doc_rating, doc_title: $('#doc_file')[0].files[0]['name']});
+	$scope.requirements_files.push({title: $('#doc_file')[0].files[0]['name'], doc: $scope.views.doc_file});
+	$scope.views.description = '';
+	$scope.views.doc_rating = '';
+	$timeout(function() { $('#doc_file').val(null); },1000);
+	
+};
+
+$scope.requirementDel = function(item) {
+	
+	var index = $scope.requirements.indexOf(item);
+	
+	if (item.id > 0) {
+		$scope.requirementsDelete.push(item.id);
+		$scope.requirementsFilenames.push(item['doc_title']);
+	}
+	
+	$timeout(function() { $scope.requirements.splice(index, 1); },500);
 	
 };
 
