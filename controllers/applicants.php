@@ -38,11 +38,18 @@ switch ($_GET['r']) {
 	case "view":
 	
 	$con = new pdo_db();
-	$result = $con->getData("SELECT id, student_id, first_name, middle_name, last_name, gender, birthdate, age, address, contact_no, username, password, password re_type_password FROM accounts WHERE id = '$_POST[id]'");
+	$perinfo = $con->getData("SELECT id, account_type, student_id, first_name, middle_name, last_name, gender, address, contact_no, birthdate, age, email FROM accounts WHERE id = '$_POST[id]'");
 	
-	$result[0]['birthdate'] = date("m/d/Y",strtotime($result[0]['birthdate']));
+	if ($perinfo[0]['birthdate'] == "0000-00-00") $perinfo[0]['birthdate'] = "";
+	else $perinfo[0]['birthdate'] = date("m/d/Y",strtotime($perinfo[0]['birthdate']));
 	
-	echo json_encode($result[0]);
+	if ($perinfo[0]['age'] == 0) $perinfo[0]['age'] = "";
+
+	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = '$_POST[id]'");	
+	
+	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0]);
+	
+	echo json_encode($results);
 	
 	break;
 	

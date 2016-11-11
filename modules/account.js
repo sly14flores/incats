@@ -65,7 +65,7 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 			  url: 'modules/accounts.php?r=settings'
 			}).then(function mySucces(response) {			
 				
-				scope.accinfo = response.data;
+				scope.setting_accinfo = response.data;
 				
 			}, function myError(response) {
 				 
@@ -79,21 +79,21 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 					frm += '<div ng-class="{\'form-group\': true, \'has-error\': views.frmSettings.username.$touched && views.frmSettings.username.$invalid}">';
 					frm += '<label class="col-sm-3 control-label no-padding-right">Username</label>';
 					frm += '<div class="col-sm-9">';
-					frm += '<input type="text" name="username" ng-model="accinfo.username" required>';
+					frm += '<input type="text" name="username" ng-model="setting_accinfo.username" required>';
 					frm += '<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmSettings.username.$touched && views.frmSettings.username.$invalid"> Username is required </div>';
 					frm += '</div>';
 					frm += '</div>';
 					frm += '<div ng-class="{\'form-group\': true, \'has-error\': views.frmSettings.password.$touched && views.frmSettings.password.$invalid}">';
 					frm += '<label class="col-sm-3 control-label no-padding-right">Password</label>';
 					frm += '<div class="col-sm-9">';
-					frm += '<input type="password" name="password" ng-model="accinfo.password" required>';
+					frm += '<input type="password" name="password" ng-model="setting_accinfo.password" required>';
 					frm += '<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmSettings.password.$touched && views.frmSettings.password.$invalid"> Password is required </div>';
 					frm += '</div>';
 					frm += '</div>';
 					frm += '<div ng-class="{\'form-group\': true, \'has-error\': views.frmSettings.re_type_password.$touched && views.frmSettings.re_type_password.$invalid}">';
 					frm += '<label class="col-sm-3 control-label no-padding-right">Re-type password</label>';
 					frm += '<div class="col-sm-9">';
-					frm += '<input type="password" name="re_type_password" ng-model="accinfo.re_type_password" required>';
+					frm += '<input type="password" name="re_type_password" ng-model="setting_accinfo.re_type_password" required>';
 					frm += '<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmSettings.re_type_password.$touched && views.frmSettings.re_type_password.$invalid"> Please re-type password </div>';	
 					frm += '</div>';
 					frm += '</div>';					
@@ -123,7 +123,7 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 				scope.views.frmSettings.password.$touched = true;
 				scope.views.frmSettings.re_type_password.$touched = true;
 				
-				if ( ((scope.views.frmSettings.password.$invalid) || (scope.views.frmSettings.re_type_password.$invalid)) || (scope.accinfo.password != scope.accinfo.re_type_password) ) {
+				if ( ((scope.views.frmSettings.password.$invalid) || (scope.views.frmSettings.re_type_password.$invalid)) || (scope.setting_accinfo.password != scope.setting_accinfo.re_type_password) ) {
 					scope.views.settingsPw = true;
 					return;
 				}
@@ -133,7 +133,7 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 				$http({
 				  method: 'POST',
 				  url: 'modules/accounts.php?r=update',
-				  data: scope.accinfo
+				  data: scope.setting_accinfo
 				}).then(function mySucces(response) {			
 
 					

@@ -7,8 +7,6 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		blockUI.show();
 		scope.activeTemplate = 'views/applicants-list.php';
 		
-		scope.views.add = false;
-		
 	scope.views.levels = {
 		1: "1st Year",
 		2: "2nd Year",
@@ -30,9 +28,9 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 			scope.applicants = response.data;
 			
 		}, function myError(response) {
-			 
+
 		  // error
-			
+
 		});		
 		
 		//initiate dataTables plugin
@@ -68,62 +66,20 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		
 	}
 	
-	this.add = function(scope) {
-		
-		scope.views.add = true;
-		
-		scope.applicant = {};
-		scope.applicant.id = 0;
-		
-		blockUI.show();
-		scope.activeTemplate = 'views/applicant-form.php';
-		scope.views.mode = 'Save';
-		
-		scope.validation.birthday = false;
-		scope.validation.age = false;
-		scope.validation.password = false;
-		
-		$timeout(function() {
-			scope.applicant.gender = "";
-			$('#birthday').datepicker({
-				autoclose: true,
-				todayHighlight: true
-			}).next().on(ace.click_event, function(){
-					$(this).prev().focus();
-			});
-			scope.computeAge();			
-		},1000);
-		
-		
-		blockUI.hide();
-		
-	}
-	
 	this.view = function(scope,id) {
 		
 		blockUI.show();
 		scope.activeTemplate = 'views/applicant-form.php';	
-		scope.views.mode = 'Update';
-		scope.views.add = true;		
 		
 		$http({
 		  method: 'POST',
 		  data: {id: id},
 		  url: 'controllers/applicants.php?r=view'
 		}).then(function mySucces(response) {
-		
-			scope.applicant = response.data;
-			$('#birthday').val(response.data['birthdate']);
 			
-			$timeout(function() {
-				$('#birthday').datepicker({
-					autoclose: true,
-					todayHighlight: true
-				}).next().on(ace.click_event, function(){
-					$(this).prev().focus();
-			});
-			},1000);			
-			
+			scope.perinfo = response.data['perinfo'];
+			$('#birthday').val(response.data['perinfo']['birthdate']);
+			scope.accinfo = response.data['accinfo'];			
 			blockUI.hide();
 			
 		}, function myError(response) {
@@ -196,19 +152,13 @@ $scope.list = function() {
 	
 };
 
-$scope.add = function() {
-	
-	crud.add($scope);
-	
-};
-
 $scope.view = function(id) {
 	
 	crud.view($scope,id);
 	
 }
 
-$scope.cancel = function() {
+$scope.close = function() {
 	
 	crud.list($scope);	
 	
@@ -264,34 +214,6 @@ $scope.del = function(id) {
 	crud.del($scope,id);
 	
 };
-
-$scope.computeAge = function() {
-	
-	$scope.applicant.age = getAge($('#birthday').val());
-	
-	function getAge(dateString) {
-		var today = new Date();
-		var birthDate = new Date(dateString);
-		var age = today.getFullYear() - birthDate.getFullYear();
-		var m = today.getMonth() - birthDate.getMonth();
-		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-		{
-			age--;
-		}
-		return age;
-	}	
-	
-};
-
-$scope.validatePassword = function() {
-	
-	if ( (($scope.views.frmApplicant.password.$invalid) || ($scope.views.frmApplicant.re_type_password.$invalid)) || ($scope.applicant.password != $scope.applicant.re_type_password) ) {
-		$scope.validation.password = true;
-		return;
-	}
-	$scope.validation.password = false;	
-	
-}
 
 crud.list($scope);
 	
