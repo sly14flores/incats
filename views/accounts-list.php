@@ -1,5 +1,5 @@
 										<div class="table-header">
-											List of Applicants
+											User Accounts
 										</div>
 
 										<!-- div.table-responsive -->
@@ -11,35 +11,29 @@
 													<tr>
 														<th>Student ID</th>
 														<th>Fullname</th>
-														<th>Program</th>
-														<th>Course</th>
-														<th>College</th>
-														<th>Semester</th>
-														<th>Year Level</th>
-														<th>School Year</th>
-														<th>Status</th>
+														<th>Gender</th>
+														<th>Contact No</th>
+														<th>Email</th>
+														<th>Username</th>
 														<th>&nbsp;</th>
 													</tr>
 												</thead>
 
 												<tbody>
 													<tr ng-repeat="applicant in applicants">
-														<td>{{applicant.student_id}}</td>
-														<td>{{applicant.full_name}}</td>
-														<td>{{applicant.program}}</td>
-														<td>{{applicant.course}}</td>
-														<td>{{applicant.college}}</td>
-														<td>{{views.semesters[applicant.semester]}}</td>
-														<td>{{views.levels[applicant.year_level]}}</td>
-														<td>{{applicant.school_year}}</td>
-														<td>{{applicant.status}}</td>
+														<td>{{accinfo.student_id}}</td>
+														<td>{{accinfo.full_name}}</td>
+														<td>{{accinfo.gender}}</td>
+														<td>{{accinfo.contact_no}}</td>
+														<td>{{accinfo.email}}</td>													
+														<td>{{accinfo.username}}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="javascript:;" ng-click="view(applicant.id)">
+																<a class="green" href="javascript:;" ng-click="view(accinfo.id)">
 																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>
 
-																<a class="red" href="javascript:;" ng-click="del(applicant.id)">
+																<a class="red" href="javascript:;" ng-click="del(accinfo.id)">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
 															</div>														

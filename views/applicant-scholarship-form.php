@@ -5,7 +5,23 @@
 </ul><!-- /.breadcrumb -->
 </div>
 <div class="space-10"></div>
-<h3>Status: {{scholarship.status}}</h3>
+<div class="row">
+<div class="col-md-12 col-md-offset-8 col-lg-12 col-lg-offset-8">
+	<form class="form-horizontal">
+	<div class="form-group">
+		<label class="col-sm-1 col-md-1 col-lg-1 control-label"><strong>Status:</strong></label>
+		<div class="col-sm-11 col-md-3 col-lg-3">
+			<select class="form-control" ng-model="scholarship.status">
+				<option value="On-Process">On-Process</option>
+				<option value="Pending">Pending</option>
+				<option value="Approved">Approved</option>
+				<option value="Disapproved">Disapproved</option>
+			</select>
+		</div>
+	</div>
+	</form>
+</div>
+</div>
 <div class="space-5"></div>
 <form id="frmScholarship" name="views.frmScholarship" novalidate>
 	<div class="row">

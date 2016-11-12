@@ -233,7 +233,14 @@ require_once 'authentication.php';
 
 						</ul>
 					</li>
+					<li class="">
+						<a href="accounts.php">
+							<i class="menu-icon glyphicon glyphicon-user"></i>
+							<span class="menu-text"> Accounts </span>
+						</a>
 
+						<b class="arrow"></b>
+					</li>
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

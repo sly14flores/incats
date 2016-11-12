@@ -34,7 +34,7 @@
 				<td>{{scholar.college}}</td>
 				<td>{{views.level[scholar.year_level]}}</td>
 				<td>{{scholar.school_year}}</td>
-				<td>&nbsp;</td>
+				<td>{{scholar.status}}</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">
 						<a class="green" href="javascript:;" ng-click="scholarshipView(scholar.id)">

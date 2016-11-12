@@ -154,10 +154,8 @@
 				<div class="space-4"></div>
 			</div>
 
-			<div id="edit-scholarship" class="tab-pane">
-				
+			<div id="edit-scholarship" class="tab-pane">				
 				<div id="scholarship-content" ng-include="scholarshipContent"></div>
-				
 			</div>											
 			
 			<div id="edit-password" class="tab-pane">
