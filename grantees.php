@@ -288,7 +288,8 @@ require_once 'authentication.php';
 						</div><!-- /.page-header -->
 
 						<div class="row">
-							<div class="col-xs-12"><!-- dashboard content here --></div><!-- /.col -->
+							<div id="content" class="col-xs-12" ng-include="activeTemplate">							
+							</div><!-- /.col -->
 						</div><!-- /.row -->
 						
 					</div><!-- /.page-content -->
@@ -342,6 +343,10 @@ require_once 'authentication.php';
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="assets/js/dataTables.tableTools.min.js"></script>
+		<script src="assets/js/dataTables.colVis.min.js"></script>			
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>

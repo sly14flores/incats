@@ -28,7 +28,7 @@
 		<div class="space-10"></div>	
 		<div class="col-md-4 col-lg-4">
 			<label>Application</label>
-			<select class="form-control" name="application_type" ng-model="scholarship.application_type">
+			<select class="form-control" name="application_type" ng-model="scholarship.application_type" ng-disabled="true">
 				<option value="">-</option>
 				<option value="New">New</option>
 				<option value="Renewal">Renewal</option>

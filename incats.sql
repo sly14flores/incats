@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2016 at 05:48 PM
+-- Generation Time: Nov 13, 2016 at 06:15 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_no`, `birthdate`, `age`, `username`, `password`, `email`, `built_in`) VALUES
 (1, 'Administrator', '', 'Admin', '', '', '', '', '', '0000-00-00', 0, 'admin', 'admin', '', 1),
-(2, 'Applicant', '', 'Sly', 'Bulilan', 'Flores', '', '', '', '0000-00-00', 0, 'sly', 'legend', 'sly@christian.com.ph', 0);
+(2, 'Applicant', '82156', 'Sly', 'Bulilan', 'Flores', 'Male', 'Tanqui', '09179245040', '1982-11-14', 33, 'sly', 'legend', 'sly@christian.com.ph', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -67,14 +67,15 @@ CREATE TABLE IF NOT EXISTS `requirements` (
   `doc_title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `scholarship_id` (`scholarship_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `requirements`
 --
 
 INSERT INTO `requirements` (`id`, `scholarship_id`, `description`, `doc_rating`, `doc_title`) VALUES
-(1, 1, 'Test', '95', '4.PNG');
+(1, 1, 'Test', '95', '4.PNG'),
+(2, 2, '2', '85', '2.PNG');
 
 -- --------------------------------------------------------
 
@@ -94,16 +95,18 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `semester` varchar(50) NOT NULL,
   `school_year` varchar(10) NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'On-Process',
+  `status_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `scholarships`
 --
 
-INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, `program`, `course`, `college`, `year_level`, `semester`, `school_year`, `status`) VALUES
-(1, 2, 'New', 'Government', 'DA ACEF', 'BSIT', 'CIT', '1', '1', '2016-2017', 'On-Process');
+INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, `program`, `course`, `college`, `year_level`, `semester`, `school_year`, `status`, `status_date`) VALUES
+(1, 2, 'New', 'Government', 'DA ACEF', 'BSIT', 'CIT', '1', '1', '2016-2017', 'On-Process', '0000-00-00 00:00:00'),
+(2, 2, 'Renewal', 'University', 'Academic', 'BSEE', 'COE', '2', '1', '2016-2017', 'Approved', '0000-00-00 00:00:00');
 
 --
 -- Constraints for dumped tables
