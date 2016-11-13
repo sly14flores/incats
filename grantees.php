@@ -80,7 +80,7 @@ require_once 'authentication.php';
 						<li class="green" ng-show="notifications.show" notify-user>
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">{{notifications.count}}</span>
+								<span class="badge badge-important" ng-show="notifications.showCount">{{notifications.count}}</span>
 							</a>
 
 							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">

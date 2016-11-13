@@ -1,4 +1,4 @@
-angular.module('notifications-module',[]).directive('notifyUser', function() {
+angular.module('notifications-module',[]).directive('notifyUser', function($http) {
 
 	return {
 	   restrict: 'A',
@@ -6,37 +6,32 @@ angular.module('notifications-module',[]).directive('notifyUser', function() {
 
 			scope.notifications = {};
 			scope.notifications.show = true;
-			scope.notifications.count = 2;
-			scope.notifications.many = 's';
+			scope.notifications.showCount = false;
+			scope.notifications.count = 0;
+			scope.notifications.many = '';
 			
-			scope.notifications.results = [
-				{ content: 'Bob just signed up as an editor ...'},
-				{ content: 'Marley just signed up as an editor ...'}			
-			];
+			scope.notifications.results = [];
+
+			$http({
+			  method: 'POST',
+			  url: 'modules/notifications.php'
+			}).then(function mySucces(response) {
+			
+				scope.notifications.count = response.data.length
+			
+				if (scope.notifications.count > 0) {
+					scope.notifications.showCount = true;
+					if (scope.notifications.count) scope.notifications.many = 's';
+					scope.notifications.results = response.data;					
+				}
+				
+			}, function myError(response) {
+				 
+			  error
+				
+			});
 
 	   }
 	};
 
-}).service('accountNotifications',function($http,$interval) {
-	
-	this.get = function(scope) {
-		
-		scope.notifications = {};
-		scope.notifications.show = true;		
-		
-/* 		$http({
-		  method: 'POST',
-		  url: 'modules/notifications.php'
-		}).then(function mySucces(response) {
-		
-			scope.account.name = response.data['name'];
-			
-		}, function myError(response) {
-			 
-		  // error
-			
-		}); */
-	
-	}
-	
 });
