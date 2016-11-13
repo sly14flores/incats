@@ -20,20 +20,20 @@
 												</thead>
 
 												<tbody>
-													<tr ng-repeat="applicant in applicants">
-														<td>{{accinfo.student_id}}</td>
-														<td>{{accinfo.full_name}}</td>
-														<td>{{accinfo.gender}}</td>
-														<td>{{accinfo.contact_no}}</td>
-														<td>{{accinfo.email}}</td>													
-														<td>{{accinfo.username}}</td>
+													<tr ng-repeat="account in accounts">
+														<td>{{account.student_id}}</td>
+														<td>{{account.full_name}}</td>
+														<td>{{account.gender}}</td>
+														<td>{{account.contact_no}}</td>
+														<td>{{account.email}}</td>													
+														<td>{{account.username}}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="javascript:;" ng-click="view(accinfo.id)">
+																<a class="green" href="javascript:;" ng-click="view(account.id)">
 																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>
 
-																<a class="red" href="javascript:;" ng-click="del(accinfo.id)">
+																<a class="red" href="javascript:;" ng-click="del(account.id)">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
 															</div>														

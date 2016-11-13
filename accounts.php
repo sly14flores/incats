@@ -233,7 +233,7 @@ require_once 'authentication.php';
 
 						</ul>
 					</li>
-					<li class="active">
+					<li class="active" ng-show="privileges.account">
 						<a href="accounts.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
 							<span class="menu-text"> Accounts </span>
@@ -378,6 +378,6 @@ require_once 'authentication.php';
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>		
 		
-		<script src="controllers/user-accounts.js"></script>		
+		<script src="controllers/accounts.js"></script>		
 	</body>
 </html>

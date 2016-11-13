@@ -231,7 +231,7 @@ require_once 'authentication.php';
 
 						</ul>
 					</li>
-					<li class="">
+					<li class="" ng-show="privileges.account">
 						<a href="accounts.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
 							<span class="menu-text"> Accounts </span>
