@@ -8,16 +8,25 @@ session_start();
 
 $con = new pdo_db();
 
+$notifications = [];
 if ($_SESSION['account_type'] == "Administrator") {
-	$sql = "SELECT scholarships.id, accounts.student_id, CONCAT(accounts.first_name, ' ', accounts.middle_name, ' ', accounts.last_name) full_name, scholarships.program, scholarships.course, scholarships.college, scholarships.semester, scholarships.year_level, scholarships.school_year, scholarships.status FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE application_type IN ('New','Renewal') AND scholarships.status IN ('On-Process') AND account_type != 'Administrator'";
+	$sql = "SELECT scholarships.id, accounts.student_id, CONCAT(accounts.first_name, ' ', accounts.middle_name, ' ', accounts.last_name) full_name, scholarships.program, scholarships.course, scholarships.college, scholarships.semester, scholarships.year_level, scholarships.school_year, scholarships.status, scholarships.application_type FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE application_type IN ('New','Renewal') AND scholarships.status IN ('On-Process') AND account_type != 'Administrator'";
 	$results = $con->getData($sql);
-	
-	$notifications = [];
+
 	foreach ($results as $key => $result) {
-		$notifications[] = array("content"=>$result['full_name']);
+		if ($result['application_type'] == "New") $content = $result['full_name']." has applied for scholarship";
+		else $content = $result['full_name']." has applied for scholarship renewal";
+		$notifications[] = array("content"=>$content);
 	}
 } else {
-	
+	$sql = "SELECT scholarships.id, accounts.student_id, CONCAT(accounts.first_name, ' ', accounts.middle_name, ' ', accounts.last_name) full_name, scholarships.program, scholarships.course, scholarships.college, scholarships.semester, scholarships.year_level, scholarships.school_year, scholarships.status, scholarships.application_type FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE application_type IN ('New','Renewal') AND scholarships.status IN ('On-Process') AND accounts.id = ".$_SESSION['id'];
+	$results = $con->getData($sql);
+
+	foreach ($results as $key => $result) {
+		if ($result['application_type'] == "New") $content = $result['full_name']." has applied for scholarship";
+		else $content = $result['full_name']." has applied for scholarship renewal";
+		$notifications[] = array("content"=>$content);
+	}	
 }
 
 echo json_encode($notifications);

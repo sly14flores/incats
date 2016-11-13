@@ -27,7 +27,7 @@ angular.module('notifications-module',[]).directive('notifyUser', function($http
 				
 			}, function myError(response) {
 				 
-			  error
+
 				
 			});
 
