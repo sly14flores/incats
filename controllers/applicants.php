@@ -57,7 +57,8 @@ switch ($_GET['r']) {
 	unset($_POST['scholarship']['cache_status']);
 	if ($_POST['scholarship']['evaluated'] != $_POST['scholarship']['cache_evaluated']) {
 		if ($_POST['scholarship']['evaluated'] == 1) $_POST['scholarship']['evaluation_date'] = "CURRENT_TIMESTAMP";
-	}	
+	}
+	unset($_POST['scholarship']['cache_evaluated']);	
 	$profile = $con1->updateData($_POST['scholarship'],'id');	
 	
 	$con2 = new pdo_db('requirements');		

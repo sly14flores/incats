@@ -11,7 +11,11 @@ switch ($_GET['r']) {
 	case "list":
 	
 	$con = new pdo_db();
-	$scholarships = $con->getData("SELECT id, application_type, program, course, college, year_level, school_year, status FROM scholarships WHERE account_id = '$_SESSION[id]'");
+	$scholarships = $con->getData("SELECT id, application_type, program, course, college, year_level, school_year, evaluated, status, DATE_FORMAT(scholarships.status_date,'%M %e, %Y') date_approved, DATE_FORMAT(scholarships.evaluation_date,'%M %e, %Y') date_evaluated FROM scholarships WHERE account_id = '$_SESSION[id]'");
+	
+	foreach($scholarships as $key => $value) {
+		$scholarships[$key]['evaluated'] = ($scholarships[$key]['evaluated'] != 0) ? "Yes" : "";
+	}
 	
 	echo json_encode($scholarships);
 	

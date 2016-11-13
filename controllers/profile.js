@@ -49,7 +49,7 @@ app.service('profileService',function($http,$timeout,blockUI) {
 		.dataTable( {
 			bAutoWidth: false,
 			"aoColumns": [
-			  null, null, null, null, null, null, null, null,
+			  null, null, null, null, null, null, null, null, null, null, null,
 			  { "bSortable": false }
 			],
 			"aaSorting": [],

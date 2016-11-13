@@ -93,7 +93,7 @@ require_once 'authentication.php';
 									<ul class="dropdown-menu dropdown-navbar navbar-pink">
 
 										<li ng-repeat="notification in notifications.results">
-											<a href="#">
+											<a href="javascript:;" ng-click="dismiss(notification.id)">
 												<i class="btn btn-xs btn-primary fa fa-user"></i>
 												{{notification.content}}
 											</a>

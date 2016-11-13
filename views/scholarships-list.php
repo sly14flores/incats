@@ -20,7 +20,10 @@
 				<th>College</th>
 				<th>Year Level</th>
 				<th>School Year</th>
+				<th>Evaluated</th>
+				<th>Date</th>
 				<th>Status</th>
+				<th>Date</th>
 				<th>&nbsp;</th>
 			</tr>
 		</thead>
@@ -34,7 +37,10 @@
 				<td>{{scholar.college}}</td>
 				<td>{{views.level[scholar.year_level]}}</td>
 				<td>{{scholar.school_year}}</td>
+				<td>{{scholar.evaluated}}</td>
+				<td>{{scholar.date_evaluated}}</td>
 				<td>{{scholar.status}}</td>
+				<td>{{scholar.date_approved}}</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">
 						<a class="green" href="javascript:;" ng-click="scholarshipView(scholar.id)">
