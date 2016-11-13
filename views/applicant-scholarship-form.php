@@ -5,21 +5,29 @@
 </ul><!-- /.breadcrumb -->
 </div>
 <div class="space-10"></div>
-<div class="row">
-<div class="col-md-12 col-md-offset-8 col-lg-12 col-lg-offset-8">
-	<form class="form-horizontal">
+<div class="row" ng-show="views.scholarship_status">
+<div class="col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8">
 	<div class="form-group">
-		<label class="col-sm-1 col-md-1 col-lg-1 control-label"><strong>Status:</strong></label>
-		<div class="col-sm-11 col-md-3 col-lg-3">
+		<label class="col-sm-12 col-md-2 col-lg-2 control-label"><strong>Status:</strong></label>
+		<div class="col-sm-12 col-md-10 col-lg-10">
 			<select class="form-control" ng-model="scholarship.status">
 				<option value="On-Process">On-Process</option>
 				<option value="Pending">Pending</option>
 				<option value="Approved">Approved</option>
 				<option value="Disapproved">Disapproved</option>
 			</select>
-		</div>
+		</div>		
 	</div>
-	</form>
+</div>
+<div class="col-md-3 col-md-offset-9 col-lg-3 col-lg-offset-9">
+	<div class="form-group">
+		<label class="pull-right inline">
+			<small class="muted smaller-90">Evaluated:</small>
+
+			<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" ng-model="scholarship.evaluated">
+			<span class="lbl middle"></span>
+		</label>		
+	</div>
 </div>
 </div>
 <div class="space-5"></div>

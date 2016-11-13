@@ -89,6 +89,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		
 		blockUI.show();
 		scope.activeTemplate = 'views/applicant-form.php';
+		scope.views.scholarship_status = true;
 		$timeout(function() { scope.scholarshipContent = 'views/applicant-scholarship-form.php'; },500);
 		scope.views.ok = 'Update';
 		scope.views.cancel = 'Close';

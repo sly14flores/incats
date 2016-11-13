@@ -39,8 +39,10 @@ switch ($_GET['r']) {
 	
 	$con = new pdo_db();
 
-	$scholarship = $con->getData("SELECT id, application_type, programs, program, course, college, year_level, semester, school_year, status, status cache_status FROM scholarships WHERE id = ".$_POST['id']);	
+	$scholarship = $con->getData("SELECT id, application_type, programs, program, course, college, year_level, semester, school_year, status, status cache_status, evaluated, evaluated cache_evaluated FROM scholarships WHERE id = ".$_POST['id']);	
 	$requirements = $con->getData("SELECT id, description, doc_rating, doc_title FROM requirements WHERE scholarship_id = ".$_POST['id']);
+	
+	$scholarship[0]['evaluated'] = ($scholarship[0]['evaluated'] == 0) ? false : true;	
 	
 	$results = array("scholarship"=>$scholarship[0],"requirements"=>$requirements);
 	
@@ -52,7 +54,11 @@ switch ($_GET['r']) {
 	
 	$con1 = new pdo_db('scholarships');
 	if ($_POST['scholarship']['status'] != $_POST['scholarship']['cache_status']) $_POST['scholarship']['status_date'] = "CURRENT_TIMESTAMP";
-	unset($_POST['scholarship']['cache_status']);	
+	unset($_POST['scholarship']['cache_status']);
+	if ($_POST['scholarship']['evaluated'] != $_POST['scholarship']['cache_evaluated']) {
+		if ($_POST['scholarship']['evaluated'] == 1) $_POST['scholarship']['evaluation_date'] = "CURRENT_TIMESTAMP";
+	}
+	unset($_POST['scholarship']['cache_evaluated']);	
 	$profile = $con1->updateData($_POST['scholarship'],'id');	
 	
 	$con2 = new pdo_db('requirements');		

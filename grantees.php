@@ -17,6 +17,8 @@ require_once 'authentication.php';
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 
+		<link rel="stylesheet" href="assets/css/datepicker.min.css" />		
+		
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
@@ -359,7 +361,9 @@ require_once 'authentication.php';
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
 
-		<script src="assets/js/bootbox.min.js"></script>		
+		<script src="assets/js/bootbox.min.js"></script>
+		
+		<script src="assets/js/bootstrap-datepicker.min.js"></script>
 		
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
