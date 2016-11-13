@@ -38,19 +38,11 @@ switch ($_GET['r']) {
 	case "view":
 	
 	$con = new pdo_db();
-	$perinfo = $con->getData("SELECT scholarships.id, scholarships.account_id, accounts.account_type, accounts.student_id, accounts.first_name, accounts.middle_name, accounts.last_name, accounts.gender, accounts.address, accounts.contact_no, accounts.birthdate, accounts.age, accounts.email FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE scholarships.id = '$_POST[id]'");
-	
-	if ($perinfo[0]['birthdate'] == "0000-00-00") $perinfo[0]['birthdate'] = "";
-	else $perinfo[0]['birthdate'] = date("m/d/Y",strtotime($perinfo[0]['birthdate']));
-	
-	if ($perinfo[0]['age'] == 0) $perinfo[0]['age'] = "";
 
-	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = ".$perinfo[0]['account_id']);	
-
-	$scholarship = $con->getData("SELECT id, application_type, programs, program, course, college, year_level, semester, school_year, status FROM scholarships WHERE account_id = ".$perinfo[0]['account_id']." ORDER BY id DESC LIMIT 1");	
-	$requirements = $con->getData("SELECT id, description, doc_rating, doc_title FROM requirements WHERE scholarship_id = ".$scholarship[0]['id']);
+	$scholarship = $con->getData("SELECT id, application_type, programs, program, course, college, year_level, semester, school_year, status FROM scholarships WHERE id = ".$_POST['id']);	
+	$requirements = $con->getData("SELECT id, description, doc_rating, doc_title FROM requirements WHERE scholarship_id = ".$_POST['id']);
 	
-	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarship"=>$scholarship[0],"requirements"=>$requirements);
+	$results = array("scholarship"=>$scholarship[0],"requirements"=>$requirements);
 	
 	echo json_encode($results);
 	

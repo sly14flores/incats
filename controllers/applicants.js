@@ -136,10 +136,6 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		  url: 'controllers/applicants.php?r=view'
 		}).then(function mySucces(response) {
 			
-			scope.perinfo = response.data['perinfo'];
-			$('#birthday').val(response.data['perinfo']['birthdate']);
-			scope.accinfo = response.data['accinfo'];
-			
 			scope.scholarship = response.data['scholarship'];
 			scope.views.scholarship_program = scope.views.scholarship_program_select[response.data['scholarship']['programs']];			
 			scope.requirements = response.data['requirements'];			

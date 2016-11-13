@@ -38,7 +38,8 @@ switch ($_GET['r']) {
 	$con = new pdo_db('accounts');
 	
 	$scholarships = $con->getData("SELECT id FROM scholarships WHERE account_id = ".$_POST['id'][0]);
-	$requirements = $con->getData("SELECT id, doc_title FROM requirements WHERE scholarship_id IN (".implode(",",$scholarships[0])).")";
+	$requirements = $con->getData("SELECT id, doc_title FROM requirements WHERE scholarship_id IN (".implode(",",$scholarships[0]).")");
+	
 	foreach ($requirements as $key => $requirement) {
 		unlink("../requirements/".$requirement['doc_title']);
 	}	
