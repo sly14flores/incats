@@ -230,6 +230,15 @@ require_once 'authentication.php';
 
 								<b class="arrow"></b>
 							</li>
+							
+							<li class="">
+								<a href="renewal.php">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Renewal
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
 
 						</ul>
 					</li>

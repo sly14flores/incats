@@ -8,7 +8,7 @@ require_once 'authentication.php';
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Scholarship Applicants - InCaTS</title>
+		<title>Scholarship Renewal - InCaTS</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -51,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="applicants" ng-controller="applicantsCtrl">
+	<body class="no-skin" ng-app="renewal" ng-controller="renewalCtrl">
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -213,7 +213,7 @@ require_once 'authentication.php';
 
 						<ul class="submenu">
 
-							<li class="active">
+							<li class="">
 								<a href="applicants.php">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Applicants
@@ -230,6 +230,15 @@ require_once 'authentication.php';
 
 								<b class="arrow"></b>
 							</li>
+							
+							<li class="active">
+								<a href="renewal.php">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Renewal
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
 
 						</ul>
 					</li>
@@ -262,7 +271,7 @@ require_once 'authentication.php';
 						<ul class="breadcrumb">
 							<li class="active">
 								<i class="ace-icon fa fa-users"></i>
-								<a href="#">Applicants</a>
+								<a href="#">Renewal</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -272,10 +281,10 @@ require_once 'authentication.php';
 
 						<div class="page-header">
 							<h1>
-								Applicants
+								Renewal
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Scholarship Applications
+									Renewal Applications
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -378,6 +387,6 @@ require_once 'authentication.php';
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>		
 		
-		<script src="controllers/applicants.js"></script>		
+		<script src="controllers/renewal.js"></script>		
 	</body>
 </html>
