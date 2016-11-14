@@ -4,6 +4,6 @@ session_start();
 
 if (isset($_SESSION['id'])) unset($_SESSION['id']);
 
-header("location: index.php");
+header("location: dashboard.php");
 
 ?>

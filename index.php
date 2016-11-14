@@ -1,14 +1,9 @@
-<?php
-
-require_once 'authentication.php';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Dashboard - InCaTS</title>
+		<title>Integrated Campus Testing &amp; Scholarship System</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -24,6 +19,8 @@ require_once 'authentication.php';
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		
+		<link rel="stylesheet" href="css/carousel.css" />
 
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
@@ -47,24 +44,32 @@ require_once 'authentication.php';
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		
+		<style type="text/css">
+		
+			.main-container, .page-content {
+				background-color: #f3fced!important;
+			}
+			
+			.page-content {
+
+			}
+			
+			.post {
+				margin-bottom: 25px;
+			}
+		
+		</style>
+		
 	</head>
 
-	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
+	<body class="no-skin" ng-app="index" ng-controller="indexCtrl">
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
 
 			<div class="navbar-container" id="navbar-container">
-				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-					<span class="sr-only">Toggle sidebar</span>
-
-					<span class="icon-bar"></span>
-
-					<span class="icon-bar"></span>
-
-					<span class="icon-bar"></span>
-				</button>
 
 				<div class="navbar-header pull-left">
 					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
@@ -74,68 +79,6 @@ require_once 'authentication.php';
 					</a>
 				</div>
 
-				<div class="navbar-buttons navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
-
-						<li class="green" ng-show="notifications.show" notify-user>
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important" ng-show="notifications.showCount">{{notifications.count}}</span>
-							</a>
-
-							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-exclamation-triangle"></i>
-									{{notifications.count}} Notification{{notifications.many}}
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar navbar-pink">
-
-										<li ng-repeat="notification in notifications.results">
-											<a href="javascript:;" ng-click="dismiss(notification.id)">
-												<i class="btn btn-xs btn-primary fa fa-user"></i>
-												{{notification.content}}
-											</a>
-										</li>
-
-									</ul>
-								</li>
-
-							</ul>
-						</li>
-
-						<li class="light-blue">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<!--<img class="nav-user-photo" src="assets/avatars/avatar2.png" alt="Profile Photo" />-->
-								<span class="user-info">
-									<small>Welcome,</small>
-									{{account.name}}
-								</span>
-
-								<i class="ace-icon fa fa-caret-down"></i>
-							</a>
-
-							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li ng-show="privileges.settings">
-									<a href="javascript:;" settings>
-										<i class="ace-icon fa fa-cog"></i>
-										Settings
-									</a>
-								</li>
-
-								<li class="divider"></li>
-
-								<li>
-									<a href="javascript:;" logout-account>
-										<i class="ace-icon fa fa-power-off"></i>
-										Logout
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
 			</div><!-- /.navbar-container -->
 		</div>
 
@@ -144,153 +87,198 @@ require_once 'authentication.php';
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
 
-			<div id="sidebar" class="sidebar                  responsive">
-				<script type="text/javascript">
-					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
-				</script>
-				
-				<!--
-				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
-							<i class="ace-icon fa fa-signal"></i>
-						</button>
-
-						<button class="btn btn-info">
-							<i class="ace-icon fa fa-pencil"></i>
-						</button>
-
-						<button class="btn btn-warning">
-							<i class="ace-icon fa fa-users"></i>
-						</button>
-
-						<button class="btn btn-danger">
-							<i class="ace-icon fa fa-cogs"></i>
-						</button>
-					</div>
-
-					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-						<span class="btn btn-success"></span>
-
-						<span class="btn btn-info"></span>
-
-						<span class="btn btn-warning"></span>
-
-						<span class="btn btn-danger"></span>
-					</div>
-				</div><!-- /.sidebar-shortcuts -->
-
-				<ul class="nav nav-list">
-					<li class="active">
-						<a href="index.php">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Dashboard </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="" ng-show="privileges.profile">
-						<a href="profile.php">
-							<i class="menu-icon glyphicon glyphicon-user"></i>
-							<span class="menu-text"> Profile </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="" ng-show="privileges.scholarship_services">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-certificate"></i>
-							<span class="menu-text">
-								Scholarship Services
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-
-							<li class="">
-								<a href="applicants.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Applicants
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="grantees.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Scholarship Grantees
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-							
-							<li class="">
-								<a href="renewal.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Renewal
-								</a>
-
-								<b class="arrow"></b>
-							</li>							
-
-						</ul>
-					</li>
-					<li class="" ng-show="privileges.account">
-						<a href="accounts.php">
-							<i class="menu-icon glyphicon glyphicon-user"></i>
-							<span class="menu-text"> Accounts </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-				</ul><!-- /.nav-list -->
-
-				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-				</div>
-
-				<script type="text/javascript">
-					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
-				</script>
-			</div>
-
 			<div class="main-content">
 				<div class="main-content-inner">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
+			
+			<!-- carousel -->
+			<section class="section-white">
+			  <div class="container">
 
-						<ul class="breadcrumb">
-							<li class="active">
-								<i class="ace-icon fa fa-tachometer"></i>
-								<a href="#">Dashboard</a>
-							</li>
-						</ul><!-- /.breadcrumb -->
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				  </ol>
 
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+					<div class="item active">
+					  <img src="images/carousel-dmmmsu.jpg" alt="...">
+					  <div class="carousel-caption">
+						<h2>Heading</h2>
+					  </div>
 					</div>
+					<div class="item">
+					  <img src="images/carousel-dmmmsu.jpg" alt="...">
+					  <div class="carousel-caption">
+						<h2>Heading</h2>
+					  </div>
+					</div>
+				  </div>
 
-					<div class="page-content">						
+				  <!-- Controls -->
+				  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				  </a>
+				</div>
 
-						<div class="page-header">
-							<h1>
-								Dashboard
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									events &amp; announcements
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-
+			  </div>
+			</section>
+			<!-- end carousel -->			
+					
+					<div class="page-content">
+					
+						<div class="container">
 						<div class="row">
-							<div class="col-xs-12"><!-- dashboard content here --></div><!-- /.col -->
-						</div><!-- /.row -->
 						
+						<div class="col-md-3 col-lg-3">
+						
+							<div class="widget-box">
+								<div class="widget-header">
+									<h4 class="smaller">
+										Tasks
+									</h4>
+								</div>
+
+								<div class="widget-body">
+									<div class="widget-main">
+									
+									</div>
+								</div>
+							</div>
+										
+						</div>
+						
+						<div class="col-md-9 col-lg-9">
+						
+						<div class="post">
+						
+							<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;">
+								<div class="widget-header">
+									<h5 class="widget-title bigger lighter">
+										<i class="ace-icon fa fa-table"></i>
+										List of New Scholarship Applicants
+									</h5>
+								</div>
+
+								<div class="widget-body">
+									<div class="widget-main no-padding">
+										<table class="table table-striped table-bordered table-hover">
+											<thead class="thin-border-bottom">
+												<tr>
+													<th>
+														<i class="ace-icon fa fa-user"></i>
+														User
+													</th>
+
+													<th>
+														<i>@</i>
+														Email
+													</th>
+													<th class="hidden-480">Status</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td class="">Alex</td>
+
+													<td>
+														<a href="#">alex@email.com</a>
+													</td>
+
+													<td class="hidden-480">
+														<span class="label label-warning">Pending</span>
+													</td>
+												</tr>
+
+												<tr>
+													<td class="">Fred</td>
+
+													<td>
+														<a href="#">fred@email.com</a>
+													</td>
+
+													<td class="hidden-480">
+														<span class="label label-success arrowed-in arrowed-in-right">Approved</span>
+													</td>
+												</tr>
+
+												<tr>
+													<td class="">Jack</td>
+
+													<td>
+														<a href="#">jack@email.com</a>
+													</td>
+
+													<td class="hidden-480">
+														<span class="label label-warning">Pending</span>
+													</td>
+												</tr>
+
+												<tr>
+													<td class="">John</td>
+
+													<td>
+														<a href="#">john@email.com</a>
+													</td>
+
+													<td class="hidden-480">
+														<span class="label label-inverse arrowed">Blocked</span>
+													</td>
+												</tr>
+
+												<tr>
+													<td class="">James</td>
+
+													<td>
+														<a href="#">james@email.com</a>
+													</td>
+
+													<td class="hidden-480">
+														<span class="label label-info arrowed-in arrowed-in-right">Online</span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>						
+						
+						</div>
+						<div class="post">
+						
+										<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
+											<div class="widget-header widget-header-small">
+												<h6 class="widget-title">									
+													Announcement
+												</h6>
+
+												<div class="widget-toolbar">
+													<a href="#" data-action="close">
+														<i class="ace-icon fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+													<p class="alert alert-info">
+														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+													</p>
+												</div>
+											</div>
+										</div>
+							
+						</div>
+						</div>
+						
+						</div>						
+						</div><!-- /.row -->						
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
@@ -362,14 +350,14 @@ require_once 'authentication.php';
 
 		<script src="jquery/jquery.blockUI.js"></script>
 		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
-		
+	
 		<script src="modules/block-ui.js"></script>
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
 		
-		<script src="controllers/dashboard.js"></script>		
+		<script src="controllers/index.js"></script>		
 
 	</body>
 </html>

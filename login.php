@@ -5,11 +5,13 @@
   <title>Integrated Campus Testing &amp; Scholarship System - Login</title>
   <link rel="icon" href="favicon.ico">	  
   <link rel="stylesheet" href="css/login.css">
+
 </head>
 
-<body ng-app="appLogin" ng-controller="appLoginCtrl" keypress-events>
+
+<body background="" ng-app="appLogin" ng-controller="appLoginCtrl" keypress-events>
 <hgroup>
-  <img id="logo" src="images/logo.png">
+  <img id="logo" src="images/dmmmsu-logo.png">
   <h1>Sign in to InCaTS</h1>
 </hgroup>
 <form name="view.frmLogin">
@@ -52,7 +54,7 @@
 					scope.view.incorrect = true;
 				} else {
 					scope.view.incorrect = false;
-					$window.location.href = 'index.php';
+					$window.location.href = 'dashboard.php';
 				}
 			},
 			function myError(response) {

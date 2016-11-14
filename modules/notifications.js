@@ -40,7 +40,7 @@ angular.module('notifications-module',[]).directive('notifyUser', function($http
 				
 					if (scope.notifications.count > 0) {
 						scope.notifications.showCount = true;
-						if (scope.notifications.count) scope.notifications.many = 's';
+						if (scope.notifications.count > 1) scope.notifications.many = 's';
 						scope.notifications.results = response.data;					
 					}
 					

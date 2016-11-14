@@ -381,6 +381,7 @@ require_once 'authentication.php';
 		<script src="jquery/jquery.blockUI.js"></script>
 		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
 		
+		<script src="modules/global.js"></script>		
 		<script src="modules/block-ui.js"></script>
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>

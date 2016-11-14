@@ -1,4 +1,4 @@
-var app = angular.module('profile', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
+var app = angular.module('profile', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
 
 app.directive('fileread', [function () {
     return {
@@ -76,7 +76,7 @@ app.service('profileService',function($http,$timeout,blockUI) {
 	
 });
 
-app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNotify,bootstrapModal,profileService) {
+app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNotify,bootstrapModal,profileService,globalsService) {
 
 $scope.views = {};
 
@@ -94,21 +94,7 @@ $scope.requirements_files = [];
 $scope.requirementsDelete = [];
 $scope.requirementsFilenames = [];
 
-$scope.views.scholarship_programs = {
-	"University Scholarships": "University",
-	"Government": "Government"
-};
-
-$scope.views.scholarship_program_select = {
-	"University": {
-		"Academic":"Academic",
-		"Dependent":"Dependent"
-	},
-	"Government": {
-		"Local Code":"Local Code",
-		"DA ACEF": "DA ACEF"
-	}
-};
+globalsService.globals($scope);
 
 $scope.views.levels = {
 	"1st Year": 1,

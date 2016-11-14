@@ -1,4 +1,4 @@
-var app = angular.module('applicants', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
+var app = angular.module('applicants', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
 
 app.directive('fileread', [function () {
     return {
@@ -19,7 +19,7 @@ app.directive('fileread', [function () {
     }
 }]);
 
-app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
+app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globalsService) {
 	
 	this.list = function(scope) {
 		
@@ -99,16 +99,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI) {
 		scope.requirementsDelete = [];
 		scope.requirementsFilenames = [];		
 		
-		scope.views.scholarship_program_select = {
-			"University": {
-				"Academic":"Academic",
-				"Dependent":"Dependent"
-			},
-			"Government": {
-				"Local Code":"Local Code",
-				"DA ACEF": "DA ACEF"
-			}
-		};
+		globalsService.globals(scope);
 
 		scope.views.levels = {
 			"1st Year": 1,

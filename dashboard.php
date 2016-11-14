@@ -8,7 +8,7 @@ require_once 'authentication.php';
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Scholarship Applicants - InCaTS</title>
+		<title>Dashboard - InCaTS</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -17,8 +17,6 @@ require_once 'authentication.php';
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 
-		<link rel="stylesheet" href="assets/css/datepicker.min.css" />		
-		
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
@@ -34,12 +32,12 @@ require_once 'authentication.php';
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
-
-		<!-- inline styles related to this page -->
-
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="icon" href="favicon.ico">
 		
+		<!-- inline styles related to this page -->
+		
+		<link rel="stylesheet" href="css/style.css">		
+		<link rel="icon" href="favicon.ico">
+
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
 
@@ -51,7 +49,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="applicants" ng-controller="applicantsCtrl">
+	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -71,7 +69,8 @@ require_once 'authentication.php';
 				<div class="navbar-header pull-left">
 					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
-							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
+							<div id="logo-container"><img id="company-logo" src="images/dmmmsu-logo.png">Integrated Campus Testing &amp; Scholarship System of DMMMSU-NLUC</div>
+							
 						</small>
 					</a>
 				</div>
@@ -183,7 +182,7 @@ require_once 'authentication.php';
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="">
+					<li class="active">
 						<a href="index.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
@@ -198,8 +197,8 @@ require_once 'authentication.php';
 						</a>
 
 						<b class="arrow"></b>
-					</li>					
-					<li class="active open">
+					</li>
+					<li class="" ng-show="privileges.scholarship_services">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-certificate"></i>
 							<span class="menu-text">
@@ -213,7 +212,7 @@ require_once 'authentication.php';
 
 						<ul class="submenu">
 
-							<li class="active">
+							<li class="">
 								<a href="applicants.php">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Applicants
@@ -242,7 +241,7 @@ require_once 'authentication.php';
 
 						</ul>
 					</li>
-					<li class="">
+					<li class="" ng-show="privileges.account">
 						<a href="accounts.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
 							<span class="menu-text"> Accounts </span>
@@ -270,8 +269,8 @@ require_once 'authentication.php';
 
 						<ul class="breadcrumb">
 							<li class="active">
-								<i class="ace-icon fa fa-users"></i>
-								<a href="#">Applicants</a>
+								<i class="ace-icon fa fa-tachometer"></i>
+								<a href="#">Dashboard</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -281,22 +280,16 @@ require_once 'authentication.php';
 
 						<div class="page-header">
 							<h1>
-								Applicants
+								Dashboard
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Scholarship Applications
+									events &amp; announcements
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
-						<!--<div id="crud" class="row">
-							<div class="col-xs-12">
-								<button class="btn btn-primary btn-sm no-radius" ng-click="add()" ng-disabled="views.add">Add</button>
-							</div>
-						</div>
-						<hr />-->
+
 						<div class="row">
-							<div id="content" class="col-xs-12" ng-include="activeTemplate">							
-							</div><!-- /.col -->
+							<div class="col-xs-12"><!-- dashboard content here --></div><!-- /.col -->
 						</div><!-- /.row -->
 						
 					</div><!-- /.page-content -->
@@ -319,7 +312,7 @@ require_once 'authentication.php';
 			</a>
 		</div><!-- /.main-container -->
 
-		<script src="angularjs/angular.min.js"></script>
+		<script src="angularjs/angular.min.js"></script>		
 		
 		<!-- basic scripts -->
 
@@ -351,12 +344,6 @@ require_once 'authentication.php';
 
 		<!-- page specific plugin scripts -->
 
-		<!-- page specific plugin scripts -->
-		<script src="assets/js/jquery.dataTables.min.js"></script>
-		<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-		<script src="assets/js/dataTables.tableTools.min.js"></script>
-		<script src="assets/js/dataTables.colVis.min.js"></script>		
-		
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
@@ -368,26 +355,22 @@ require_once 'authentication.php';
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
 
-		<script src="assets/js/bootbox.min.js"></script>
-
-		<script src="assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="assets/js/bootbox.min.js"></script>		
 		
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
-				
 		<script src="jquery/jquery.blockUI.js"></script>
 		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
-		
-		<script src="modules/global.js"></script>		
+
 		<script src="modules/block-ui.js"></script>
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
-		<script src="modules/notifications.js"></script>		
+		<script src="modules/notifications.js"></script>
 		
-		<script src="controllers/applicants.js"></script>		
+		<script src="controllers/dashboard.js"></script>		
+
 	</body>
 </html>
