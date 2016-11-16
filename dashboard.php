@@ -47,6 +47,20 @@ require_once 'authentication.php';
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		
+		<style type="text/css">
+			
+			.public-dashboard {
+				background-color: #fafcf9;
+				padding: 25px;
+			}
+			
+			.post {
+				margin-bottom: 25px;
+			}
+		
+		</style>		
+		
 	</head>
 
 	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
@@ -289,7 +303,118 @@ require_once 'authentication.php';
 						</div><!-- /.page-header -->
 
 						<div class="row">
-							<div class="col-xs-12"><!-- dashboard content here --></div><!-- /.col -->
+							<div class="col-xs-12">
+
+							<div class="public-dashboard">
+							<div class="post">
+							
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" new-scholars>
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon fa fa-table"></i>
+											List of New Applicants
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<table class="table table-striped table-bordered table-hover">
+												<thead class="thin-border-bottom">
+													<tr>
+														<th>Name</th>
+														<th>Course</th>													
+														<th>College</th>
+														<th>Year Level</th>
+														<th>Semester</th>
+														<th>School Year</th>
+														<th class="hidden-480">Status</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr ng-repeat="scholar in newScholars">
+														<td>{{scholar.full_name}}</td>
+														<td>{{scholar.course}}</td>
+														<td>{{scholar.college}}</td>
+														<td>{{views.levels[scholar.year_level]}}</td>
+														<td>{{views.semesters[scholar.semester]}}</td>
+														<td>{{scholar.school_year}}</td>
+														<td class="hidden-480">
+															<span ng-class="{'label': true, 'label-warning':scholar.on_process, 'label-warning':scholar.pending, 'label-success':scholar.approved, 'label-danger':scholar.disapproved}">{{scholar.status}}</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>						
+							
+							</div>
+							<div class="post">
+							
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" scholars>
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon fa fa-table"></i>
+											List of Scholarship Grantees
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<table class="table table-striped table-bordered table-hover">
+												<thead class="thin-border-bottom">
+													<tr>
+														<th>Name</th>
+														<th>Course</th>													
+														<th>College</th>
+														<th>Year Level</th>
+														<th>Semester</th>
+														<th>School Year</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr ng-repeat="scholar in scholars">
+														<td>{{scholar.full_name}}</td>
+														<td>{{scholar.course}}</td>
+														<td>{{scholar.college}}</td>
+														<td>{{views.levels[scholar.year_level]}}</td>
+														<td>{{views.semesters[scholar.semester]}}</td>
+														<td>{{scholar.school_year}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>						
+							
+							</div>							
+							<div class="post">
+							
+											<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
+												<div class="widget-header widget-header-small">
+													<h6 class="widget-title">									
+														Announcement
+													</h6>
+
+													<div class="widget-toolbar">
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+														</p>
+													</div>
+												</div>
+											</div>
+								
+							</div>
+							</div>
+							
+							</div><!-- /.col -->
 						</div><!-- /.row -->
 						
 					</div><!-- /.page-content -->
@@ -369,6 +494,7 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
+		<script src="modules/dashboard.js"></script>		
 		
 		<script src="controllers/dashboard.js"></script>		
 
