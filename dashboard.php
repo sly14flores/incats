@@ -58,6 +58,10 @@ require_once 'authentication.php';
 			.post {
 				margin-bottom: 25px;
 			}
+			
+			.tools button {
+				margin-right: 10px;
+			}
 		
 		</style>		
 		
@@ -81,7 +85,7 @@ require_once 'authentication.php';
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
+					<a href="dashboard.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
 							<div id="logo-container"><img id="company-logo" src="images/dmmmsu-logo.png">Integrated Campus Testing &amp; Scholarship System of DMMMSU-NLUC</div>
 							
@@ -197,13 +201,21 @@ require_once 'authentication.php';
 
 				<ul class="nav nav-list">
 					<li class="active">
-						<a href="index.php">
+						<a href="dashboard.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
 
 						<b class="arrow"></b>
 					</li>
+					<li class="">
+						<a href="testing.php">
+							<i class="menu-icon glyphicon glyphicon-book"></i>
+							<span class="menu-text"> Testing Result </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>					
 					<li class="" ng-show="privileges.profile">
 						<a href="profile.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
@@ -303,88 +315,29 @@ require_once 'authentication.php';
 						</div><!-- /.page-header -->
 
 						<div class="row">
-							<div class="col-xs-12">
-
+							<div class="col-xs-12">							
 							<div class="public-dashboard">
-							<div class="post">
-							
-								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" new-scholars>
-									<div class="widget-header">
-										<h5 class="widget-title bigger lighter">
-											<i class="ace-icon fa fa-table"></i>
-											List of New Applicants
-										</h5>
-									</div>
-
-									<div class="widget-body">
-										<div class="widget-main no-padding">
-											<table class="table table-striped table-bordered table-hover">
-												<thead class="thin-border-bottom">
-													<tr>
-														<th>Name</th>
-														<th>Course</th>													
-														<th>College</th>
-														<th>Year Level</th>
-														<th>Semester</th>
-														<th>School Year</th>
-														<th class="hidden-480">Status</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<tr ng-repeat="scholar in newScholars">
-														<td>{{scholar.full_name}}</td>
-														<td>{{scholar.course}}</td>
-														<td>{{scholar.college}}</td>
-														<td>{{views.levels[scholar.year_level]}}</td>
-														<td>{{views.semesters[scholar.semester]}}</td>
-														<td>{{scholar.school_year}}</td>
-														<td class="hidden-480">
-															<span ng-class="{'label': true, 'label-warning':scholar.on_process, 'label-warning':scholar.pending, 'label-success':scholar.approved, 'label-danger':scholar.disapproved}">{{scholar.status}}</span>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>						
-							
+							<div class="tools" ng-show="privileges.event_announcement_btns">
+								<button class="btn btn-info" add-event>Add Event</button><button class="btn btn-info" add-announcement>Add Announcement</button>
+								<hr>
 							</div>
 							<div class="post">
 							
-								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" scholars>
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;">
 									<div class="widget-header">
 										<h5 class="widget-title bigger lighter">
 											<i class="ace-icon fa fa-table"></i>
-											List of Scholarship Grantees
+											Events
 										</h5>
 									</div>
 
 									<div class="widget-body">
-										<div class="widget-main no-padding">
-											<table class="table table-striped table-bordered table-hover">
-												<thead class="thin-border-bottom">
-													<tr>
-														<th>Name</th>
-														<th>Course</th>													
-														<th>College</th>
-														<th>Year Level</th>
-														<th>Semester</th>
-														<th>School Year</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<tr ng-repeat="scholar in scholars">
-														<td>{{scholar.full_name}}</td>
-														<td>{{scholar.course}}</td>
-														<td>{{scholar.college}}</td>
-														<td>{{views.levels[scholar.year_level]}}</td>
-														<td>{{views.semesters[scholar.semester]}}</td>
-														<td>{{scholar.school_year}}</td>
-													</tr>
-												</tbody>
-											</table>
+										<div class="widget-main">
+											<p class="alert alert-info" ng-repeat="event in events">
+												<strong>{{event.heading}}</strong><br>
+												{{event.content}}
+												<br><small>Posted on: {{event.event_date}}</small>
+											</p>
 										</div>
 									</div>
 								</div>						
@@ -392,24 +345,24 @@ require_once 'authentication.php';
 							</div>							
 							<div class="post">
 							
-											<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">									
-														Announcement
-													</h6>
+								<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon glyphicon glyphicon-list-alt"></i>									
+											Announcements
+										</h5>
+									</div>
 
-													<div class="widget-toolbar">
-													</div>
-												</div>
-
-												<div class="widget-body">
-													<div class="widget-main">
-														<p class="alert alert-info">
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
-														</p>
-													</div>
-												</div>
-											</div>
+									<div class="widget-body">
+										<div class="widget-main">
+											<p class="alert alert-info" ng-repeat="announcement in announcements">
+												<strong>{{announcement.heading}}</strong><br>
+												{{announcement.content}}
+												<br><small>Posted on: {{announcement.announcement_date}}</small>												
+											</p>											
+										</div>
+									</div>
+								</div>
 								
 							</div>
 							</div>

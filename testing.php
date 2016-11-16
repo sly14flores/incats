@@ -8,7 +8,7 @@ require_once 'authentication.php';
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>User Accounts - InCaTS</title>
+		<title>Scholarship Applicants - InCaTS</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -51,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="userAccounts" ng-controller="userAccountsCtrl">
+	<body class="no-skin" ng-app="testing" ng-controller="testingCtrl">
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -69,7 +69,7 @@ require_once 'authentication.php';
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
+					<a href="dashboard.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
 							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
 						</small>
@@ -184,14 +184,14 @@ require_once 'authentication.php';
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.php">
+						<a href="dashboard.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
 
 						<b class="arrow"></b>
 					</li>
-					<li class="">
+					<li class="active">
 						<a href="testing.php">
 							<i class="menu-icon glyphicon glyphicon-book"></i>
 							<span class="menu-text"> Testing Result </span>
@@ -250,7 +250,7 @@ require_once 'authentication.php';
 
 						</ul>
 					</li>
-					<li class="active" ng-show="privileges.account">
+					<li class="">
 						<a href="accounts.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
 							<span class="menu-text"> Accounts </span>
@@ -278,8 +278,8 @@ require_once 'authentication.php';
 
 						<ul class="breadcrumb">
 							<li class="active">
-								<i class="ace-icon fa fa-users"></i>
-								<a href="#">User Accounts</a>
+								<i class="ace-icon glyphicon glyphicon-book"></i>
+								<a href="#">Testing Result</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -289,10 +289,10 @@ require_once 'authentication.php';
 
 						<div class="page-header">
 							<h1>
-								User Accounts
+								Testing
 								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									manage user account
+									<i class="ace-icon glyphicon glyphicon-book"></i>
+									result
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -394,8 +394,9 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
-		<script src="modules/notifications.js"></script>		
+		<script src="modules/notifications.js"></script>
+		<script src="angularjs/utils/ui-bootstrap-tpls-1.3.3.min.js"></script>		
 		
-		<script src="controllers/accounts.js"></script>		
+		<script src="controllers/testing.js"></script>		
 	</body>
 </html>

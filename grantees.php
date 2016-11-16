@@ -69,7 +69,7 @@ require_once 'authentication.php';
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
+					<a href="dashboard.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
 							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
 						</small>
@@ -184,13 +184,21 @@ require_once 'authentication.php';
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.php">
+						<a href="dashboard.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
 
 						<b class="arrow"></b>
 					</li>
+					<li class="">
+						<a href="testing.php">
+							<i class="menu-icon glyphicon glyphicon-book"></i>
+							<span class="menu-text"> Testing Result </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>					
 					<li class="" ng-show="privileges.profile">
 						<a href="profile.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>

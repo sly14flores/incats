@@ -29,8 +29,8 @@ angular.module('globals',[]).service('globalsService', function() {
 				"DAR":"DAR",
 				"BPS":"BPS"
 			}
-		};		
-		
+		};	
+	
 	}
 	
 });

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2016 at 01:28 AM
+-- Generation Time: Nov 17, 2016 at 12:43 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `email` varchar(50) NOT NULL,
   `built_in` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `accounts`
@@ -59,7 +59,30 @@ INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middl
 (7, 'Applicant', '131-0428-1', 'Kaye', 'kin', 'Chu', 'Female', 'Bacnotan', '09498439978', '1995-11-27', 20, 'kaye', 'kaye', 'kayeA@yahoo.com', 2147483647),
 (8, 'Applicant', '131-1242-9', 'John', 'ken', 'Lui', 'Male', 'Luna', '09087765657', '1998-03-06', 18, 'john', 'john', 'john@yahoo.com', 2147483647),
 (9, 'Applicant', '131-0436-9', 'jovy', 'accosta', 'abuan', 'Female', 'san fernando', '09464573435', '1995-07-08', 21, 'jovy', 'jovy', 'jovyabuan@yahoo.com', 2147483647),
-(10, 'Applicant', '131-0976-6', 'eman', 'joe', 'bautista', 'Male', 'agoo', '0936134388', '1998-01-02', 18, 'eman', 'eman', 'eman@yahoo.com', 2147483647);
+(10, 'Applicant', '131-0976-6', 'eman', 'joe', 'bautista', 'Male', 'agoo', '0936134388', '1998-01-02', 18, 'eman', 'eman', 'eman@yahoo.com', 2147483647),
+(11, 'Applicant', '', 'La mej', 'pirena', 'maldita', '', '', '', '0000-00-00', 0, 'mejo', 'mejo', 'mejo@gmail.com', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE IF NOT EXISTS `announcements` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `heading` varchar(500) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `announcement_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`id`, `heading`, `content`, `announcement_date`) VALUES
+(1, 'radf', 'werqwfadfd', '2016-11-17'),
+(2, 'announcement', 'tests', '2016-11-17');
 
 -- --------------------------------------------------------
 
@@ -106,6 +129,28 @@ INSERT INTO `dismiss_notifications` (`id`, `account_id`, `scholarship_id`) VALUE
 (24, 1, 6),
 (25, 1, 8),
 (26, 1, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `heading` varchar(500) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `event_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `heading`, `content`, `event_date`) VALUES
+(1, 'heading', 'adfdhadferg', '2016-11-17'),
+(2, 'test event', 'blablabla', '2016-11-17');
 
 -- --------------------------------------------------------
 

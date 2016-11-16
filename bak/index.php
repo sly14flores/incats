@@ -150,42 +150,20 @@
 						
 						<div class="col-md-4 col-lg-4">
 						
-							<h2>List of Scholarship Programs</h2>
-							<hr>
+							<div class="widget-box">
+								<div class="widget-header">
+									<h4 class="smaller">
+										Account
+									</h4>
+								</div>
 
-							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-							  <div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingOne">
-								  <h4 class="panel-title">
-									<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									{{views.program1_key}}
-									</a>
-								  </h4>
+								<div class="widget-body">
+									<div class="widget-main">
+										<p><a href="javascript:;" ng-click="signup()"><i class="ace-icon fa fa-pencil-square-o"></i> &nbsp;Sign Up</a></p>
+										<p><a href="javascript:;" ng-click="login()"><i class="ace-icon glyphicon glyphicon-user"></i> &nbsp;Login</a></p>
+									</div>								
 								</div>
-								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-								  <div class="panel-body">
-									<ul>
-										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program1_value]">{{key}}</li>									
-									</ul>
-								  </div>
-								</div>
-							  </div>
-							  <div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingTwo">
-								  <h4 class="panel-title">
-									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									{{views.program2_key}}
-									</a>
-								  </h4>
-								</div>
-								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									<ul>
-										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program2_value]">{{key}}</li>									
-									</ul>
-								</div>
-							  </div>
-							</div>									
-
+							</div>
 										
 						</div>
 						
@@ -194,21 +172,83 @@
 							<div class="public-dashboard">
 							<div class="post">
 							
-								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;">
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" new-scholars>
 									<div class="widget-header">
 										<h5 class="widget-title bigger lighter">
 											<i class="ace-icon fa fa-table"></i>
-											Events
+											List of New Applicants
 										</h5>
 									</div>
 
 									<div class="widget-body">
-										<div class="widget-main">
-											<p class="alert alert-info" ng-repeat="event in events">
-												<strong>{{event.heading}}</strong><br>
-												{{event.content}}
-												<br><small>Posted on: {{event.event_date}}</small>
-											</p>
+										<div class="widget-main no-padding">
+											<table class="table table-striped table-bordered table-hover">
+												<thead class="thin-border-bottom">
+													<tr>
+														<th>Name</th>
+														<th>Course</th>													
+														<th>College</th>
+														<th>Year Level</th>
+														<th>Semester</th>
+														<th>School Year</th>
+														<th class="hidden-480">Status</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr ng-repeat="scholar in newScholars">
+														<td>{{scholar.full_name}}</td>
+														<td>{{scholar.course}}</td>
+														<td>{{scholar.college}}</td>
+														<td>{{views.levels[scholar.year_level]}}</td>
+														<td>{{views.semesters[scholar.semester]}}</td>
+														<td>{{scholar.school_year}}</td>
+														<td class="hidden-480">
+															<span ng-class="{'label': true, 'label-warning':scholar.on_process, 'label-warning':scholar.pending, 'label-success':scholar.approved, 'label-danger':scholar.disapproved}">{{scholar.status}}</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>						
+							
+							</div>
+							<div class="post">
+							
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" scholars>
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon fa fa-table"></i>
+											List of Scholarship Grantees
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<table class="table table-striped table-bordered table-hover">
+												<thead class="thin-border-bottom">
+													<tr>
+														<th>Name</th>
+														<th>Course</th>													
+														<th>College</th>
+														<th>Year Level</th>
+														<th>Semester</th>
+														<th>School Year</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr ng-repeat="scholar in scholars">
+														<td>{{scholar.full_name}}</td>
+														<td>{{scholar.course}}</td>
+														<td>{{scholar.college}}</td>
+														<td>{{views.levels[scholar.year_level]}}</td>
+														<td>{{views.semesters[scholar.semester]}}</td>
+														<td>{{scholar.school_year}}</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>						
@@ -216,24 +256,24 @@
 							</div>							
 							<div class="post">
 							
-								<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
-									<div class="widget-header">
-										<h5 class="widget-title bigger lighter">
-											<i class="ace-icon glyphicon glyphicon-list-alt"></i>									
-											Announcements
-										</h5>
-									</div>
+											<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
+												<div class="widget-header widget-header-small">
+													<h6 class="widget-title">									
+														Announcement
+													</h6>
 
-									<div class="widget-body">
-										<div class="widget-main">
-											<p class="alert alert-info" ng-repeat="announcement in announcements">
-												<strong>{{announcement.heading}}</strong><br>
-												{{announcement.content}}
-												<br><small>Posted on: {{announcement.announcement_date}}</small>												
-											</p>											
-										</div>
-									</div>
-								</div>
+													<div class="widget-toolbar">
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+														</p>
+													</div>
+												</div>
+											</div>
 								
 							</div>
 							</div>
@@ -319,10 +359,8 @@
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
-		<script src="modules/global.js"></script>
-		<script src="modules/dashboard.js"></script>\
+		<script src="modules/dashboard.js"></script>
 		
-		<script src="controllers/dashboard.js"></script>			
 		<script src="controllers/index.js"></script>		
 
 	</body>

@@ -9,7 +9,8 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 			scope.privileges.scholarship_services = false;
 			scope.privileges.profile = false;
 			scope.privileges.settings = false;
-			scope.privileges.account = false;
+			scope.privileges.account = false;			
+			scope.privileges.event_announcement_btns = false;			
 			
 			$http({
 			  method: 'POST',
@@ -42,7 +43,8 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 				if (account_type == 'Administrator') {
 					scope.privileges.scholarship_services = true;
 					scope.privileges.settings = true;
-					scope.privileges.account = true;					
+					scope.privileges.account = true;
+					scope.privileges.event_announcement_btns = true;	
 				}
 				
 				if (account_type == 'Applicant') {
