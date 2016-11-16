@@ -55,6 +55,11 @@
 
 			}
 			
+			.public-dashboard {
+				background-color: #fafcf9;
+				padding: 25px;
+			}
+			
 			.post {
 				margin-bottom: 25px;
 			}
@@ -78,6 +83,14 @@
 						</small>
 					</a>
 				</div>
+				
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="light-blue"></li>					
+						<li class="light-blue"><a href="javascript:;" ng-click="signup()">Sign Up</a></li>
+						<li class="light-blue"><a href="javascript:;" ng-click="login()">Login</a></li>						
+					</ul>
+				</div>			
 
 			</div><!-- /.navbar-container -->
 		</div>
@@ -140,141 +153,129 @@
 							<div class="widget-box">
 								<div class="widget-header">
 									<h4 class="smaller">
-										Tasks
+										Account
 									</h4>
 								</div>
 
 								<div class="widget-body">
 									<div class="widget-main">
-									
-									</div>
+										<p><a href="javascript:;" ng-click="signup()"><i class="ace-icon fa fa-pencil-square-o"></i> &nbsp;Sign Up</a></p>
+										<p><a href="javascript:;" ng-click="login()"><i class="ace-icon glyphicon glyphicon-user"></i> &nbsp;Login</a></p>
+									</div>								
 								</div>
 							</div>
 										
 						</div>
 						
 						<div class="col-md-9 col-lg-9">
-						
-						<div class="post">
-						
-							<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;">
-								<div class="widget-header">
-									<h5 class="widget-title bigger lighter">
-										<i class="ace-icon fa fa-table"></i>
-										List of New Scholarship Applicants
-									</h5>
-								</div>
-
-								<div class="widget-body">
-									<div class="widget-main no-padding">
-										<table class="table table-striped table-bordered table-hover">
-											<thead class="thin-border-bottom">
-												<tr>
-													<th>
-														<i class="ace-icon fa fa-user"></i>
-														User
-													</th>
-
-													<th>
-														<i>@</i>
-														Email
-													</th>
-													<th class="hidden-480">Status</th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<tr>
-													<td class="">Alex</td>
-
-													<td>
-														<a href="#">alex@email.com</a>
-													</td>
-
-													<td class="hidden-480">
-														<span class="label label-warning">Pending</span>
-													</td>
-												</tr>
-
-												<tr>
-													<td class="">Fred</td>
-
-													<td>
-														<a href="#">fred@email.com</a>
-													</td>
-
-													<td class="hidden-480">
-														<span class="label label-success arrowed-in arrowed-in-right">Approved</span>
-													</td>
-												</tr>
-
-												<tr>
-													<td class="">Jack</td>
-
-													<td>
-														<a href="#">jack@email.com</a>
-													</td>
-
-													<td class="hidden-480">
-														<span class="label label-warning">Pending</span>
-													</td>
-												</tr>
-
-												<tr>
-													<td class="">John</td>
-
-													<td>
-														<a href="#">john@email.com</a>
-													</td>
-
-													<td class="hidden-480">
-														<span class="label label-inverse arrowed">Blocked</span>
-													</td>
-												</tr>
-
-												<tr>
-													<td class="">James</td>
-
-													<td>
-														<a href="#">james@email.com</a>
-													</td>
-
-													<td class="hidden-480">
-														<span class="label label-info arrowed-in arrowed-in-right">Online</span>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>						
-						
-						</div>
-						<div class="post">
-						
-										<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
-											<div class="widget-header widget-header-small">
-												<h6 class="widget-title">									
-													Announcement
-												</h6>
-
-												<div class="widget-toolbar">
-													<a href="#" data-action="close">
-														<i class="ace-icon fa fa-times"></i>
-													</a>
-												</div>
-											</div>
-
-											<div class="widget-body">
-												<div class="widget-main">
-													<p class="alert alert-info">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
-													</p>
-												</div>
-											</div>
-										</div>
+							<div class="public-dashboard">
+							<div class="post">
 							
-						</div>
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" new-scholars>
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon fa fa-table"></i>
+											List of New Applicants
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<table class="table table-striped table-bordered table-hover">
+												<thead class="thin-border-bottom">
+													<tr>
+														<th>Name</th>
+														<th>Course</th>													
+														<th>College</th>
+														<th>Year Level</th>
+														<th>Semester</th>
+														<th>School Year</th>
+														<th class="hidden-480">Status</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr ng-repeat="scholar in newScholars">
+														<td>{{scholar.full_name}}</td>
+														<td>{{scholar.course}}</td>
+														<td>{{scholar.college}}</td>
+														<td>{{views.levels[scholar.year_level]}}</td>
+														<td>{{views.semesters[scholar.semester]}}</td>
+														<td>{{scholar.school_year}}</td>
+														<td class="hidden-480">
+															<span ng-class="{'label': true, 'label-warning':scholar.on_process, 'label-warning':scholar.pending, 'label-success':scholar.approved, 'label-danger':scholar.disapproved}">{{scholar.status}}</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>						
+							
+							</div>
+							<div class="post">
+							
+								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;" scholars>
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon fa fa-table"></i>
+											List of Scholarship Grantees
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<table class="table table-striped table-bordered table-hover">
+												<thead class="thin-border-bottom">
+													<tr>
+														<th>Name</th>
+														<th>Course</th>													
+														<th>College</th>
+														<th>Year Level</th>
+														<th>Semester</th>
+														<th>School Year</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr ng-repeat="scholar in scholars">
+														<td>{{scholar.full_name}}</td>
+														<td>{{scholar.course}}</td>
+														<td>{{scholar.college}}</td>
+														<td>{{views.levels[scholar.year_level]}}</td>
+														<td>{{views.semesters[scholar.semester]}}</td>
+														<td>{{scholar.school_year}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>						
+							
+							</div>							
+							<div class="post">
+							
+											<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
+												<div class="widget-header widget-header-small">
+													<h6 class="widget-title">									
+														Announcement
+													</h6>
+
+													<div class="widget-toolbar">
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+														</p>
+													</div>
+												</div>
+											</div>
+								
+							</div>
+							</div>
 						</div>
 						
 						</div>						
@@ -356,6 +357,7 @@
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
+		<script src="modules/dashboard.js"></script>
 		
 		<script src="controllers/index.js"></script>		
 

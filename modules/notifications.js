@@ -50,7 +50,7 @@ angular.module('notifications-module',[]).directive('notifyUser', function($http
 					
 				});
 			
-			}
+			};
 			
 			fetchNotifications();
 			$interval(function() { fetchNotifications(); }, 5000);
