@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2016 at 12:43 AM
+-- Generation Time: Nov 17, 2016 at 04:50 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -227,6 +227,32 @@ INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, 
 (10, 10, 'New', 'University', 'Dependent', 'BS Agroforestry', 'Institute of Agroforestry & Watershed Management', '2', '1', '2016-2017', 'Disapproved', '2016-11-14 09:47:21', 2147483647, '2016-11-14 09:47:21'),
 (11, 2, 'Renewal', 'University', 'Academic', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'Approved', '2016-11-14 09:53:16', 2147483647, '2016-11-14 09:53:16');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testing_results`
+--
+
+CREATE TABLE IF NOT EXISTS `testing_results` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `scholar_id` int(10) NOT NULL,
+  `testing_type` varchar(50) NOT NULL,
+  `rating` varchar(10) NOT NULL,
+  `testing_date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `scholar_id` (`scholar_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `testing_results`
+--
+
+INSERT INTO `testing_results` (`id`, `scholar_id`, `testing_type`, `rating`, `testing_date`) VALUES
+(1, 2, 'PT', '21', '2016-11-17'),
+(2, 4, 'CAT', '85', '2016-11-17'),
+(3, 5, 'PT', '90', '2016-11-17'),
+(4, 6, 'PT', '88', '2016-11-17');
+
 --
 -- Constraints for dumped tables
 --
@@ -248,6 +274,12 @@ ALTER TABLE `requirements`
 --
 ALTER TABLE `scholarships`
   ADD CONSTRAINT `scholarships_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `testing_results`
+--
+ALTER TABLE `testing_results`
+  ADD CONSTRAINT `testing_results_ibfk_2` FOREIGN KEY (`scholar_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,16 +3,16 @@ var app = angular.module('testing', ['globals','block-ui','bootstrap-notify','bo
 app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globalsService) {
 	
 	this.list = function(scope) {
-		
+
 	blockUI.show();
-	scope.activeTemplate = 'views/testing-list.php';	
+	scope.activeTemplate = 'views/testing-list.php';		
 		
 	$http({
 	  method: 'POST',
 	  url: 'controllers/testing.php?r=list'
 	}).then(function mySucces(response) {
-	
-		scope.applicants = response.data;
+
+		scope.testings = angular.copy(response.data);
 		
 	}, function myError(response) {
 
@@ -28,7 +28,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 	.dataTable( {
 		bAutoWidth: false,
 		"aoColumns": [
-		  null, null, null, null, null, null, null, null, null,
+		  null, null, null, null,
 		  { "bSortable": false }
 		],
 		"aaSorting": [],
@@ -51,64 +51,11 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 	
 	$timeout(function() { blockUI.hide(); },1000);
 		
-	}
-	
-	this.view = function(scope,id) {
-		
-		blockUI.show();
-		scope.activeTemplate = 'views/testing-form.php';
-		
-		$http({
-		  method: 'POST',
-		  data: {id: id},
-		  url: 'controllers/testing.php?r=view'
-		}).then(function mySucces(response) {		
-			
-			blockUI.hide();
-			
-		}, function myError(response) {
-			 
-		  // error
-			
-		});	
-
-		$timeout(function() {
-
-			$('#birthday').datepicker({
-				autoclose: true,
-				todayHighlight: true
-			}).next().on(ace.click_event, function(){
-					$(this).prev().focus();
-			});
-			
-		},1000);		
-		
-	}
-	
-	this.save = function(scope) {	
-		
-		if (scope.views.mode == 'Save') delete scope.applicant.id;
-		
-		$http({
-		  method: 'POST',
-		  url: 'controllers/testing.php?r='+scope.views.mode,
-		  data: scope.applicant,
-		  headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-		}).then(function mySucces(response) {
-		
-			scope.list();
-			
-		}, function myError(response) {
-			 
-		  // error
-			
-		});
-		
-	}
+	};
 	
 	this.del = function(scope,id) {
 		
-		bootstrapModal.confirm(scope,'Confirmation','Are you sure you want to delete this record?',function() { del(id); },function() {});
+		bootstrapModal.confirm(scope,'Confirmation','Are you sure you want to delete this result?',function() { del(id); },function() {});
 		
 		function del(id) {
 			
@@ -119,7 +66,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 			}).then(function mySucces(response) {
 				
 				$('#dynamic-table').dataTable().fnDestroy();
-				scope.list();
+				crud.list(scope);
 				
 			}, function myError(response) {
 				 
@@ -129,12 +76,122 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 
 		}
 		
-	}
+	};
+	
+});
+
+app.directive('addTesting',function($http,$timeout,bootstrapModal,blockUI,crud) {
+	
+	return {
+	   restrict: 'A',
+	   link: function(scope, element, attrs) {
+	
+			element.bind('click', function(){
+				
+				var frm = '';
+					frm += '<form class="form-horizontal">';
+					frm += '<div class="form-group">';
+					frm += '<label class="col-md-3 control-label no-padding-right">Student Name</label>';
+					frm += '<div class="col-md-9">';
+					frm += '<input type="text" class="form-control" name="name" ng-model="views.name" uib-typeahead="student as student.full_name for student in students | filter:{full_name:$viewValue}" typeahead-on-select="idSelected($item, $model, $label, $event)">';
+					frm += '</div>';
+					frm += '</div>';					
+					frm += '<div class="form-group">';
+					frm += '<label class="col-md-3 control-label no-padding-right">Testing Type</label>';
+					frm += '<div class="col-md-9">';
+					frm += '<select class="form-control" name="testing_type" ng-model="testing.testing_type" ng-options="x for (x,y) in views.testing_types track by y">';
+					frm += '<option value="">-</option>';
+					frm += '</select>';
+					frm += '</div>';
+					frm += '</div>';
+					frm += '<div class="form-group">';
+					frm += '<label class="col-md-3 control-label no-padding-right">Rating</label>';
+					frm += '<div class="col-md-9">';
+					frm += '<input type="text" class="form-control" name="rating" ng-model="testing.rating">';
+					frm += '</div>';
+					frm += '</div>';					
+					frm += '</form>';
+					
+				bootstrapModal.confirm(scope,'Add Testing Result',frm,function() { addTesting(); },function() {});
+				
+				if (attrs.addTesting == 0) {
+
+					scope.testing.scholar_id = 0;
+					scope.views.name = '';
+					
+				} else {
+					
+					$http({
+					  method: 'POST',
+					  url: 'controllers/testing.php?r=view',
+					  data: {id: attrs.addTesting}
+					}).then(function mySucces(response) {
+						
+						scope.testing = response.data;
+						scope.views.name = response.data['full_name'];
+						
+					}, function myError(response) {
+
+					  // error
+
+					});	
+					
+				}				
+
+			});
+			
+			function addTesting() {
+
+				blockUI.show();
+				
+				var mode = 'add_testing';
+				if (attrs.addTesting > 0) {
+					mode = 'update_testing';
+					delete scope.testing.full_name;
+				}
+				
+				$http({
+				  method: 'POST',
+				  url: 'controllers/testing.php?r='+mode,
+				  data: scope.testing
+				}).then(function mySucces(response) {
+
+					$('#dynamic-table').dataTable().fnDestroy();
+					crud.list(scope);
+					blockUI.hide();
+					
+				}, function myError(response) {
+
+				  // error
+
+				});
+				
+			}
+	
+	    }
+	};
 	
 });
 
 app.controller('testingCtrl',function($http,$timeout,$scope,crud,blockUI,bootstrapNotify,bootstrapModal) {
 
 $scope.views = {};
+$scope.testing = {};
+$scope.testing.scholar_id = 0;
+
+$scope.views.testing_types = {
+	"Personality Test": "PT",
+	"College Aptitude Test": "CAT"
+};
+
+$http.get('controllers/testing.php?r=students').then(function(response){
+	$scope.students = response.data;
+});	
+
+$scope.idSelected = function(item, model, label, event) {
+	$scope.testing.scholar_id = item['id'];
+};
+
+crud.list($scope);
 	
 });

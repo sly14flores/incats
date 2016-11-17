@@ -313,17 +313,18 @@
 
 		<script src="jquery/jquery.blockUI.js"></script>
 		<script src="bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
-	
+		
 		<script src="modules/block-ui.js"></script>
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
 		<script src="modules/global.js"></script>
-		<script src="modules/dashboard.js"></script>\
+		<script src="modules/dashboard.js"></script>
 		
 		<script src="controllers/dashboard.js"></script>			
-		<script src="controllers/index.js"></script>		
+		<script src="controllers/index.js"></script>
+
 
 	</body>
 </html>
