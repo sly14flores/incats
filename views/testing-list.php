@@ -1,7 +1,3 @@
-<div class="space-10"></div>												
-<button class="btn btn-primary btn-sm no-radius" add-testing="0">Add</button>
-<div class="space-10"></div>
-<hr>
 <div class="table-header">
 	Results
 </div>
@@ -29,7 +25,7 @@
 				<td>{{student_testing.rating}}</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="javascript:;" add-testing="{{student_testing.id}}">
+						<a class="green" href="javascript:;" ng-click="edit(student_testing.id)">
 							<i class="ace-icon fa fa-search bigger-130"></i>
 						</a>
 

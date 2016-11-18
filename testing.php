@@ -303,7 +303,12 @@ require_once 'authentication.php';
 						</div>
 						<hr />-->
 						<div class="row">
-							<div id="content" class="col-xs-12" ng-include="activeTemplate">							
+							<div id="content" class="col-xs-12">
+							<div class="space-10"></div>												
+							<button class="btn btn-primary btn-sm no-radius" add-testing="0">Add</button>
+							<div class="space-10"></div>
+							<hr>							
+								<div ng-include="activeTemplate"></div>
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 						

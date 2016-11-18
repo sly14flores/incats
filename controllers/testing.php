@@ -48,6 +48,13 @@ switch ($_GET['r']) {
 	
 	break;
 	
+	case "delete":
+		
+		$con = new pdo_db("testing_results");
+		$con->deleteData(array("id"=>implode(",",$_POST['id'])));
+		
+	break;
+	
 }
 
 ?>
