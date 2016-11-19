@@ -20,6 +20,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 					blockUI.login(scope);
 					idleTime = 0;
 					clearInterval(idleInterval);
+					localStorage.lockLogin = true;					
 				}
 			}
 			
@@ -31,8 +32,9 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 				  url: 'modules/accounts.php?r=lock'
 				}).then(function mySucces(response) {			
 					
-					if (response.data == 0) {
+					if (response.data == 1) {
 						scope.lockPwInvalid = true;
+						localStorage.removeItem("lockLogin");
 					} else {
 						idleInterval = setInterval(timerIncrement, 1000);
 						scope.lockPw = '';
@@ -46,6 +48,8 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 				});				
 				
 			}
+			
+			if (localStorage.lockLogin) setTimeout(function() { blockUI.login(scope); },1000);
 
 	   }
 	};
