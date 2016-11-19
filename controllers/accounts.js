@@ -1,4 +1,4 @@
-var app = angular.module('userAccounts', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
+var app = angular.module('userAccounts', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','lock-screen-module']);
 
 app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstrapNotify,bootstrapModal) {
 

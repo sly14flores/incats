@@ -1,4 +1,4 @@
-var app = angular.module('testing', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','ui.bootstrap']);
+var app = angular.module('testing', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','ui.bootstrap','lock-screen-module']);
 
 app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globalsService) {
 	

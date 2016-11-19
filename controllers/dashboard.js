@@ -1,4 +1,4 @@
-var app = angular.module('dashboard', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','dashboard-module']);
+var app = angular.module('dashboard', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','dashboard-module','lock-screen-module']);
 
 app.service('eventsAnnouncements',function($http,blockUI) {
 	

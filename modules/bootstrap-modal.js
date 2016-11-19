@@ -35,6 +35,5 @@ angular.module('bootstrap-modal',[]).service('bootstrapModal', function($compile
 		});
 	
 	}
-	
 
 });

@@ -51,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="userAccounts" ng-controller="userAccountsCtrl">
+	<body class="no-skin" ng-app="userAccounts" ng-controller="userAccountsCtrl" lock-screen>
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -69,7 +69,7 @@ require_once 'authentication.php';
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
+					<a href="dashboard.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
 							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
 						</small>
@@ -184,7 +184,7 @@ require_once 'authentication.php';
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.php">
+						<a href="dashboard.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -394,7 +394,8 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-notify.js"></script>
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
-		<script src="modules/notifications.js"></script>		
+		<script src="modules/notifications.js"></script>
+		<script src="modules/lock-screen.js"></script>		
 		
 		<script src="controllers/accounts.js"></script>		
 	</body>

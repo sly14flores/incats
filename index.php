@@ -320,6 +320,7 @@
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
 		<script src="modules/global.js"></script>
+		<script src="modules/lock-screen.js"></script>		
 		<script src="modules/dashboard.js"></script>
 		
 		<script src="controllers/dashboard.js"></script>			

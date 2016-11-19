@@ -67,7 +67,7 @@ require_once 'authentication.php';
 		
 	</head>
 
-	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl">
+	<body class="no-skin" ng-app="dashboard" ng-controller="dashboardCtrl" lock-screen>
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -208,7 +208,7 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>
-					<li class="">
+					<li class="" ng-show="privileges.testing">
 						<a href="testing.php">
 							<i class="menu-icon glyphicon glyphicon-book"></i>
 							<span class="menu-text"> Testing Result </span>
@@ -447,7 +447,8 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
-		<script src="modules/dashboard.js"></script>		
+		<script src="modules/dashboard.js"></script>	
+		<script src="modules/lock-screen.js"></script>
 		
 		<script src="controllers/dashboard.js"></script>		
 

@@ -51,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="testing" ng-controller="testingCtrl">
+	<body class="no-skin" ng-app="testing" ng-controller="testingCtrl" lock-screen>
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -400,6 +400,7 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
+		<script src="modules/lock-screen.js"></script>		
 		<script src="angularjs/utils/ui-bootstrap-tpls-1.3.3.min.js"></script>		
 		
 		<script src="controllers/testing.js"></script>		

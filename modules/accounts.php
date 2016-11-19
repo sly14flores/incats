@@ -36,6 +36,15 @@ case "update":
 	$update = $con->updateData($_POST,'id');	
 
 break;
+
+case "lock":
+
+	$con = new pdo_db();
+	$results = $con->getData("SELECT username FROM accounts WHERE id = ".$_SESSION['id']." AND password = '".$_POST['pw']."'");	
+
+	echo count($results);
+
+break;
 	
 }
 

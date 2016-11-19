@@ -1,4 +1,4 @@
-var app = angular.module('applicants', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module']);
+var app = angular.module('applicants', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','lock-screen-module']);
 
 app.directive('fileread', [function () {
     return {
