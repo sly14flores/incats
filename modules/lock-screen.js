@@ -5,7 +5,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 	   link: function(scope, element, attrs) {	
 
 			var idleTime = 0;
-			var idleInterval = setInterval(timerIncrement, 60000);
+			var idleInterval = setInterval(timerIncrement, 1000);
 
 			$(this).mousemove(function (e) {
 				idleTime = 0;
@@ -16,7 +16,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 
 			function timerIncrement() {
 				idleTime = idleTime + 1;
-				if (idleTime > 0) {
+				if (idleTime > 60) {
 					blockUI.login(scope);
 					idleTime = 0;
 					clearInterval(idleInterval);
@@ -31,13 +31,14 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 				  data: {pw: scope.lockPw},
 				  url: 'modules/accounts.php?r=lock'
 				}).then(function mySucces(response) {			
-					
-					if (response.data == 1) {
+					 console.log(response.data);
+					if (response.data == 0) {
 						scope.lockPwInvalid = true;
-						localStorage.removeItem("lockLogin");
 					} else {
 						idleInterval = setInterval(timerIncrement, 1000);
+						localStorage.removeItem("lockLogin");			
 						scope.lockPw = '';
+						idleTime = 0;
 						blockUI.hide();
 					}
 					
@@ -49,7 +50,9 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 				
 			}
 			
-			if (localStorage.lockLogin) setTimeout(function() { blockUI.login(scope); },1000);
+			if (localStorage.lockLogin) {
+				setTimeout(function() { blockUI.login(scope); },1000);
+			}
 
 	   }
 	};
