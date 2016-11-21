@@ -17,10 +17,9 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 			function timerIncrement() {
 				idleTime = idleTime + 1;
 				if (idleTime > 60) {
-					blockUI.login(scope);
-					idleTime = 0;
 					clearInterval(idleInterval);
 					localStorage.lockLogin = true;					
+					blockUI.login(scope);				
 				}
 			}
 			
@@ -35,10 +34,10 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 					if (response.data == 0) {
 						scope.lockPwInvalid = true;
 					} else {
+						idleTime = 0;						
 						idleInterval = setInterval(timerIncrement, 1000);
 						localStorage.removeItem("lockLogin");			
 						scope.lockPw = '';
-						idleTime = 0;
 						blockUI.hide();
 					}
 					
@@ -52,6 +51,8 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 			
 			if (localStorage.lockLogin) {
 				setTimeout(function() { blockUI.login(scope); },1000);
+				idleTime = 0;
+				clearInterval(idleInterval);
 			}
 
 	   }

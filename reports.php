@@ -312,7 +312,29 @@ require_once 'authentication.php';
 						<hr />-->
 						<div class="row">
 							<div class="col-xs-12">
-							
+								<form class="form-inline">
+								  <div class="form-group">
+									<label>Module</label>
+									<select class="form-control" module-select>
+										<option value="">-</option>										
+										<option value="Scholarship">Scholarship</option>
+										<option value="Testing">Testing</option>
+									</select>
+								  </div>
+								  <div class="form-group" ng-show="views.module_select">
+									<label>{{mod.description}}</label>
+									<select class="form-control" ng-model="mod.module_select" ng-options="x for (x,y) in views.module_selects track by y">
+										<option value="">-</option>
+									</select>
+								  </div>
+								  <div class="form-group" ng-show="views.module_select">
+									<label>School Year</label>
+									<select class="form-control" ng-model="mod.school_year" ng-options="x for (x,y) in views.school_years track by y">
+										<option value="">-</option>
+									</select>									
+								  </div>
+								  <button type="submit" class="btn btn-sm btn-primary" ng-show="views.module_select" ng-click="generateReport()">Generate</button>
+								</form>								
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 						

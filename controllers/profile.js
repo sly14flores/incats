@@ -31,7 +31,7 @@ app.service('profileService',function($http,$timeout,blockUI) {
 		  method: 'POST',
 		  url: 'controllers/profile.php?r=list'
 		}).then(function mySucces(response) {	
-			console.log(scope);
+
 			scope.scholarships = response.data;
 			
 		}, function myError(response) {
