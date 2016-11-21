@@ -8,7 +8,7 @@ require_once 'authentication.php';
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Testing Results - InCaTS</title>
+		<title>Reports - InCaTS</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -191,7 +191,7 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>
-					<li class="active">
+					<li class="">
 						<a href="testing.php">
 							<i class="menu-icon glyphicon glyphicon-book"></i>
 							<span class="menu-text"> Testing Result </span>
@@ -250,7 +250,7 @@ require_once 'authentication.php';
 
 						</ul>
 					</li>
-					<li class="" ng-show="privileges.reports">
+					<li class="active" ng-show="privileges.reports">
 						<a href="reports.php">
 							<i class="menu-icon glyphicon fa fa-list-alt"></i>
 							<span class="menu-text"> Reports </span>
