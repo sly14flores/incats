@@ -14,6 +14,7 @@ app.directive('moduleSelect',function() {
 					scope.views.module_select = false;
 					scope.views.module_selects = {};
 				});
+				scope.mod.school_year = "";
 				
 				if (element[0].value == "Scholarship") {
 					
@@ -65,8 +66,11 @@ app.controller('reportsCtrl',function($scope) {
 	
 	$scope.generateReport = function() {
 		var opt = "";
+		var i = 0;
 		angular.forEach($scope.mod, function(item,k) {
-			opt += "?"+k+'='+item;
+			if (i == 0) opt += "?"+k+'='+item;
+			else opt += "&"+k+'='+item;
+			i++;
 		});
 		window.open("reports/report.php"+opt);
 	}
