@@ -21,7 +21,7 @@
 			<tr ng-repeat="student_testing in testings">
 				<td>{{student_testing.student_id}}</td>
 				<td>{{student_testing.full_name}}</td>
-				<td>{{student_testing.testing_type}}</td>
+				<td>{{views.tts[student_testing.testing_type]}}</td>
 				<td>{{student_testing.rating}}</td>
 				<td>
 					<div class="hidden-sm hidden-xs action-buttons">

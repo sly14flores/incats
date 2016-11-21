@@ -11,7 +11,7 @@
 
 <body background="" ng-app="appLogin" ng-controller="appLoginCtrl" keypress-events>
 <hgroup>
-  <img id="logo" src="images/dmmmsu-logo.png">
+  <img id="logo" src="images/logo-bak.png"><img id="logo" src="images/logo.png">
   <h1>Sign in to InCaTS</h1>
 </hgroup>
 <form name="view.frmLogin">

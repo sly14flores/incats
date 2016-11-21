@@ -79,7 +79,7 @@
 				<div class="navbar-header pull-left">
 					<a href="index.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
-							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
+							<div id="logo-container"><img id="company-logo" src="images/logo-bak.png">Integrated Campus Testing &amp; Scholarship System<img id="company-logo" src="images/logo.png"></div>
 						</small>
 					</a>
 				</div>
@@ -118,15 +118,9 @@
 				  <div class="carousel-inner">
 					<div class="item active">
 					  <img src="images/carousel-dmmmsu.jpg" alt="...">
-					  <div class="carousel-caption">
-						<h2>Heading</h2>
-					  </div>
 					</div>
 					<div class="item">
-					  <img src="images/carousel-dmmmsu.jpg" alt="...">
-					  <div class="carousel-caption">
-						<h2>Heading</h2>
-					  </div>
+					  <img src="images/carousel3.jpg" alt="...">
 					</div>
 				  </div>
 

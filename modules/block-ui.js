@@ -32,7 +32,7 @@ angular.module('block-ui',[]).service('blockUI',function($timeout,$compile) {
 		frm += '<label class="sr-only">Password</label>';
 		frm += '<input type="password" name="lockPw" ng-model="lockPw" class="form-control" placeholder="Password">';
 		frm += '<div class="alert alert-danger" ng-show="lockPwInvalid">Invalid Password</div>';
-		frm += '<button class="btn btn-lg btn-success btn-block" type="button" ng-click="lockLogin()">Login</button>';
+		frm += '<button class="btn btn-lg btn-success btn-block" type="submit" ng-click="lockLogin()">Login</button>';
 		frm += '</form>';
 		
 		$.blockUI({

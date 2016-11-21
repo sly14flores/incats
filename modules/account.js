@@ -11,7 +11,8 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 			scope.privileges.settings = false;
 			scope.privileges.account = false;			
 			scope.privileges.event_announcement_btns = false;		
-			scope.privileges.testing = false;		
+			scope.privileges.testing = false;	
+			scope.privileges.reports = false;	
 			
 			$http({
 			  method: 'POST',
@@ -46,7 +47,8 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 					scope.privileges.settings = true;
 					scope.privileges.account = true;
 					scope.privileges.event_announcement_btns = true;
-					scope.privileges.testing = true;						
+					scope.privileges.testing = true;
+					scope.privileges.reports = true;
 				}
 				
 				if (account_type == 'Applicant') {

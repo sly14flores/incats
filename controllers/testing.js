@@ -160,6 +160,11 @@ $scope.views.testing_types = {
 	"College Aptitude Test": "CAT"
 };
 
+$scope.views.tts = {
+	"PT": "Personality Test",
+	"CAT": "College Aptitude Test"
+};
+
 $http.get('controllers/testing.php?r=students').then(function(response){
 	$scope.students = response.data;
 });	

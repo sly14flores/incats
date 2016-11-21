@@ -71,7 +71,7 @@ require_once 'authentication.php';
 				<div class="navbar-header pull-left">
 					<a href="dashboard.php" class="navbar-brand" style="padding: 0!important;">
 						<small>
-							<div id="logo-container"><img id="company-logo" src="images/logo.png">Integrated Campus Testing &amp; Scholarship System</div>
+							<div id="logo-container"><img id="company-logo" src="images/logo-bak.png">Integrated Campus Testing &amp; Scholarship System<img id="company-logo" src="images/logo.png"></div>
 						</small>
 					</a>
 				</div>
