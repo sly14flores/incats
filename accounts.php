@@ -252,7 +252,7 @@ require_once 'authentication.php';
 					</li>
 					<li class="" ng-show="privileges.reports">
 						<a href="reports.php">
-							<i class="menu-icon glyphicon fa fa-list-alt"></i>
+							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Reports </span>
 						</a>
 

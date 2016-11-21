@@ -51,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="testing" ng-controller="testingCtrl" lock-screen>
+	<body class="no-skin" ng-app="reports" ng-controller="reportsCtrl" lock-screen>
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -252,7 +252,7 @@ require_once 'authentication.php';
 					</li>
 					<li class="active" ng-show="privileges.reports">
 						<a href="reports.php">
-							<i class="menu-icon glyphicon fa fa-list-alt"></i>
+							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Reports </span>
 						</a>
 
@@ -286,8 +286,8 @@ require_once 'authentication.php';
 
 						<ul class="breadcrumb">
 							<li class="active">
-								<i class="ace-icon glyphicon glyphicon-book"></i>
-								<a href="#">Testing Result</a>
+								<i class="ace-icon fa fa-list-alt"></i>
+								<a href="#">Reports</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -297,10 +297,10 @@ require_once 'authentication.php';
 
 						<div class="page-header">
 							<h1>
-								Testing
+								Generate
 								<small>
-									<i class="ace-icon glyphicon glyphicon-book"></i>
-									result
+									<i class="ace-icon fa fa-list-alt"></i>
+									reports
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -311,12 +311,8 @@ require_once 'authentication.php';
 						</div>
 						<hr />-->
 						<div class="row">
-							<div id="content" class="col-xs-12">
-							<div class="space-10"></div>												
-							<button class="btn btn-primary btn-sm no-radius" add-testing="0">Add</button>
-							<div class="space-10"></div>
-							<hr>							
-								<div ng-include="activeTemplate"></div>
+							<div class="col-xs-12">
+							
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 						
@@ -408,9 +404,9 @@ require_once 'authentication.php';
 		<script src="modules/bootstrap-modal.js"></script>
 		<script src="modules/account.js"></script>
 		<script src="modules/notifications.js"></script>
-		<script src="modules/lock-screen.js"></script>		
-		<script src="angularjs/utils/ui-bootstrap-tpls-1.3.3.min.js"></script>		
+		<script src="modules/lock-screen.js"></script>
+		<script src="angularjs/utils/ui-bootstrap-tpls-1.3.3.min.js"></script>
 		
-		<script src="controllers/testing.js"></script>		
+		<script src="controllers/reports.js"></script>		
 	</body>
 </html>
