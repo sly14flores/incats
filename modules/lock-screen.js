@@ -31,7 +31,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 				  data: {pw: scope.lockPw},
 				  url: 'modules/accounts.php?r=lock'
 				}).then(function mySucces(response) {			
-					 console.log(response.data);
+
 					if (response.data == 0) {
 						scope.lockPwInvalid = true;
 					} else {
