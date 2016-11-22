@@ -328,6 +328,74 @@ require_once 'authentication.php';
 								<button class="btn btn-info" add-event>Add Event</button><button class="btn btn-info" add-announcement>Add Announcement</button>
 								<hr>
 							</div>
+							<div class="post" pt-results>
+							
+								<div class="widget-box ui-sortable-handle" style="opacity: 1;">
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon glyphicon glyphicon-list-alt"></i>
+											Personality Test Results
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main">
+										<table id="simple-table" class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>Student ID</th>
+													<th>Fullname</th>
+													<th>Rating</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr ng-repeat="pt in pts">
+													<td>{{pt.student_id}}</td>
+													<td>{{pt.full_name}}</td>
+													<td>{{pt.rating}}</td>
+												</tr>												
+											</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="post" cat-results>
+							
+								<div class="widget-box ui-sortable-handle" style="opacity: 1;">
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon glyphicon glyphicon-list-alt"></i>
+											College Aptitude Test Results
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main">
+										<table id="simple-table" class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>Student ID</th>
+													<th>Fullname</th>
+													<th>Rating</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr ng-repeat="cat in cats">
+													<td>{{cat.student_id}}</td>
+													<td>{{cat.full_name}}</td>
+													<td>{{cat.rating}}</td>
+												</tr>												
+											</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+								
+							</div>								
 							<div class="post">
 							
 								<div class="widget-box widget-color-blue ui-sortable-handle" style="opacity: 1;">
@@ -349,7 +417,7 @@ require_once 'authentication.php';
 									</div>
 								</div>						
 							
-							</div>							
+							</div>
 							<div class="post">
 							
 								<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">

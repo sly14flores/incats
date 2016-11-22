@@ -1,5 +1,49 @@
 var app = angular.module('index', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','dashboard-module','globals','dashboard']);
 
+app.directive('ptResults', function($http) {
+	
+	return {
+	   restrict: 'A',
+	   link: function(scope, element, attrs) {
+
+			$http({
+			  method: 'POST',
+			  url: 'controllers/dashboard.php?r=ptResults'
+			}).then(function mySucces(response) {
+				
+				scope.pts = response.data;
+				
+			}, function myError(response) {
+				
+			});			
+			
+	   }
+	};	
+	
+});
+
+app.directive('catResults', function($http) {
+	
+	return {
+	   restrict: 'A',
+	   link: function(scope, element, attrs) {
+			
+			$http({
+			  method: 'POST',
+			  url: 'controllers/dashboard.php?r=catResults'
+			}).then(function mySucces(response) {
+				
+				scope.cats = response.data;				
+				
+			}, function myError(response) {
+
+			});			
+
+	   }
+	};	
+	
+});
+
 app.controller('indexCtrl',function($window,$scope,blockUI,bootstrapNotify,bootstrapModal,globalsService,eventsAnnouncements) {
 
 $scope.views = {};

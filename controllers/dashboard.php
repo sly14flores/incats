@@ -44,6 +44,24 @@ switch ($_GET['r']) {
 	
 	break;
 	
+	case "ptResults":
+
+		$con = new pdo_db();
+		$results = $con->getData("SELECT accounts.student_id, CONCAT(first_name, ' ', middle_name, ' ', last_name) full_name, testing_results.rating FROM testing_results LEFT JOIN accounts ON testing_results.scholar_id = accounts.id WHERE testing_results.testing_type = 'PT'");
+		
+		echo json_encode($results);
+			
+	break;
+	
+	case "catResults":
+
+		$con = new pdo_db();
+		$results = $con->getData("SELECT accounts.student_id, CONCAT(first_name, ' ', middle_name, ' ', last_name) full_name, testing_results.rating FROM testing_results LEFT JOIN accounts ON testing_results.scholar_id = accounts.id WHERE testing_results.testing_type = 'CAT'");
+	
+		echo json_encode($results);	
+	
+	break;
+	
 }
 
 ?>
