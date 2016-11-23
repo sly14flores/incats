@@ -49,7 +49,7 @@ $scope.submit = function() {
 		
 		blockUI.hide();
 		bootstrapNotify.show('success','Account successfully created, <br>redirecting to login page');
-		$timeout(function() { $window.location.href = 'login.php'; },3000);
+		// $timeout(function() { $window.location.href = 'login.php'; },3000);
 		
 	}, function myError(response) {
 		 

@@ -1,4 +1,4 @@
-angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('lockScreen', function($http,blockUI) {
+angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('lockScreen', function($document,$http,blockUI) {
 
 	return {
 	   restrict: 'A',
@@ -7,16 +7,24 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 			var idleTime = 0;
 			var idleInterval = setInterval(timerIncrement, 1000);
 
-			$(this).mousemove(function (e) {
+			$document.bind('mousemove', function(e) {
+				idleTime = 0;				
+			});			
+			
+			$document.bind('keypress', function(e) {
+				idleTime = 0;				
+			});
+			
+/* 			$(this).mousemove(function (e) {
 				idleTime = 0;
 			});
 			$(this).keypress(function (e) {
 				idleTime = 0;
-			});
+			}); */
 
 			function timerIncrement() {
 				idleTime = idleTime + 1;
-				if (idleTime > 60) {
+				if (idleTime > 59) {
 					clearInterval(idleInterval);
 					localStorage.lockLogin = true;					
 					blockUI.login(scope);				
@@ -50,7 +58,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 			}
 			
 			if (localStorage.lockLogin) {
-				setTimeout(function() { blockUI.login(scope); },1000);
+				setTimeout(function() { blockUI.login(scope); },3000);
 				idleTime = 0;
 				clearInterval(idleInterval);
 			}
