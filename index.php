@@ -172,7 +172,7 @@
 									</a>
 								  </h4>
 								</div>
-								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								<div id="collapseTwo" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
 									<ul>
 										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program2_value]">{{key}}</li>									
 									</ul>
