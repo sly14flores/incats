@@ -37,11 +37,21 @@ case "update":
 
 break;
 
+case "logout":
+
+	$_SESSION['timeout'] = true;
+
+break;
+
 case "lock":
 
 	$con = new pdo_db();
-	$results = $con->getData("SELECT username FROM accounts WHERE id = ".$_SESSION['id']." AND password = '".$_POST['pw']."'");	
-
+	$results = $con->getData("SELECT * FROM accounts WHERE id = ".$_SESSION['id']." AND password = '".$_POST['pw']."'");	
+	
+	foreach ($results as $result) {
+		$_SESSION['timeout'] = false;
+	}
+	
 	echo count($results);
 
 break;

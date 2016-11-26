@@ -14,13 +14,6 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 			$document.bind('keypress', function(e) {
 				idleTime = 0;				
 			});
-			
-/* 			$(this).mousemove(function (e) {
-				idleTime = 0;
-			});
-			$(this).keypress(function (e) {
-				idleTime = 0;
-			}); */
 
 			function timerIncrement() {
 				idleTime = idleTime + 1;
@@ -31,7 +24,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 				}
 			}
 			
-			scope.lockLogin = function() {
+			scope.lockLogin = function() {		
 				
 				$http({
 				  method: 'POST',

@@ -1,4 +1,4 @@
-angular.module('block-ui',[]).service('blockUI',function($timeout,$compile) {
+angular.module('block-ui',[]).service('blockUI',function($timeout,$compile,$http) {
 	
 	this.show = function(msg = 'Please wait...') {
 
@@ -24,6 +24,18 @@ angular.module('block-ui',[]).service('blockUI',function($timeout,$compile) {
 	}
 
 	this.login = function(scope) {
+		
+		$http({
+		  method: 'POST',
+		  data: {pw: scope.lockPw},
+		  url: 'modules/accounts.php?r=logout'
+		}).then(function mySucces(response) {
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});			
 		
 		var frm = '';
 		

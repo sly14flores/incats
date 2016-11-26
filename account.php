@@ -13,6 +13,7 @@ switch ($_GET['r']) {
 		session_start();
 		$_SESSION['id'] = $account[0]['id'];
 		$_SESSION['account_type'] = $account[0]['account_type'];
+		$_SESSION['timeout'] = false;
 		echo json_encode($account[0]);
 	} else {
 		echo '{ "id":0 }';
