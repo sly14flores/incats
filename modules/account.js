@@ -12,7 +12,7 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 			scope.privileges.account = false;			
 			scope.privileges.event_announcement_btns = false;		
 			scope.privileges.testing = false;	
-			scope.privileges.reports = false;	
+			scope.privileges.reports = false;
 			
 			$http({
 			  method: 'POST',
