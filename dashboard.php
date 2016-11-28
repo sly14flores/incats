@@ -378,10 +378,10 @@ require_once 'authentication.php';
 									<div class="widget-body">
 										<div class="widget-main">
 											<p class="alert alert-info" ng-repeat="event in events">
-												<button type="button" class="close">
+												<button type="button" class="close" ng-click="delEvent(event.id)">
 													<i class="ace-icon fa fa-times"></i>
 												</button>												
-												<button type="button" class="close" style="margin-right: 5px !important;">
+												<button type="button" class="close" ng-click="editEvent(event.id)" style="margin-right: 5px !important;">
 													<i class="ace-icon fa fa-edit"></i>
 												</button>
 												<strong>{{event.heading}}</strong><br>
@@ -406,10 +406,10 @@ require_once 'authentication.php';
 									<div class="widget-body">
 										<div class="widget-main">
 											<p class="alert alert-info" ng-repeat="announcement in announcements">										
-												<button type="button" class="close">
+												<button type="button" class="close" ng-click="delAnnouncement(announcement.id)">
 													<i class="ace-icon fa fa-times"></i>
 												</button>												
-												<button type="button" class="close" style="margin-right: 5px !important;">
+												<button type="button" class="close" ng-click="editAnnouncement(announcement.id)" style="margin-right: 5px !important;">
 													<i class="ace-icon fa fa-edit"></i>
 												</button>											
 												<strong>{{announcement.heading}}</strong><br>

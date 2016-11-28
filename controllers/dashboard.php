@@ -62,6 +62,60 @@ switch ($_GET['r']) {
 	
 	break;
 	
+	case "edit_event":
+	
+		$con = new pdo_db();
+		$result = $con->getData("SELECT * FROM events WHERE id = $_POST[id]");
+		
+		echo json_encode($result[0]);
+	
+	break;
+	
+	case "update_event":
+	
+		$con = new pdo_db("events");
+		$event = $con->updateData($_POST,'id');
+		
+		echo "";
+	
+	break;
+	
+	case "delete_event":
+	
+		$con = new pdo_db("events");
+		$con->deleteData(array("id"=>implode(",",$_POST['id'])));			
+		
+		echo "";
+		
+	break;
+	
+	case "edit_announcement":
+	
+		$con = new pdo_db();
+		$result = $con->getData("SELECT * FROM announcements WHERE id = $_POST[id]");
+		
+		echo json_encode($result[0]);	
+	
+	break;
+	
+	case "update_announcement":
+	
+		$con = new pdo_db("announcements");
+		$announcement = $con->updateData($_POST,'id');
+		
+		echo "";
+	
+	break;
+	
+	case "delete_announcement":
+	
+		$con = new pdo_db("announcements");
+		$con->deleteData(array("id"=>implode(",",$_POST['id'])));			
+		
+		echo "";	
+	
+	break;
+	
 }
 
 ?>

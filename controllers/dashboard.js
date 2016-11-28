@@ -175,13 +175,169 @@ app.directive('addAnnouncement',function($http,bootstrapModal,blockUI,eventsAnno
 	
 });
 
-app.controller('dashboardCtrl',function($scope,blockUI,bootstrapNotify,bootstrapModal,eventsAnnouncements) {
+app.controller('dashboardCtrl',function($http,$scope,blockUI,bootstrapNotify,bootstrapModal,eventsAnnouncements) {
 
 $scope.views = {};
 
 $scope.event = {
 	heading: '',
 	content: ''
+};
+
+$scope.editEvent = function(id) {
+	
+	var frm = '';
+		frm += '<form class="form-horizontal">';
+		frm += '<div class="form-group">';
+		frm += '<label class="col-md-3 control-label no-padding-right">Heading</label>';
+		frm += '<div class="col-md-9">';
+		frm += '<input class="form-control" type="text" name="heading" ng-model="event.heading">';
+		frm += '</div>';
+		frm += '</div>';
+		frm += '<div class="form-group">';
+		frm += '<label class="col-md-3 control-label no-padding-right">Content</label>';
+		frm += '<div class="col-md-9">';
+		frm += '<textarea class="form-control" name="content" ng-model="event.content"></textarea>';
+		frm += '</div>';
+		frm += '</div>';					
+		frm += '</form>';
+		
+	bootstrapModal.confirm($scope,'Edit Event',frm,function() { updateEvent(id); },function() {});
+
+	$http({
+	  method: 'POST',
+	  url: 'controllers/dashboard.php?r=edit_event',
+	  data: {id: id}
+	}).then(function mySucces(response) {
+	
+		$scope.event = response.data;
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});
+	
+	function updateEvent(id) {
+		
+		$http({
+		  method: 'POST',
+		  url: 'controllers/dashboard.php?r=update_event',
+		  data: $scope.event
+		}).then(function mySucces(response) {
+		
+			eventsAnnouncements.show($scope);
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});		
+		
+	}
+	
+};
+
+$scope.delEvent = function(id) {
+	
+	bootstrapModal.confirm($scope,'Confirmation','Are you sure you want to delete this event?',function() { del(id); },function() {});
+	
+	function del(id) {
+		
+		$http({
+		  method: 'POST',
+		  data: {id: [id]},
+		  url: 'controllers/dashboard.php?r=delete_event'
+		}).then(function mySucces(response) {
+			
+			eventsAnnouncements.show($scope);
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});
+
+	}	
+	
+};
+
+$scope.editAnnouncement = function(id) {
+	
+	var frm = '';
+		frm += '<form class="form-horizontal">';
+		frm += '<div class="form-group">';
+		frm += '<label class="col-md-3 control-label no-padding-right">Heading</label>';
+		frm += '<div class="col-md-9">';
+		frm += '<input class="form-control" type="text" name="heading" ng-model="announcement.heading">';
+		frm += '</div>';
+		frm += '</div>';
+		frm += '<div class="form-group">';
+		frm += '<label class="col-md-3 control-label no-padding-right">Content</label>';
+		frm += '<div class="col-md-9">';
+		frm += '<textarea class="form-control" name="content" ng-model="announcement.content"></textarea>';
+		frm += '</div>';
+		frm += '</div>';					
+		frm += '</form>';
+		
+	bootstrapModal.confirm($scope,'Edit Announcement',frm,function() { updateAnnouncement(id); },function() {});
+
+	$http({
+	  method: 'POST',
+	  url: 'controllers/dashboard.php?r=edit_announcement',
+	  data: {id: id}
+	}).then(function mySucces(response) {
+	
+		$scope.announcement = response.data;
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});
+	
+	function updateAnnouncement(id) {
+		
+		$http({
+		  method: 'POST',
+		  url: 'controllers/dashboard.php?r=update_announcement',
+		  data: $scope.announcement
+		}).then(function mySucces(response) {
+		
+			eventsAnnouncements.show($scope);
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});		
+		
+	}
+
+};
+
+$scope.delAnnouncement = function(id) {
+
+	bootstrapModal.confirm($scope,'Confirmation','Are you sure you want to delete this announcement?',function() { del(id); },function() {});
+	
+	function del(id) {
+		
+		$http({
+		  method: 'POST',
+		  data: {id: [id]},
+		  url: 'controllers/dashboard.php?r=delete_announcement'
+		}).then(function mySucces(response) {
+			
+			eventsAnnouncements.show($scope);
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});
+
+	}
+
 };
 
 eventsAnnouncements.show($scope);
