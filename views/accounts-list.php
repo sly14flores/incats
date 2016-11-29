@@ -15,6 +15,7 @@
 														<th>Contact No</th>
 														<th>Email</th>
 														<th>Username</th>
+														<th>Status</th>
 														<th>&nbsp;</th>
 													</tr>
 												</thead>
@@ -27,6 +28,7 @@
 														<td>{{account.contact_no}}</td>
 														<td>{{account.email}}</td>													
 														<td>{{account.username}}</td>
+														<td>{{account.status}}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
 																<a class="green" href="javascript:;" ng-click="view(account.id)">

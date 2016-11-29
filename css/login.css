@@ -275,7 +275,7 @@ footer img:focus , footer a:focus { outline: none; }
 }
 
 .info {
-	margin-top: 16px;
+	margin-bottom: 15px;
 	padding: 10px 20px;
 	background-color: #fcbfbf;
 	color: #db2e2e !important;

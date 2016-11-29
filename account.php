@@ -7,7 +7,7 @@ require_once 'db.php';
 switch ($_GET['r']) {
 	case "login":
 	$con = new pdo_db();
-	$sql = "SELECT id, first_name, middle_name, last_name, account_type FROM accounts WHERE username = '".$_POST['username']."' AND password = '".$_POST['password']."'";
+	$sql = "SELECT id, first_name, middle_name, last_name, account_type, is_activated FROM accounts WHERE username = '".$_POST['username']."' AND password = '".$_POST['password']."'";
 	$account = $con->getData($sql);
 	if (($con->rows) > 0) {
 		session_start();

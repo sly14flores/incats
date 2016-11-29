@@ -31,7 +31,7 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 			bAutoWidth: false,
 			"aoColumns": [
 			  null, null, null, null, null, null,
-			  { "bSortable": false }
+			  { "bSortable": false }, { "bSortable": false }
 			],
 			"aaSorting": [],
 	

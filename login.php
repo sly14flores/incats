@@ -26,8 +26,8 @@
   <button type="button" class="button buttonBlue" ng-click="login()">Login
     <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
   </button>
+  <div class="info" ng-show="view.incorrect">{{view.info}}</div>  
   <div class="register">Don't have an account yet? <a href="javascript:;" ng-click="register()">Register</a></div>
-<div class="info" ng-show="view.incorrect">Username or password incorrect.</div>  
 </form>
 <footer>
   <p>InCaTS &copy; 2016-2017</p>
@@ -44,6 +44,9 @@
 		
 		this.login = function(scope) {
 			
+			scope.view.incorrect = false;			
+			scope.view.info = '';
+			
 			$http({
 			  method: 'POST',
 			  url: 'account.php?r=login',
@@ -52,7 +55,13 @@
 			}).then(function mySucces(response) {
 				if (response.data['id'] == "0") {
 					scope.view.incorrect = true;
+					scope.view.info = 'Username or password incorrect.';
 				} else {
+					if (response.data['is_activated'] == 0) {
+						scope.view.incorrect = true;
+						scope.view.info = 'Account is inactive. Please provide your activation code in your email to the guidance coordinator for account activation.';						
+						return;
+					}					
 					scope.view.incorrect = false;
 					$window.location.href = 'dashboard.php';
 				}
@@ -84,7 +93,9 @@
 	app.controller('appLoginCtrl', function($scope, $http, $window, loginService) {
 
 		$scope.view = {};
-
+		
+		$scope.view.info = '';
+		
 		$scope.account = {
 			username: '', password: ''
 		}		
