@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2016 at 10:15 PM
+-- Generation Time: Nov 29, 2016 at 10:48 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_no`, `birthdate`, `age`, `username`, `password`, `email`, `built_in`, `is_activated`) VALUES
 (1, 'Administrator', '', 'Admin', '', '', '', '', '', '0000-00-00', 0, 'admin', 'admin', '', 1, 1),
-(2, 'Applicant', '131-0428-5', 'Mary Claire', 'Senilla', 'Macabenta', 'Female', 'Balaoan', '09128818668', '1996-08-11', 20, 'claire', 'claire', 'clairemacabenta19@gmail.com', 2147483647, 1),
+(2, 'Applicant', '131-0428-5', 'Mary Claire', 'Senilla', 'Macabenta', 'Female', 'Balaoan', '09128818668', '1996-08-11', 20, 'claire', 'claire', 'clairemacabenta19@gmail.com', 2147483647, 0),
 (3, 'Applicant', '131-0428-2', 'Keesha', 'Vega', 'Javier', 'Female', 'Bacnotan', '09498439978', '1996-11-27', 19, 'Keesha', 'javier', 'keeshajavier@yahoo.com', 2147483647, 1),
 (4, 'Applicant', '131-0441-5', 'pamela', 'alcantara', 'ledda', 'Female', 'Bacnotan', '09461234671', '1995-09-17', 21, 'pamela', 'ledda', 'pamelaledda@yahoo.com', 2147483647, 1),
 (5, 'Applicant', '131-0432-8', 'renella', 'ledda', 'acosta', 'Female', 'Bauang', '09084563634', '1994-04-09', 22, 'nella', 'acosta', 'renella@yahoo.com', 2147483647, 1),
@@ -73,6 +73,20 @@ INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middl
 (20, 'Applicant', '123456789', 'enrique', 'geneta', 'abad', 'Male', 'payocpoc sur', '09095679089', '2010-07-20', 6, 'enrique', 'enrique', 'geneta@yahoo.com', 2147483647, 1),
 (21, 'Applicant', '00000', 'erma', 'erosa', 'panganiban', 'Female', 'poblacion sur, caba, la union', '09102911866', '1983-01-02', 33, 'erma', 'honeybear010911', 'ermaerosa@yahoo.com', 2147483647, 1),
 (22, 'Applicant', '12345678', 'jonathan', 'javier', 'estilong', 'Male', 'majiadsdak', '0975789549', '1984-01-17', 32, 'javier', 'javier', 'jje@yahoo.com', 2147483647, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_activations`
+--
+
+CREATE TABLE IF NOT EXISTS `account_activations` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `account_id` int(10) NOT NULL,
+  `date_activated` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -306,6 +320,12 @@ INSERT INTO `testing_results` (`id`, `scholar_id`, `testing_type`, `rating`, `te
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `account_activations`
+--
+ALTER TABLE `account_activations`
+  ADD CONSTRAINT `account_activations_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `dismiss_notifications`
