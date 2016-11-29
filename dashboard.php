@@ -192,6 +192,14 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>
+					<li class="" ng-show="privileges.scholarship">
+						<a href="scholarship.php">
+							<i class="menu-icon fa fa-certificate"></i>
+							<span class="menu-text"> Scholarship </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>					
 					<li class="" ng-show="privileges.scholarship_services">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-certificate"></i>
@@ -378,10 +386,10 @@ require_once 'authentication.php';
 									<div class="widget-body">
 										<div class="widget-main">
 											<p class="alert alert-info" ng-repeat="event in events">
-												<button type="button" class="close" ng-click="delEvent(event.id)">
+												<button type="button" class="close" ng-click="delEvent(event.id)" ng-show="privileges.event_announcement_btns">
 													<i class="ace-icon fa fa-times"></i>
 												</button>												
-												<button type="button" class="close" ng-click="editEvent(event.id)" style="margin-right: 5px !important;">
+												<button type="button" class="close" ng-click="editEvent(event.id)" ng-show="privileges.event_announcement_btns" style="margin-right: 5px !important;">
 													<i class="ace-icon fa fa-edit"></i>
 												</button>
 												<strong>{{event.heading}}</strong><br>
@@ -406,10 +414,10 @@ require_once 'authentication.php';
 									<div class="widget-body">
 										<div class="widget-main">
 											<p class="alert alert-info" ng-repeat="announcement in announcements">										
-												<button type="button" class="close" ng-click="delAnnouncement(announcement.id)">
+												<button type="button" class="close" ng-click="delAnnouncement(announcement.id)" ng-show="privileges.event_announcement_btns">
 													<i class="ace-icon fa fa-times"></i>
 												</button>												
-												<button type="button" class="close" ng-click="editAnnouncement(announcement.id)" style="margin-right: 5px !important;">
+												<button type="button" class="close" ng-click="editAnnouncement(announcement.id)" ng-show="privileges.event_announcement_btns" style="margin-right: 5px !important;">
 													<i class="ace-icon fa fa-edit"></i>
 												</button>											
 												<strong>{{announcement.heading}}</strong><br>

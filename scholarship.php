@@ -51,7 +51,7 @@ require_once 'authentication.php';
 		<![endif]-->
 	</head>
 
-	<body class="no-skin" ng-app="profile" ng-controller="profileCtrl" lock-screen>
+	<body class="no-skin" ng-app="scholarship" ng-controller="scholarshipCtrl" lock-screen>
 		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -191,7 +191,7 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>					
-					<li class="active" ng-show="privileges.profile">
+					<li class="" ng-show="privileges.profile">
 						<a href="profile.php">
 							<i class="menu-icon glyphicon glyphicon-user"></i>
 							<span class="menu-text"> Profile </span>
@@ -199,7 +199,7 @@ require_once 'authentication.php';
 
 						<b class="arrow"></b>
 					</li>
-					<li class="" ng-show="privileges.scholarship">
+					<li class="active" ng-show="privileges.scholarship">
 						<a href="scholarship.php">
 							<i class="menu-icon fa fa-certificate"></i>
 							<span class="menu-text"> Scholarship </span>
@@ -262,8 +262,8 @@ require_once 'authentication.php';
 
 						<ul class="breadcrumb">
 							<li class="active">
-								<i class="ace-icon glyphicon glyphicon-user"></i>
-								<a href="#">Profile</a>
+								<i class="ace-icon fa fa-certificate"></i>
+								<a href="#">Scholarship</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -273,10 +273,10 @@ require_once 'authentication.php';
 
 						<div class="page-header">
 							<h1>
-								Profile
+								Scholarship
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									manage profile
+									manage scholarship
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -289,28 +289,29 @@ require_once 'authentication.php';
 								<form class="form-horizontal" id="frmApplicant" name="views.frmApplicant" novalidate>
 									<div class="tabbable">
 										<ul class="nav nav-tabs padding-16">
-											<li class="active">
+											<!--<li class="active">
 												<a data-toggle="tab" href="#edit-basic">
 													<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
 													Basic Info
 												</a>
-											</li>
-											<!--<li>
+											</li>-->
+											<li class="active">
 												<a data-toggle="tab" href="#edit-scholarship">
 													<i class="green ace-icon fa fa-certificate bigger-125"></i>
 													Scholarship
 												</a>
-											</li>-->
-											<li>
+											</li>
+											<!--<li>
 												<a data-toggle="tab" href="#edit-password">
 													<i class="blue ace-icon fa fa-key bigger-125"></i>
 													Account Info
 												</a>
-											</li>
+											</li>-->
 										</ul>
 
 										<div class="tab-content profile-edit-tab-content">
-											<div id="edit-basic" class="tab-pane in active">
+										
+											<!--<div id="edit-basic" class="tab-pane in active">
 												<h4 class="header blue bolder smaller">General</h4>
 
 												<div class="row">
@@ -438,15 +439,15 @@ require_once 'authentication.php';
 													</div>
 												</div>
 												<div class="space-4"></div>
-											</div>
+											</div>-->
 
-											<!--<div id="edit-scholarship" class="tab-pane">
+											<div id="edit-scholarship" class="tab-pane in active">
 												
 												<div id="scholarship-content" ng-include="activeTemplate"></div>
 												
-											</div>-->
+											</div>											
 											
-											<div id="edit-password" class="tab-pane">
+											<!--<div id="edit-password" class="tab-pane">
 												<div class="space-10"></div>
 
 												<div ng-class="{'form-group': true, 'has-error': views.frmApplicant.username.$touched && views.frmApplicant.username.$invalid}">
@@ -487,7 +488,8 @@ require_once 'authentication.php';
 													</div>
 												</div>
 												<div class="space-4"></div>												
-											</div>
+											</div>-->
+											
 										</div>
 									</div>
 
@@ -585,7 +587,7 @@ require_once 'authentication.php';
 		<script src="modules/notifications.js"></script>
 		<script src="modules/lock-screen.js"></script>		
 		
-		<script src="controllers/profile.js"></script>		
+		<script src="controllers/scholarship.js"></script>		
 
 	</body>
 </html>

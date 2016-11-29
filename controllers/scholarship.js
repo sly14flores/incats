@@ -1,4 +1,4 @@
-var app = angular.module('profile', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','lock-screen-module']);
+var app = angular.module('scholarship', ['globals','block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','lock-screen-module']);
 
 app.directive('fileread', [function () {
     return {
@@ -76,7 +76,7 @@ app.service('profileService',function($http,$timeout,blockUI) {
 	
 });
 
-app.controller('profileCtrl',function($scope,$http,$timeout,blockUI,bootstrapNotify,bootstrapModal,profileService,globalsService) {
+app.controller('scholarshipCtrl',function($scope,$http,$timeout,blockUI,bootstrapNotify,bootstrapModal,profileService,globalsService) {
 
 $scope.views = {};
 
@@ -127,7 +127,7 @@ for (i=1; i<=4; ++i) {
 /*
 ** load profile
 */
-$http({
+/* $http({
   method: 'POST',
   data: {},
   url: 'controllers/profile.php?r=view'
@@ -152,7 +152,7 @@ $timeout(function() {
 			$(this).prev().focus();
 	});
 	
-},1000);
+},1000); */
 
 /*
 ** load scholarship
@@ -460,6 +460,6 @@ $scope.viewFile = function(img) {
 	
 }
 
-// profileService.list($scope);
+profileService.list($scope);
 
 });

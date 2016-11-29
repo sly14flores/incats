@@ -13,6 +13,7 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 			scope.privileges.event_announcement_btns = false;		
 			scope.privileges.testing = false;	
 			scope.privileges.reports = false;
+			scope.privileges.scholarship = false;
 			
 			$http({
 			  method: 'POST',
@@ -50,9 +51,10 @@ angular.module('account-module',['bootstrap-modal']).directive('logoutAccount', 
 					scope.privileges.testing = true;
 					scope.privileges.reports = true;
 				}
-				
+
 				if (account_type == 'Applicant') {
 					scope.privileges.profile = true;
+					scope.privileges.scholarship = true;					
 				}
 				
 			}
