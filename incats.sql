@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2016 at 10:48 PM
+-- Generation Time: Nov 29, 2016 at 10:56 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -83,6 +83,7 @@ INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middl
 CREATE TABLE IF NOT EXISTS `account_activations` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `account_id` int(10) NOT NULL,
+  `activation_code` int(5) NOT NULL,
   `date_activated` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`)

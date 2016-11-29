@@ -23,6 +23,14 @@ switch ($_GET['r']) {
 	
 	$con = new pdo_db('accounts');
 	$applicant = $con->insertData($_POST);
+	$account_id = $con->insertId;
+	
+	$con = new pdo_db('account_activations');
+	$activation = $con->getData("SELECT * FROM account_activations WHERE account_id = $account_id");
+	
+	foreach ($activation as $key => $value) {
+		$con->insertData(array());
+	}
 	
 	break;
 	
