@@ -28,8 +28,12 @@ switch ($_GET['r']) {
 	$con = new pdo_db('account_activations');
 	$activation = $con->getData("SELECT * FROM account_activations WHERE account_id = $account_id");
 	
-	foreach ($activation as $key => $value) {
-		$con->insertData(array());
+	if ($con->rows == 0) {
+		$digits = 5;
+		$activation_code = rand(pow(10, $digits-1), pow(10, $digits)-1);
+		$activation = $con->insertData(array("account_id"=>$account_id,"activation_code"=>$activation_code,"date_activated"=>"CURRENT_TIMESTAMP"));
+		
+		sendActivationCode($account_id,$con);
 	}
 	
 	break;
@@ -99,6 +103,37 @@ switch ($_GET['r']) {
 	$con->deleteData(array("id"=>implode(",",$_POST['id'])));	
 	
 	break;
+	
+}
+
+function sendActivationCode($account_id,$con) {
+
+$account = $con->getData("SELECT accounts.email, accounts.first_name, accounts.last_name, account_activations.activation_code FROM accounts LEFT JOIN account_activations ON accounts.id = account_activations.account_id WHERE accounts.id = $account_id");
+$info = $account[0];
+	
+$to = $info['email'];
+
+$subject = "INCATS Account Activation";
+
+$headers = "From: incats2016@gmail.com\r\n";
+$headers .= "Reply-To: incats2016@gmail.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+$message = '<!DOCTYPE html>';
+$message .=	'<html lang="en">';
+$message .= '<body>';
+$message .= '<p>Dear '.$info['first_name'].' '.$info['last_name'].',</p>';
+$message .= '<p>Your activation code is <strong>'.$info['activation_code'].'</strong></p>';
+$message .= '<p>Please proceed to the guidance counselor\'s office and provide your activation code to activate your account.</p>';
+$message .= '<br><br>';
+$message .= '<p>Thank you!</p>';
+$message .= '<br>';
+$message .= '<p>Administrator</p>';
+$message .= '</body>';
+$message .= '</html>';
+
+mail($to,$subject,$message,$headers);
 	
 }
 
