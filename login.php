@@ -14,7 +14,7 @@
   <img id="logo" src="images/logo-bak.png"><img id="logo" src="images/logo.png">
   <h1>Sign in to InCaTS</h1>
 </hgroup>
-<form name="view.frmLogin">
+<form name="view.frmLogin" autocomplete="off">
   <div class="group">
     <input type="text" name="username" ng-model="account.username" autofocus><span class="highlight"></span><span class="bar"></span>
     <label>Username</label>

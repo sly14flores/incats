@@ -232,7 +232,7 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 	};
 	
 	$scope.del = function(id) {
-		
+
 		bootstrapModal.confirm($scope,'Confirmation','Are you sure you want to delete this record?',function() { del(id); },function() {});
 		
 		function del(id) {
