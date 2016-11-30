@@ -48,6 +48,24 @@ switch ($_GET['r']) {
 	
 	break;
 	
+	case "activation_code":
+	
+	$con = new pdo_db();
+	
+	$activation_code = $con->getData("SELECT activation_code FROM account_activations WHERE account_id = $_POST[id]");
+
+	echo json_encode($activation_code[0]);
+	
+	break;
+	
+	case "activate":
+	
+	$con = new pdo_db("accounts");
+	
+	$activate = $con->updateData(array("is_activated"=>1,"id"=>$_POST['id']),'id');
+	
+	break;
+	
 }
 
 ?>

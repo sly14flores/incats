@@ -55,6 +55,66 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 		
 	};
 	
+	$scope.activate = function(id) {
+		
+		$scope.views.invalidCode = false;
+		
+		var frm = '';
+			frm += '<form class="form-horizontal">';
+			frm += '<div class="form-group">';
+			frm += '<label class="col-md-3 control-label no-padding-right">Activation Code</label>';
+			frm += '<div class="col-md-9">';
+			frm += '<input class="form-control" type="text" name="activation_code" ng-model="views.activation_code">';
+			frm += '</div>';
+			frm += '</div>';
+			frm += '</form>';
+			
+		bootstrapModal.confirm($scope,'Account activation',frm,function() { checkCode(id); },function() {});		
+		
+		function checkCode(id) {
+		
+			$http({
+			  method: 'POST',
+			  data: {id: id},
+			  url: 'controllers/accounts.php?r=activation_code'
+			}).then(function mySucces(response) {
+				
+				if ($scope.views.activation_code != response.data['activation']) {
+					bootstrapNotify.show('danger','Activation code is invalid');
+					return;
+				} else {
+					activate(id);
+				}
+				
+			}, function myError(response) {
+
+			  // error
+
+			});
+		
+		};
+		
+		function activate(id) {
+
+			$http({
+			  method: 'POST',
+			  data: {id: id},
+			  url: 'controllers/accounts.php?r=activate'
+			}).then(function mySucces(response) {
+
+				bootstrapNotify.show('success','Activation successful');
+				$scope.list();					
+				
+			}, function myError(response) {
+
+			  // error
+
+			});		
+		
+		};
+		
+	}
+	
 	$scope.view = function(id) {
 		
 		blockUI.show();

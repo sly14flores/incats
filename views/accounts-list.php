@@ -31,6 +31,10 @@
 														<td>{{account.status}}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
+																<a class="green" ng-show="(account.status == 'Inactive')?true:false" href="javascript:;" ng-click="activate(account.id)">
+																	<i class="ace-icon fa fa-unlock bigger-130"></i>
+																</a>
+			
 																<a class="green" href="javascript:;" ng-click="view(account.id)">
 																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>

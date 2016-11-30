@@ -48,8 +48,8 @@ $scope.submit = function() {
 	}).then(function mySucces(response) {
 		
 		blockUI.hide();
-		bootstrapNotify.show('success','Account successfully created, <br>redirecting to login page');
-		// $timeout(function() { $window.location.href = 'login.php'; },3000);
+		bootstrapNotify.show('success','Account successfully created');
+		$timeout(function() { $window.location.href = 'registered.php'; },3000);
 		
 	}, function myError(response) {
 		 
