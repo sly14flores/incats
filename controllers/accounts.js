@@ -57,7 +57,7 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 	
 	$scope.activate = function(id) {
 		
-		$scope.views.invalidCode = false;
+		$scope.views.activation_code = '';		
 		
 		var frm = '';
 			frm += '<form class="form-horizontal">';
@@ -72,14 +72,14 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 		bootstrapModal.confirm($scope,'Account activation',frm,function() { checkCode(id); },function() {});		
 		
 		function checkCode(id) {
-		
+			
 			$http({
 			  method: 'POST',
 			  data: {id: id},
 			  url: 'controllers/accounts.php?r=activation_code'
 			}).then(function mySucces(response) {
-				
-				if ($scope.views.activation_code != response.data['activation']) {
+				console.log($scope.views.activation_code);
+				if ($scope.views.activation_code != response.data['activation_code']) {
 					bootstrapNotify.show('danger','Activation code is invalid');
 					return;
 				} else {
@@ -103,6 +103,7 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 			}).then(function mySucces(response) {
 
 				bootstrapNotify.show('success','Activation successful');
+				$('#dynamic-table').dataTable().fnDestroy();				
 				$scope.list();					
 				
 			}, function myError(response) {
