@@ -226,7 +226,7 @@
 									<div class="widget-header">
 										<h5 class="widget-title bigger lighter">
 											<i class="ace-icon glyphicon glyphicon-list-alt"></i>
-											College Aptitude Test Results
+											College Admissions Test Results
 										</h5>
 									</div>
 

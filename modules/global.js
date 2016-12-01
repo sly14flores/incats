@@ -7,7 +7,7 @@ angular.module('globals',[]).service('globalsService', function() {
 		
 		scope.views.scholarship_programs = {
 			"University Scholarships":"University",
-			"Government":"Government"
+			"Government Scholarships":"Government"
 		};
 
 		scope.views.scholarship_program_select = {

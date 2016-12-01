@@ -50,15 +50,15 @@ class PDF extends FPDF
 function Header()
 {
     // Logo
-    $this->Image('../images/logo.png',105,6,19);
-    $this->Image('../images/logo-bak.png',85,6,18);
+    $this->Image('../images/logo.png',95,6,19);
+  
 
     // Arial bold 15
     $this->SetFont('Arial','',9);
     $this->Ln(15);
     $this->Cell(0,4,'Don Mariano Marcos Memorial State University',0,1,'C');
-    $this->Cell(0,4,'Mid La Union Campus',0,1,'C');
-    $this->Cell(0,4,'San Fernando City',0,1,'C');
+    $this->Cell(0,4,'North La Union Campus',0,1,'C');
+    $this->Cell(0,4,'Sapilang, Bacnotan',0,1,'C');
     $this->Cell(0,4,'La Union 2500',0,1,'C');
     $this->Ln(5);
     $this->SetFont('Arial','B',9);	
@@ -110,6 +110,22 @@ function Scholarship($header, $data)
     }
     // Closing line
     $this->Cell(array_sum($w),0,'','T');
+
+
+ $this->SetFont('Arial','',9);
+    $this->Ln(15);
+    $this->Cell(0,4,'',0,1,'R');
+    $this->Cell(0,4,'',0,1,'R');
+
+    $this->Ln(5);   
+
+     // Signature Part
+    $this->SetFont('Arial','',9);
+    $this->Ln(15);
+    $this->Cell(0,4,'DR. VALOREE B. SALAMANCA',0,1,'R');
+    $this->Cell(0,4,'_________________________',0,1,'R');
+    $this->Cell(0,4,'Guidance Coordinator II',0,1,'R');
+    $this->Ln(5);   
 }
 
 function Testing($header, $data)
@@ -144,7 +160,18 @@ function Testing($header, $data)
     }
     // Closing line
     $this->Cell(array_sum($w),0,'','T');
+
+ // Signature Part
+    $this->SetFont('Arial','',9);
+    $this->Ln(15);
+     $this->Cell(0,4,'DR. Valoree B. Salamanca',0,1,'C');
+    $this->Cell(0,4,'',0,1,'C');
+    $this->Cell(0,4,'Guidance Coordinator II',0,1,'C');
+    $this->Ln(5);   
+
+
 }
+
 
 }
 
