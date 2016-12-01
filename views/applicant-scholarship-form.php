@@ -56,14 +56,14 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="space-10"></div>	
-		<div class="col-md-4 col-lg-4">
-			<label>Course</label>
-			<input type="text" class="form-control" name="course" ng-model="scholarship.course">
-		</div>
+		<div class="space-10"></div>
 		<div class="col-md-4 col-lg-4">
 			<label>College</label>
 			<input type="text" class="form-control" name="college" ng-model="scholarship.college">			
+		</div>		
+		<div class="col-md-4 col-lg-4">
+			<label>Course</label>
+			<input type="text" class="form-control" name="course" ng-model="scholarship.course">
 		</div>
 		<div class="col-md-4 col-lg-4">
 			<label>Year Level</label>

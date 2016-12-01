@@ -34,13 +34,15 @@
 	<div class="row">
 		<div class="space-10"></div>	
 		<div class="col-md-4 col-lg-4">
-			<label>Course</label>
-			<input type="text" class="form-control" name="course" ng-model="scholarship.course">
-		</div>
-		<div class="col-md-4 col-lg-4">
 			<label>College</label>
+			<!--<input type="text" class="form-control" name="college" ng-model="scholarship.college">-->
 			<input type="text" class="form-control" name="college" ng-model="scholarship.college">			
 		</div>
+		<div class="col-md-4 col-lg-4">
+			<label>Course</label>
+			<!--<input type="text" class="form-control" name="course" ng-model="scholarship.course">-->
+			<input type="text" class="form-control" name="course" ng-model="scholarship.course">
+		</div>		
 		<div class="col-md-4 col-lg-4">
 			<label>Year Level</label>
 			<select class="form-control" name="year_level" ng-model="scholarship.year_level" ng-options="x for (x,y) in views.levels track by y">
