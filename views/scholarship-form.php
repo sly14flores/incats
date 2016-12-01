@@ -36,12 +36,16 @@
 		<div class="col-md-4 col-lg-4">
 			<label>College</label>
 			<!--<input type="text" class="form-control" name="college" ng-model="scholarship.college">-->
-			<input type="text" class="form-control" name="college" ng-model="scholarship.college">			
+			<select class="form-control" name="college" ng-model="scholarship.college" ng-options="x for (x,y) in views.scholarship_colleges track by y">
+				<option value="">-</option>
+			</select>
 		</div>
 		<div class="col-md-4 col-lg-4">
 			<label>Course</label>
 			<!--<input type="text" class="form-control" name="course" ng-model="scholarship.course">-->
-			<input type="text" class="form-control" name="course" ng-model="scholarship.course">
+			<select class="form-control" name="course" ng-model="scholarship.course" ng-options="x for (x,y) in views.scholarship_courses track by y">
+				<option value="">-</option>			
+			</select>
 		</div>		
 		<div class="col-md-4 col-lg-4">
 			<label>Year Level</label>
