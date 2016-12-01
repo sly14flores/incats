@@ -305,7 +305,7 @@ require_once 'authentication.php';
 								<button class="btn btn-info" add-event>Add Event</button><button class="btn btn-info" add-announcement>Add Announcement</button>
 								<hr>
 							</div>
-							<div class="post" pt-results>
+							<div class="post" ng-show="privileges.event_announcement_btns" pt-results>
 							
 								<div class="widget-box ui-sortable-handle" style="opacity: 1;">
 									<div class="widget-header">
@@ -322,7 +322,7 @@ require_once 'authentication.php';
 												<tr>
 													<th>Student ID</th>
 													<th>Fullname</th>
-													<th>Rating</th>
+													<!--<th>Rating</th>-->
 												</tr>
 											</thead>
 
@@ -330,7 +330,7 @@ require_once 'authentication.php';
 												<tr ng-repeat="pt in pts">
 													<td>{{pt.student_id}}</td>
 													<td>{{pt.full_name}}</td>
-													<td>{{pt.rating}}</td>
+													<!--<td>{{pt.rating}}</td>-->
 												</tr>												
 											</tbody>
 										</table>
@@ -339,7 +339,7 @@ require_once 'authentication.php';
 								</div>
 								
 							</div>
-							<div class="post" cat-results>
+							<div class="post" ng-show="privileges.event_announcement_btns" cat-results>
 							
 								<div class="widget-box ui-sortable-handle" style="opacity: 1;">
 									<div class="widget-header">

@@ -10,12 +10,12 @@ switch ($_GET['r']) {
 	
 		$con = new pdo_db();				
 		
-		$events = $con->getData("SELECT * FROM events ORDER BY id DESC");
+		$events = $con->getData("SELECT * FROM events ORDER BY id DESC LIMIT 5");
 		foreach ($events as $key => $event) {
 			$events[$key]['event_date'] = date("F j, Y",strtotime($events[$key]['event_date']));
 		}
 		
-		$announcements = $con->getData("SELECT * FROM announcements ORDER BY id DESC");
+		$announcements = $con->getData("SELECT * FROM announcements ORDER BY id DESC LIMIT 5");
 		foreach ($announcements as $key => $announcement) {
 			$announcements[$key]['announcement_date'] = date("F j, Y",strtotime($announcements[$key]['announcement_date']));
 		}		

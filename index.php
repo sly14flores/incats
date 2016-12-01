@@ -203,7 +203,7 @@
 												<tr>
 													<th>Student ID</th>
 													<th>Fullname</th>
-													<th>Rating</th>
+													<!--<th>Rating</th>-->
 												</tr>
 											</thead>
 
@@ -211,7 +211,7 @@
 												<tr ng-repeat="pt in pts">
 													<td>{{pt.student_id}}</td>
 													<td>{{pt.full_name}}</td>
-													<td>{{pt.rating}}</td>
+													<!--<td>{{pt.rating}}</td>-->
 												</tr>												
 											</tbody>
 										</table>

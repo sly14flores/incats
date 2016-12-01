@@ -17,7 +17,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 
 			function timerIncrement() {
 				idleTime = idleTime + 1;
-				if (idleTime > 59) {
+				if (idleTime > 119) { // timeout in seconds
 					clearInterval(idleInterval);
 					localStorage.lockLogin = true;					
 					blockUI.login(scope);				
