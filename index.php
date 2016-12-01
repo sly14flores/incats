@@ -159,7 +159,7 @@
 								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 								  <div class="panel-body">
 									<ul>
-										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program1_value]">{{key}}</li>									
+										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program1_value]"><a href="javascript:;" ng-click="req(key)">{{key}}</a></li>									
 									</ul>
 								  </div>
 								</div>
@@ -174,12 +174,11 @@
 								</div>
 								<div id="collapseTwo" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
 									<ul>
-										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program2_value]">{{key}}</li>									
+										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program2_value]"><a href="javascript:;" ng-click="req(key)">{{key}}</a></li>									
 									</ul>
 								</div>
 							  </div>
-							</div>									
-
+							</div>
 										
 						</div>
 						

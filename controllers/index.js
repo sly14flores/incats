@@ -77,6 +77,16 @@ $scope.views.program1_value = $scope.views.scholarship_programs[$scope.views.pro
 $scope.views.program2_key = Object.keys($scope.views.scholarship_programs)[1];
 $scope.views.program2_value = $scope.views.scholarship_programs[$scope.views.program2_key];
 
+/*
+**	requirements	
+**
+*/
+$scope.req = function(program) {
+	
+	bootstrapModal.confirm($scope,'Requirements',"",function() {},function() {});
+	
+}
+
 eventsAnnouncements.show($scope);
 	
 });
