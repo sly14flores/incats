@@ -66,7 +66,40 @@ switch ($_GET['r']) {
 	
 	$activate = $con->updateData(array("is_activated"=>1,"id"=>$_POST['id']),'id');
 	
+	notifyActivation($_POST['id'],$con);
+	
 	break;
+	
+}
+
+function notifyActivation($account_id,$con) {
+
+$account = $con->getData("SELECT accounts.email, accounts.first_name, accounts.last_name, account_activations.activation_code FROM accounts LEFT JOIN account_activations ON accounts.id = account_activations.account_id WHERE accounts.id = $account_id");
+$info = $account[0];
+	
+$to = $info['email'];
+
+$subject = "INCATS Account Activated";
+
+$headers = "From: incats2016@gmail.com\r\n";
+$headers .= "Reply-To: incats2016@gmail.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+$message = '<!DOCTYPE html>';
+$message .=	'<html lang="en">';
+$message .= '<body>';
+$message .= '<p>Dear '.$info['first_name'].' '.$info['last_name'].',</p>';
+$message .= '<p>Congratulations!</p>';
+$message .= '<p>Your account has been activated.  You may now login to complete your profile and apply for scholarship.</p>';
+$message .= '<br><br>';
+$message .= '<p>Thank you!</p>';
+$message .= '<br>';
+$message .= '<p>Administrator</p>';
+$message .= '</body>';
+$message .= '</html>';
+
+mail($to,$subject,$message,$headers);
 	
 }
 
