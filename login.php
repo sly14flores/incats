@@ -28,6 +28,7 @@
   </button>
   <div class="info" ng-show="view.incorrect">{{view.info}}</div>  
   <div class="register">Don't have an account yet? <a href="javascript:;" ng-click="register()">Register</a></div>
+  <div class="forgot-password"><a href="javascript:;" ng-click="forgot()">Forgot Password?</a></div>
 </form>
 <footer>
   <p>InCaTS &copy; 2016-2017</p>
