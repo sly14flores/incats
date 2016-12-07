@@ -253,6 +253,8 @@ app.directive('addMemo',function($http,bootstrapModal,blockUI,fileUpload,eventsA
 				
 			});
 			
+			scope.memo.title = '';
+			
 			function uploadMemo() {
 				
 			   var file = scope.views.memo;
@@ -441,6 +443,79 @@ $scope.delAnnouncement = function(id) {
 		  method: 'POST',
 		  data: {id: [id]},
 		  url: 'controllers/dashboard.php?r=delete_announcement'
+		}).then(function mySucces(response) {
+			
+			eventsAnnouncements.show($scope);
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});
+
+	}
+
+};
+
+$scope.editMemo = function(id) {
+	
+	var frm = '';
+		frm += '<form class="form-horizontal">';
+		frm += '<div class="form-group">';
+		frm += '<label class="col-md-3 control-label no-padding-right">Title</label>';
+		frm += '<div class="col-md-9">';
+		frm += '<input class="form-control" type="text" name="title" ng-model="memo.title">';
+		frm += '</div>';
+		frm += '</div>';
+		frm += '</div>';					
+		frm += '</form>';
+		
+	bootstrapModal.confirm($scope,'Edit Memo',frm,function() { updateMemo(id); },function() {});
+
+	$http({
+	  method: 'POST',
+	  url: 'controllers/dashboard.php?r=edit_memo',
+	  data: {id: id}
+	}).then(function mySucces(response) {
+	
+		$scope.memo = response.data;
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});
+	
+	function updateMemo(id) {
+		
+		$http({
+		  method: 'POST',
+		  url: 'controllers/dashboard.php?r=update_memo',
+		  data: {id: id, title: $scope.memo.title}
+		}).then(function mySucces(response) {
+		
+			eventsAnnouncements.show($scope);
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});		
+		
+	}
+
+};
+
+$scope.delMemo = function(id) {
+
+	bootstrapModal.confirm($scope,'Confirmation','Are you sure you want to delete this memo?',function() { del(id); },function() {});
+	
+	function del(id) {
+		
+		$http({
+		  method: 'POST',
+		  data: {id: [id]},
+		  url: 'controllers/dashboard.php?r=delete_memo'
 		}).then(function mySucces(response) {
 			
 			eventsAnnouncements.show($scope);

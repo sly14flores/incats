@@ -21,6 +21,9 @@ switch ($_GET['r']) {
 		}		
 		
 		$memos = $con->getData("SELECT * FROM memos ORDER BY id DESC LIMIT 5");
+		foreach ($memos as $key => $memo) {
+			$memos[$key]['memo_date'] = date("F j, Y",strtotime($memos[$key]['memo_date']));
+		}		
 		
 		$events_announcements = array("events"=>$events,"announcements"=>$announcements,"memos"=>$memos);
 		
@@ -128,8 +131,38 @@ switch ($_GET['r']) {
 	
 	case "add_memo":
 	
-	$con = new pdo_db('memos');
+	$con = new pdo_db("memos");
 	$memo = $con->insertData(array("title"=>$_POST['title'],"file"=>$_POST['fn'],"memo_date"=>"CURRENT_TIMESTAMP"));		
+	
+	break;
+	
+	case "edit_memo":
+	
+	$con = new pdo_db();
+	$memo = $con->getData("SELECT title FROM memos WHERE id = $_POST[id]");
+	
+	echo json_encode($memo[0]);
+	
+	break;
+	
+	case "update_memo":
+	
+	$con = new pdo_db("memos");
+	$memo = $con->updateData($_POST,'id');
+	
+	break;
+	
+	case "delete_memo":
+	
+		$con = new pdo_db("memos");
+		
+		$memo = $con->getData("SELECT file FROM memos WHERE id = ".$_POST['id'][0]);
+		
+		$con->deleteData(array("id"=>implode(",",$_POST['id'])));			
+		
+		unlink("../memos/".$memo[0]['file']);
+		
+		echo "";	
 	
 	break;
 	

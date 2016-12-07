@@ -447,7 +447,7 @@ require_once 'authentication.php';
 												</button>												
 												<button type="button" class="close" ng-click="editMemo(memo.id)" ng-show="privileges.event_announcement_btns" style="margin-right: 5px !important;">
 													<i class="ace-icon fa fa-edit"></i>
-												</button>											
+												</button>					
 												<strong>{{memo.title}}</strong><br><br>
 												<img src="memos/{{memo.file}}"><br>
 												<br><small>Posted on: {{memo.memo_date}}</small>												
