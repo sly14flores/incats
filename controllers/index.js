@@ -83,7 +83,140 @@ $scope.views.program2_value = $scope.views.scholarship_programs[$scope.views.pro
 */
 $scope.req = function(program) {
 	
-	bootstrapModal.confirm($scope,'Requirements',"",function() {},function() {});
+	var content = "";
+	
+	switch (program) {
+		
+		case "Academic":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+		break;
+		
+		case "Dependent":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+		break;
+		
+		case "Special Talent":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+		break;
+		
+		case "Private":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+		break;
+		
+		case "Local Code":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "DA ACEF":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "DSWD":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "CHED":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "DOST":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "UCBP":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "NTA":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "ALP Scholar":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "HEED":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "DAR":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+		case "BPS":
+			content += "<p class='req'> 1. Certificate of Grades </p>";
+			content += "<p class='req'> 2. Certificate of Good Moral Character </p>";
+			content += "<p class='req'> 3. Minimum of 18 units in the preceding semester except for applicants whose &nbsp &nbsp regular academic load is below 18 units provided it is certified by the &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Department Chairman as prescribed in the curriculum. </p>";
+			content += "<p class='req'> 4. No failure, dropped nor incomplete marks </p>";
+			content += "<p class='req'> 5. Must carry a full semestral load </p>";
+			content += "<p class='req'> 6.	Applicant must be a resident of La Union </p>";
+		break;
+		
+	}
+	
+	bootstrapModal.box($scope,'General Requirements',content,function() { });
 	
 }
 

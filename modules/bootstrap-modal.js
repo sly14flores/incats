@@ -35,5 +35,21 @@ angular.module('bootstrap-modal',[]).service('bootstrapModal', function($compile
 		});
 	
 	}
+	
+	this.box = function(scope,title,content,onOk) {
+
+		var dialog = bootbox.alert({
+			title: title,
+			message: content,
+			callback: function () {
+				onOk();
+			}
+		});
+		
+		dialog.init(function() {
+			$timeout(function() { $compile($('.bootbox-body')[0])(scope); }, 500);
+		});
+	
+	}	
 
 });

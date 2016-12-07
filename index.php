@@ -63,6 +63,10 @@
 			.post {
 				margin-bottom: 25px;
 			}
+			
+			.req {
+				font-size: 18px;
+			}			
 		
 		</style>
 		
@@ -112,6 +116,10 @@
 				  <ol class="carousel-indicators">
 					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="4"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="5"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="6"></li>
 				  </ol>
 
 				  <!-- Wrapper for slides -->
@@ -121,6 +129,18 @@
 					</div>
 					<div class="item">
 					  <img src="images/carousel3.jpg" alt="...">
+					</div>
+					<div class="item">
+					  <img src="images/reg.1.jpg" alt="...">
+					</div>
+					<div class="item">
+					  <img src="images/reg.2.jpg" alt="...">
+					</div>
+					<div class="item">
+					  <img src="images/apply.1.jpg" alt="...">
+					</div>
+					<div class="item">
+					  <img src="images/apply.2.jpg" alt="...">
 					</div>
 				  </div>
 
@@ -159,7 +179,7 @@
 								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 								  <div class="panel-body">
 									<ul>
-										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program1_value]"><a href="javascript:;" ng-click="req(key)">{{key}}</a></li>									
+										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program1_value]"><a href="javascript:;" ng-click="req(key)">{{key}}</a></li>
 									</ul>
 								  </div>
 								</div>
@@ -174,7 +194,7 @@
 								</div>
 								<div id="collapseTwo" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
 									<ul>
-										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program2_value]"><a href="javascript:;" ng-click="req(key)">{{key}}</a></li>									
+										<li ng-repeat="(key, value) in views.scholarship_program_select[views.program2_value]"><a href="javascript:;" ng-click="req(key)">{{key}}</a></li>
 									</ul>
 								</div>
 							  </div>
