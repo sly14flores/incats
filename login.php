@@ -115,6 +115,12 @@
 			
 		}
 		
+		$scope.forgot = function() {
+			
+			$window.location.href = 'forgot-password.php';			
+			
+		}
+		
 	});
 	
   </script>

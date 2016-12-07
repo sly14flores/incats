@@ -323,7 +323,7 @@
 			</a>
 		</div><!-- /.main-container -->
 
-		<script src="angularjs/angular.min.js"></script>		
+		<script src="angularjs/angular.min.js"></script>
 		
 		<!-- basic scripts -->
 
