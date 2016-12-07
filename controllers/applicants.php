@@ -71,7 +71,7 @@ switch ($_GET['r']) {
 		if ($_POST['scholarship']['evaluated'] == 1) $_POST['scholarship']['evaluation_date'] = "CURRENT_TIMESTAMP";
 	}
 	unset($_POST['scholarship']['cache_evaluated']);	
-	$profile = $con1->updateData($_POST['scholarship'],'id');	
+	$profile = $con1->updateData($_POST['scholarship'],'id');
 	
 	$con2 = new pdo_db('requirements');		
 	foreach($_POST['requirements'] as $key => $value) {
@@ -88,6 +88,8 @@ switch ($_GET['r']) {
 			unlink("../requirements/$filename");
 		}
 	}
+	
+	if ($_POST['scholarship']['status'] == "Approved") notifyApproval($_POST['scholarship']['id'],$con1);	
 	
 	break;	
 	
@@ -126,6 +128,45 @@ $message .= '<body>';
 $message .= '<p>Dear '.$info['first_name'].' '.$info['last_name'].',</p>';
 $message .= '<p>Your activation code is <strong>'.$info['activation_code'].'</strong></p>';
 $message .= '<p>Please proceed to the guidance counselor\'s office and provide your activation code to activate your account.</p>';
+$message .= '<br><br>';
+$message .= '<p>Thank you!</p>';
+$message .= '<br>';
+$message .= '<p>Administrator</p>';
+$message .= '</body>';
+$message .= '</html>';
+
+mail($to,$subject,$message,$headers);
+	
+}
+
+function notifyApproval($scholarship_id,$con) {
+
+$account = $con->getData("SELECT accounts.email, accounts.first_name, accounts.last_name, scholarships.application_type, scholarships.semester, scholarships.school_year FROM scholarships LEFT JOIN accounts ON scholarships.account_id = accounts.id WHERE scholarships.id = $scholarship_id");
+$info = $account[0];
+	
+$to = $info['email'];
+
+$subject = "INCATS Scholarship Application Approval";
+
+$headers = "From: incats2016@gmail.com\r\n";
+$headers .= "Reply-To: incats2016@gmail.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+$semester = array(1=>"first",2=>"second");
+
+if ($info['application_type'] == "New") {
+	$scholarship = "scholarship application";
+} else {
+	$scholarship = "scholarship renewal";	
+}
+
+$message = '<!DOCTYPE html>';
+$message .=	'<html lang="en">';
+$message .= '<body>';
+$message .= '<p>Dear '.$info['first_name'].' '.$info['last_name'].',</p>';
+$message .= '<p>Congratulations!</p>';
+$message .= '<p>Your '.$scholarship.' for '.$semester[$info['semester']].' semester, school year '.$info['school_year'].' has been approved.</p>';
 $message .= '<br><br>';
 $message .= '<p>Thank you!</p>';
 $message .= '<br>';

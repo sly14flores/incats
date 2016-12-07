@@ -1,5 +1,54 @@
 var app = angular.module('dashboard', ['block-ui','bootstrap-notify','bootstrap-modal','account-module','notifications-module','dashboard-module','lock-screen-module']);
 
+app.directive('fileModel', ['$parse', function ($parse) {
+	return {
+	   restrict: 'A',
+	   link: function(scope, element, attrs) {
+		  var model = $parse(attrs.fileModel);
+		  var modelSetter = model.assign;
+		  
+		  element.bind('change', function(){
+			 scope.$apply(function(){
+				modelSetter(scope, element[0].files[0]);
+			 });
+		  });
+
+	   }
+	};
+}]);
+
+app.service('fileUpload', ['$http', function ($http) {
+	this.uploadFileToUrl = function(file, uploadUrl, scope){
+	   var fd = new FormData();
+	   fd.append('file', file);
+	
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.open("POST", uploadUrl)
+        scope.progressVisible = true;
+        xhr.send(fd);
+	   
+		// upload progress
+		function uploadProgress(evt) {
+			scope.$apply(function(){
+				scope.progress = 0;				
+				if (evt.lengthComputable) {
+					scope.progress = Math.round(evt.loaded * 100 / evt.total);
+				} else {
+					scope.progress = 'unable to compute';
+				}
+			});
+		}
+
+		function uploadComplete(evt) {
+			/* This event is raised when the server send back a response */	
+			$('#memo').val(null);
+		}
+
+	}
+}]);
+
 app.directive('ptResults', function($http) {
 	
 	return {
@@ -56,6 +105,7 @@ app.service('eventsAnnouncements',function($http,blockUI) {
 			
 			scope.events = response.data['events'];
 			scope.announcements = response.data['announcements'];
+			scope.memos = response.data['memos'];
 			
 		}, function myError(response) {
 
@@ -175,6 +225,69 @@ app.directive('addAnnouncement',function($http,bootstrapModal,blockUI,eventsAnno
 	
 });
 
+app.directive('addMemo',function($http,bootstrapModal,blockUI,fileUpload,eventsAnnouncements) {
+	
+	return {
+	   restrict: 'A',
+	   link: function(scope, element, attrs) {
+	
+			element.bind('click', function() {
+				
+				var frm = '';
+					frm += '<form class="form-horizontal">';
+					frm += '<div class="form-group">';
+					frm += '<label class="col-md-3 control-label no-padding-right">Title</label>';
+					frm += '<div class="col-md-9">';
+					frm += '<input class="form-control" type="text" name="title" ng-model="memo.title">';
+					frm += '</div>';
+					frm += '</div>';
+					frm += '<div class="form-group">';
+					frm += '<label class="col-md-3 control-label no-padding-right">File</label>';
+					frm += '<div class="col-md-9">';
+					frm += '<input type="file" name="memo" id="memo" file-model="views.memo">';
+					frm += '</div>';
+					frm += '</div>';					
+					frm += '</form>';
+					
+				bootstrapModal.confirm(scope,'Upload Memo',frm,function() { uploadMemo(); },function() {});
+				
+			});
+			
+			function uploadMemo() {
+				
+			   var file = scope.views.memo;
+			   
+			   if (file == undefined) return;
+			   
+			   var fn = file['name'];
+			   
+			   var uploadUrl = "controllers/dashboard.php?r=upload_memo&fn="+fn;
+			   fileUpload.uploadFileToUrl(file, uploadUrl, scope);	
+				
+				blockUI.show();
+				
+				$http({
+				  method: 'POST',
+				  url: 'controllers/dashboard.php?r=add_memo',
+				  data: {title: scope.memo.title, fn: fn}
+				}).then(function mySucces(response) {
+				
+					eventsAnnouncements.show(scope);				
+					blockUI.hide();
+					
+				}, function myError(response) {
+
+				  error
+
+				});
+				
+			};
+	
+	   }
+	};
+	
+});
+
 app.controller('dashboardCtrl',function($http,$scope,blockUI,bootstrapNotify,bootstrapModal,eventsAnnouncements) {
 
 $scope.views = {};
@@ -183,6 +296,8 @@ $scope.event = {
 	heading: '',
 	content: ''
 };
+
+$scope.progress = '';
 
 $scope.editEvent = function(id) {
 	

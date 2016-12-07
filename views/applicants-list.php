@@ -39,9 +39,9 @@
 																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>
 
-																<a class="red" href="javascript:;" ng-click="del(applicant.id)">
+																<!--<a class="red" href="javascript:;" ng-click="del(applicant.id)">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
-																</a>
+																</a>-->
 															</div>														
 														</td>
 													</tr>													

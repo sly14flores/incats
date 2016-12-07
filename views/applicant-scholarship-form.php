@@ -19,7 +19,7 @@
 		</div>		
 	</div>
 </div>
-<div class="col-md-3 col-md-offset-9 col-lg-3 col-lg-offset-9">
+<!--<div class="col-md-3 col-md-offset-9 col-lg-3 col-lg-offset-9">
 	<div class="form-group">
 		<label class="pull-right inline">
 			<small class="muted smaller-90">Evaluated:</small>
@@ -28,7 +28,7 @@
 			<span class="lbl middle"></span>
 		</label>		
 	</div>
-</div>
+</div>-->
 </div>
 <div class="space-5"></div>
 <form id="frmScholarship" name="views.frmScholarship" novalidate>

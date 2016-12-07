@@ -20,7 +20,9 @@ switch ($_GET['r']) {
 			$announcements[$key]['announcement_date'] = date("F j, Y",strtotime($announcements[$key]['announcement_date']));
 		}		
 		
-		$events_announcements = array("events"=>$events,"announcements"=>$announcements);
+		$memos = $con->getData("SELECT * FROM memos ORDER BY id DESC LIMIT 5");
+		
+		$events_announcements = array("events"=>$events,"announcements"=>$announcements,"memos"=>$memos);
 		
 		echo json_encode($events_announcements);
 	
@@ -113,6 +115,21 @@ switch ($_GET['r']) {
 		$con->deleteData(array("id"=>implode(",",$_POST['id'])));			
 		
 		echo "";	
+	
+	break;
+	
+	case "upload_memo":
+	
+	$dir = "../memos";
+	
+	move_uploaded_file($_FILES['file']['tmp_name'],"$dir/".$_GET['fn']);
+	
+	break;
+	
+	case "add_memo":
+	
+	$con = new pdo_db('memos');
+	$memo = $con->insertData(array("title"=>$_POST['title'],"file"=>$_POST['fn'],"memo_date"=>"CURRENT_TIMESTAMP"));		
 	
 	break;
 	

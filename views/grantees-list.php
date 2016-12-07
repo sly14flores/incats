@@ -17,7 +17,6 @@
 														<th>Semester</th>
 														<th>Year Level</th>
 														<th>School Year</th>
-														<th>Date Evaluated</th>
 														<th>Date Approved</th>
 														<th>&nbsp;</th>
 													</tr>
@@ -33,7 +32,6 @@
 														<td>{{views.semesters[applicant.semester]}}</td>
 														<td>{{views.levels[applicant.year_level]}}</td>
 														<td>{{applicant.school_year}}</td>
-														<td>{{applicant.date_evaluated}}</td>
 														<td>{{applicant.date_approved}}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
@@ -41,9 +39,9 @@
 																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>
 
-																<a class="red" href="javascript:;" ng-click="del(applicant.id)">
+																<!--<a class="red" href="javascript:;" ng-click="del(applicant.id)">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
-																</a>
+																</a>-->
 															</div>														
 														</td>
 													</tr>													

@@ -302,7 +302,7 @@ require_once 'authentication.php';
 							<div class="col-xs-12">							
 							<div class="public-dashboard">
 							<div class="tools" ng-show="privileges.event_announcement_btns">
-								<button class="btn btn-info" add-event>Add Event</button><button class="btn btn-info" add-announcement>Add Announcement</button>
+								<button class="btn btn-info" add-event>Add Event</button><button class="btn btn-info" add-announcement>Add Announcement</button><button class="btn btn-info" add-memo>Upload Memo</button>
 								<hr>
 							</div>
 							<div class="post" ng-show="privileges.event_announcement_btns" pt-results>
@@ -429,6 +429,34 @@ require_once 'authentication.php';
 								</div>
 								
 							</div>
+							<div class="post">
+							
+								<div class="widget-box widget-color-orange ui-sortable-handle" style="opacity: 1;">
+									<div class="widget-header">
+										<h5 class="widget-title bigger lighter">
+											<i class="ace-icon glyphicon glyphicon-list-alt"></i>									
+											Memos
+										</h5>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main">
+											<p class="alert alert-info" ng-repeat="memo in memos">										
+												<button type="button" class="close" ng-click="delMemo(memo.id)" ng-show="privileges.event_announcement_btns">
+													<i class="ace-icon fa fa-times"></i>
+												</button>												
+												<button type="button" class="close" ng-click="editMemo(memo.id)" ng-show="privileges.event_announcement_btns" style="margin-right: 5px !important;">
+													<i class="ace-icon fa fa-edit"></i>
+												</button>											
+												<strong>{{memo.title}}</strong><br><br>
+												<img src="memos/{{memo.file}}"><br>
+												<br><small>Posted on: {{memo.memo_date}}</small>												
+											</p>											
+										</div>
+									</div>
+								</div>
+								
+							</div>							
 							</div>
 							
 							</div><!-- /.col -->

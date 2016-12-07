@@ -60,7 +60,7 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 		.dataTable( {
 			bAutoWidth: false,
 			"aoColumns": [
-			  null, null, null, null, null, null, null, null, null, null,
+			  null, null, null, null, null, null, null, null, null,
 			  { "bSortable": false }
 			],
 			"aaSorting": [],

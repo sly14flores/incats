@@ -352,7 +352,8 @@ $scope.scholarshipSave = function() {
 		}
 		
 		blockUI.hide();
-		bootstrapNotify.show('success','Application successfully update');		
+		crud.list($scope);
+		bootstrapNotify.show('success','Application successfully updated');		
 		
 	}, function myError(response) {
 		 
