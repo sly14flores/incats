@@ -1,0 +1,14 @@
+16/11/29 23:19:10 : Message is missing sender's address
+16/11/29 23:23:20 : Message is missing sender's address
+16/11/30 16:10:41 : Socket Error # 10061<EOL>Connection refused.
+16/11/30 18:13:41 : <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbsj<EOL>B3cogQ1PswnJSNBEdfBixqmYoHkjgLgp4cBq52pncL3w2BqCiO4kf-DOQ4kp6OUXTBwcLp<EOL>2mC7IJfLZmA2L6tkajLxOIzttlWZOu0e5349agACWfxhhy--3W2Wf2HxrBWUF1C6x8Bf88<EOL>VpOxpE7r7gsG2X56VIzkfNh3QRSpwcdokl_uEDqDGOJXcdJIyM6HAD4Iv133KE8k5uqtyg<EOL>k8gyda21mm6S2HArUmFMF-THC_tnk> Please log in via your web browser and<EOL>then try again.<EOL> Learn more at<EOL> https://support.google.com/mail/answer/78754 o126sm83707130pga.34 - gsmtp<EOL>
+16/11/30 18:22:02 : <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbtD<EOL>0h7fPrGPrx0UH9oybzv0z2b7y9-ZmP3s8sRlnJDeDFCguHdS4UP7bqIKY1m64U6hWKG9r1<EOL>mEPTv88kK5J2KmV1G8DuPsnzqMORDAI7zotlU_uARFG-Y2H_QUO7pAbEAQ9HUyDTpHu_Kk<EOL>sI6Dv0dgmeIW0zbNm1Y7jAgxgfxHaxk6KVqmq4s-_uUqz0giO4pkULC06gMmm5rWFkCpEm<EOL>wfbHHhTqJ9qOZLbz1ptT47wtVVDY4> Please log in via your web browser and<EOL>then try again.<EOL> Learn more at<EOL> https://support.google.com/mail/answer/78754 i76sm101628802pfk.89 - gsmtp<EOL>
+16/12/02 01:48:11 : Socket Error # 10061<EOL>Connection refused.
+16/12/02 02:15:27 : Socket Error # 10061<EOL>Connection refused.
+16/12/02 11:38:44 : Socket Error # 10054<EOL>Connection reset by peer.
+16/12/02 11:40:22 : Socket Error # 10054<EOL>Connection reset by peer.
+16/12/02 11:42:35 : Socket Error # 10054<EOL>Connection reset by peer.
+16/12/02 11:50:44 : Socket Error # 10054<EOL>Connection reset by peer.
+16/12/02 12:01:14 : Socket Error # 10054<EOL>Connection reset by peer.
+16/12/02 12:02:09 : Socket Error # 10054<EOL>Connection reset by peer.
+16/12/02 12:04:08 : Socket Error # 10054<EOL>Connection reset by peer.
