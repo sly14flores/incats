@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2016 at 10:56 PM
+-- Generation Time: Dec 07, 2016 at 09:02 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `built_in` int(1) NOT NULL,
   `is_activated` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `accounts`
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_no`, `birthdate`, `age`, `username`, `password`, `email`, `built_in`, `is_activated`) VALUES
 (1, 'Administrator', '', 'Admin', '', '', '', '', '', '0000-00-00', 0, 'admin', 'admin', '', 1, 1),
-(2, 'Applicant', '131-0428-5', 'Mary Claire', 'Senilla', 'Macabenta', 'Female', 'Balaoan', '09128818668', '1996-08-11', 20, 'claire', 'claire', 'clairemacabenta19@gmail.com', 2147483647, 0),
+(2, 'Applicant', '131-0428-5', 'Mary Claire', 'Senilla', 'Macabenta', 'Female', 'Balaoan', '09128818668', '1996-08-11', 20, 'claire', 'claire', 'sly@christian.com.ph', 2147483647, 1),
 (3, 'Applicant', '131-0428-2', 'Keesha', 'Vega', 'Javier', 'Female', 'Bacnotan', '09498439978', '1996-11-27', 19, 'Keesha', 'javier', 'keeshajavier@yahoo.com', 2147483647, 1),
 (4, 'Applicant', '131-0441-5', 'pamela', 'alcantara', 'ledda', 'Female', 'Bacnotan', '09461234671', '1995-09-17', 21, 'pamela', 'ledda', 'pamelaledda@yahoo.com', 2147483647, 1),
 (5, 'Applicant', '131-0432-8', 'renella', 'ledda', 'acosta', 'Female', 'Bauang', '09084563634', '1994-04-09', 22, 'nella', 'acosta', 'renella@yahoo.com', 2147483647, 1),
@@ -72,7 +72,8 @@ INSERT INTO `accounts` (`id`, `account_type`, `student_id`, `first_name`, `middl
 (19, 'Applicant', '', 'robert', 'go', 'see', '', '', '', '0000-00-00', 0, 'robert', 'robert', 'robert@gmail.com', 0, 1),
 (20, 'Applicant', '123456789', 'enrique', 'geneta', 'abad', 'Male', 'payocpoc sur', '09095679089', '2010-07-20', 6, 'enrique', 'enrique', 'geneta@yahoo.com', 2147483647, 1),
 (21, 'Applicant', '00000', 'erma', 'erosa', 'panganiban', 'Female', 'poblacion sur, caba, la union', '09102911866', '1983-01-02', 33, 'erma', 'honeybear010911', 'ermaerosa@yahoo.com', 2147483647, 1),
-(22, 'Applicant', '12345678', 'jonathan', 'javier', 'estilong', 'Male', 'majiadsdak', '0975789549', '1984-01-17', 32, 'javier', 'javier', 'jje@yahoo.com', 2147483647, 1);
+(22, 'Applicant', '12345678', 'jonathan', 'javier', 'estilong', 'Male', 'majiadsdak', '0975789549', '1984-01-17', 32, 'javier', 'javier', 'jje@yahoo.com', 2147483647, 1),
+(23, 'Applicant', '', 'Sly', 'Bulilan', 'Flores', '', '', '', '0000-00-00', 0, 'sly', 'legend', 'sly@christian.com.ph', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,14 @@ CREATE TABLE IF NOT EXISTS `account_activations` (
   `date_activated` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `account_activations`
+--
+
+INSERT INTO `account_activations` (`id`, `account_id`, `activation_code`, `date_activated`) VALUES
+(1, 23, 18374, '2016-12-07');
 
 -- --------------------------------------------------------
 
@@ -202,6 +210,27 @@ INSERT INTO `events` (`id`, `heading`, `content`, `event_date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `memos`
+--
+
+CREATE TABLE IF NOT EXISTS `memos` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `file` varchar(50) NOT NULL,
+  `memo_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `memos`
+--
+
+INSERT INTO `memos` (`id`, `title`, `file`, `memo_date`) VALUES
+(1, 'eh di memo', 'reg.1.jpg', '2016-12-07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `requirements`
 --
 
@@ -269,8 +298,8 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
 --
 
 INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, `program`, `course`, `college`, `year_level`, `semester`, `school_year`, `status`, `status_date`, `evaluated`, `evaluation_date`) VALUES
-(1, 2, 'New', 'University', 'Academic', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'Approved', '2016-11-14 09:02:51', 2147483647, '2016-11-14 09:02:51'),
-(2, 3, 'New', 'University', 'Academic', 'BS agriculture', 'College of Agriculture', '3', '2', '2016-2017', 'Pending', '2016-11-14 09:14:19', 0, '2016-11-14 09:14:19'),
+(1, 2, 'New', 'University', 'Academic', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'Approved', '2016-12-07 20:37:20', 2147483647, '2016-11-14 09:02:51'),
+(2, 3, 'New', 'University', 'Academic', 'BS agriculture', 'College of Agriculture', '3', '2', '2016-2017', 'Approved', '2016-12-07 20:18:05', 0, '2016-11-14 09:14:19'),
 (3, 4, 'New', 'Government', 'Local Code', 'BS agricultural engineering', 'College of engineering', '3', '1', '2017-2018', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (4, 5, 'New', 'Government', 'DA ACEF', 'BEED', 'College of Education', '4', '1', '2017-2018', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (5, 6, 'New', 'University', 'Dependent', 'BSIS', 'College of Information System', '2', '1', '2016-2017', 'Approved', '2016-11-14 09:22:57', 2147483647, '2016-11-14 09:22:57'),
