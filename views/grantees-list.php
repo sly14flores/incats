@@ -35,7 +35,7 @@
 														<td>{{applicant.date_approved}}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="javascript:;" ng-click="view(applicant.id)">
+																<a class="green" href="javascript:;" ng-click="getScholar(applicant.id)">
 																	<i class="ace-icon fa fa-search bigger-130"></i>
 																</a>
 

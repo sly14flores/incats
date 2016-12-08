@@ -159,9 +159,40 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 		scope.views.scholarship_status = true;		
 		scope.activeTemplate = 'views/scholar-info.php';
 
-		blockUI.hide();
+		globalsService.globals(scope);
+
+		scope.views.level = {
+			1: "1st Year",
+			2: "2nd Year",
+			3: "3rd Year",
+			4: "4th Year",
+			5: "5th Year"
+		};
+
+		scope.views.semester = {
+			1: "First Semester",
+			2: "Second Semester"
+		};		
 		
-	}
+		$http({
+		  method: 'POST',
+		  data: {id: id},
+		  url: 'controllers/applicants.php?r=view'
+		}).then(function mySucces(response) {
+			
+			scope.scholarship = response.data['scholarship'];
+			scope.views.scholarship_program = scope.views.scholarship_program_select[response.data['scholarship']['programs']];			
+			scope.requirements = response.data['requirements'];			
+			
+			blockUI.hide();
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});
+		
+	};
 	
 	this.save = function(scope) {	
 		
@@ -284,6 +315,7 @@ $scope.view = function(id) {
 
 $scope.getScholar = function(id) {
 
+	$scope.views.application_type = 'New Application';
 	crud.getScholar($scope,id);
 	
 }
@@ -378,6 +410,26 @@ $scope.scholarshipSave = function() {
 	});	
 	
 };
+
+$scope.scholarshipStatus = function(id) {
+	
+	blockUI.show();	
+	$http({
+	  method: 'POST',
+	  data: {status: $scope.scholarship.status, id: id},
+	  url: 'controllers/applicants.php?r=scholarship_status'
+	}).then(function mySucces(response) {
+		
+		blockUI.hide();
+		crud.list($scope);
+		
+	}, function myError(response) {
+		 
+	  // error
+		
+	});		
+	
+}
 
 function dataURItoBlob(dataURI) {
 	var binary = atob(dataURI.split(',')[1]);

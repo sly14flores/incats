@@ -89,9 +89,20 @@ switch ($_GET['r']) {
 		}
 	}
 	
-	if ($_POST['scholarship']['status'] == "Approved") notifyApproval($_POST['scholarship']['id'],$con1);	
+	if ($_POST['scholarship']['status'] == "Approved") notifyApproval($_POST['scholarship']['id'],$con1);
 	
 	break;	
+	
+	case "scholarship_status":
+	
+	$con = new pdo_db('scholarships');
+	
+	if ($_POST['status'] == "Approved") $_POST['status_date'] = "CURRENT_TIMESTAMP";
+	$scholarship = $con->updateData($_POST,'id');
+	
+	if ($_POST['status'] == "Approved") notifyApproval($_POST['id'],$con);	
+	
+	break;
 	
 	case "delete":
 	

@@ -151,7 +151,48 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 			
 		},1000);		
 		
-	}
+	};
+	
+	this.getScholar = function(scope,id) {
+		
+		blockUI.show();
+		scope.views.scholarship_status = false;		
+		scope.activeTemplate = 'views/scholar-info.php';
+
+		globalsService.globals(scope);
+
+		scope.views.level = {
+			1: "1st Year",
+			2: "2nd Year",
+			3: "3rd Year",
+			4: "4th Year",
+			5: "5th Year"
+		};
+
+		scope.views.semester = {
+			1: "First Semester",
+			2: "Second Semester"
+		};		
+		
+		$http({
+		  method: 'POST',
+		  data: {id: id},
+		  url: 'controllers/applicants.php?r=view'
+		}).then(function mySucces(response) {
+			
+			scope.scholarship = response.data['scholarship'];
+			scope.views.scholarship_program = scope.views.scholarship_program_select[response.data['scholarship']['programs']];			
+			scope.requirements = response.data['requirements'];			
+			
+			blockUI.hide();
+			
+		}, function myError(response) {
+			 
+		  // error
+			
+		});
+		
+	};	
 	
 	this.save = function(scope) {	
 		
@@ -270,7 +311,14 @@ $scope.view = function(id) {
 	
 	crud.view($scope,id);
 	
-}
+};
+
+$scope.getScholar = function(id) {
+
+	$scope.views.application_type = 'Scholarship';
+	crud.getScholar($scope,id);
+	
+};
 
 $scope.close = function() {
 	
