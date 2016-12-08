@@ -5,7 +5,7 @@ angular.module('lock-screen-module',['bootstrap-modal','block-ui']).directive('l
 	   link: function(scope, element, attrs) {	
 
 			var idleTime = 0;
-			var idleInterval = setInterval(timerIncrement, 1000);
+			// var idleInterval = setInterval(timerIncrement, 1000);
 
 			$document.bind('mousemove', function(e) {
 				idleTime = 0;				

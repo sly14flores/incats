@@ -26,7 +26,7 @@ switch ($_GET['r']) {
 	$con = new pdo_db();
 	$perinfo = $con->getData("SELECT id, account_type, student_id, first_name, middle_name, last_name, gender, address, contact_no, birthdate, age, email FROM accounts WHERE id = '$_SESSION[id]'");
 	
-	if ($perinfo[0]['birthdate'] == "0000-00-00") $perinfo[0]['birthdate'] = "";
+	if (($perinfo[0]['birthdate'] == "0000-00-00") || ($perinfo[0]['birthdate'] == "1970-01-01")) $perinfo[0]['birthdate'] = "";
 	else $perinfo[0]['birthdate'] = date("m/d/Y",strtotime($perinfo[0]['birthdate']));
 	
 	if ($perinfo[0]['age'] == 0) $perinfo[0]['age'] = "";
@@ -41,11 +41,28 @@ switch ($_GET['r']) {
 	
 	case "update_perinfo":
 	
-	$_POST['birthdate'] = date("Y-m-d",strtotime($_POST['birthdate']));
-	$_POST['built_in'] = 0;
+	$_POST['perinfo']['birthdate'] = date("Y-m-d",strtotime($_POST['perinfo']['birthdate']));
+	$_POST['perinfo']['built_in'] = 0;
 	
-	$con = new pdo_db('accounts');
-	$applicant = $con->updateData($_POST,'id');
+	$con1 = new pdo_db('accounts');
+	$perinfo = $con1->updateData($_POST['perinfo'],'id');
+
+	$_POST['scholarinfo']['father_bday'] = date("Y-m-d",strtotime($_POST['scholarinfo']['father_bday']));	
+	$_POST['scholarinfo']['mother_bday'] = date("Y-m-d",strtotime($_POST['scholarinfo']['mother_bday']));	
+	
+	$con2 = new pdo_db('scholars_infos');
+	
+	$checkInfo = $con2->getData("SELECT * FROM scholars_infos WHERE account_id = ".$_POST['perinfo']['id']);
+	
+	if (sizeof($checkInfo) == 0) {
+
+		$scholarinfo1 = $con2->insertData(array("account_id"=>$_POST['perinfo']['id']));
+		$scholarinfo_id = $con2->insertId;
+
+		$scholarinfo2 = $con2->updateData($_POST['scholarinfo'],'id');	
+
+	}
+	
 	
 	break;
 	

@@ -83,6 +83,7 @@ $scope.views = {};
 $scope.views.cancelShow = true;
 
 $scope.perinfo = {};
+$scope.scholarinfo = {};
 $scope.accinfo = {};
 $scope.validation = {};
 $scope.validation.birthday = false;
@@ -152,16 +153,36 @@ $timeout(function() {
 			$(this).prev().focus();
 	});
 	
+	$('#mother_bday').datepicker({
+		autoclose: true,
+		todayHighlight: true
+	});
+	
+	$('#father_bday').datepicker({
+		autoclose: true,
+		todayHighlight: true
+	});		
+	
 },1000);
 
 /*
 ** load scholarship
 */
 
-$scope.computeAge = function() {
+$scope.computeAge = function(s) {
 	
-	$scope.validationBday();
-	$scope.perinfo.age = getAge($('#birthday').val());
+	if (s == 'age') {
+		$scope.validationBday();
+		$scope.perinfo.age = getAge($('#birthday').val());
+	}
+	
+	if (s == 'father') {
+		$scope.scholarinfo.father_age = getAge($('#father_bday').val());
+	}
+	
+	if (s == 'mother') {
+		$scope.scholarinfo.mother_age = getAge($('#mother_bday').val());		
+	}
 	
 	function getAge(dateString) {
 		var today = new Date();
@@ -222,12 +243,15 @@ $scope.updatePerInfo = function() {
 	
 	$timeout(function() { if ((!$scope.views.frmApplicant.$valid) && ($scope.validation.birthday)) return; },500);
 
-	$scope.perinfo.birthdate = $('#birthday').val();	
+	$scope.perinfo.birthdate = $('#birthday').val();
+	
+	$scope.scholarinfo.father_bday = $('#father_bday').val();	
+	$scope.scholarinfo.mother_bday = $('#mother_bday').val();	
 	
 	blockUI.show();
 	$http({
 	  method: 'POST',
-	  data: $scope.perinfo,
+	  data: {perinfo: $scope.perinfo, scholarinfo: $scope.scholarinfo},
 	  url: 'controllers/profile.php?r=update_perinfo'
 	}).then(function mySucces(response) {			
 
