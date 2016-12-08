@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 07, 2016 at 09:02 PM
+-- Generation Time: Dec 08, 2016 at 10:23 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `dismiss_notifications` (
   `scholarship_id` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `scholarship_id` (`scholarship_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `dismiss_notifications`
@@ -184,7 +184,8 @@ INSERT INTO `dismiss_notifications` (`id`, `account_id`, `scholarship_id`) VALUE
 (48, 1, 16),
 (49, 1, 18),
 (51, 1, 20),
-(52, 1, 21);
+(52, 1, 21),
+(53, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `memos` (
 --
 
 INSERT INTO `memos` (`id`, `title`, `file`, `memo_date`) VALUES
-(1, 'eh di memo', 'reg.1.jpg', '2016-12-07');
+(1, 'Memo', 'apply.1.jpg', '2016-12-07');
 
 -- --------------------------------------------------------
 
@@ -298,9 +299,9 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
 --
 
 INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, `program`, `course`, `college`, `year_level`, `semester`, `school_year`, `status`, `status_date`, `evaluated`, `evaluation_date`) VALUES
-(1, 2, 'New', 'University', 'Academic', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'Approved', '2016-12-07 20:37:20', 2147483647, '2016-11-14 09:02:51'),
+(1, 2, 'New', 'University', 'Academic', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'Approved', '2016-12-08 22:00:51', 2147483647, '2016-11-14 09:02:51'),
 (2, 3, 'New', 'University', 'Academic', 'BS agriculture', 'College of Agriculture', '3', '2', '2016-2017', 'Approved', '2016-12-07 20:18:05', 0, '2016-11-14 09:14:19'),
-(3, 4, 'New', 'Government', 'Local Code', 'BS agricultural engineering', 'College of engineering', '3', '1', '2017-2018', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+(3, 4, 'New', 'Government', 'Local Code', 'BS agricultural engineering', 'College of engineering', '3', '1', '2017-2018', 'Approved', '2016-12-08 21:59:32', 0, '0000-00-00 00:00:00'),
 (4, 5, 'New', 'Government', 'DA ACEF', 'BEED', 'College of Education', '4', '1', '2017-2018', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (5, 6, 'New', 'University', 'Dependent', 'BSIS', 'College of Information System', '2', '1', '2016-2017', 'Approved', '2016-11-14 09:22:57', 2147483647, '2016-11-14 09:22:57'),
 (6, 7, 'New', 'University', 'Academic', 'BS Information System', 'College of Info Tech', '2', '1', '2016-2017', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
@@ -315,8 +316,51 @@ INSERT INTO `scholarships` (`id`, `account_id`, `application_type`, `programs`, 
 (16, 20, 'New', 'Government', 'Local Code', 'ComSci', 'bsit', '2', '1', '2019-2020', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (17, 21, 'New', 'Government', 'DSWD', 'BS Psychology', 'CaS', '1', '1', '2016-2017', 'Approved', '2016-11-23 16:03:16', 2147483647, '2016-11-23 16:03:16'),
 (18, 22, 'New', 'Government', 'CHED', 'bsit', 'cit', '1', '1', '2019-2020', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(20, 6, 'Renewal', 'University', 'Dependent', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+(20, 6, 'Renewal', 'University', 'Dependent', 'BSIS', 'College of Computer Studies', '2', '1', '2016-2017', 'Approved', '2016-12-08 22:08:05', 0, '0000-00-00 00:00:00'),
 (21, 2, 'Renewal', 'University', 'Dependent', 'BSIT', 'CIT', '1', '1', '2016-2017', 'On-Process', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scholars_infos`
+--
+
+CREATE TABLE IF NOT EXISTS `scholars_infos` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `account_id` int(10) NOT NULL,
+  `course_year` varchar(20) NOT NULL,
+  `last_school` varchar(100) NOT NULL,
+  `school_class` varchar(100) NOT NULL,
+  `gwa` float(10,2) NOT NULL,
+  `last_school_year` varchar(100) NOT NULL,
+  `religion` varchar(100) NOT NULL,
+  `tribal` varchar(100) NOT NULL,
+  `civil_status` varchar(20) NOT NULL,
+  `spouse` varchar(100) NOT NULL,
+  `mother_name` varchar(100) NOT NULL,
+  `mother_bday` date NOT NULL,
+  `mother_age` int(2) NOT NULL,
+  `mother_education` varchar(100) NOT NULL,
+  `mother_occupation` varchar(100) NOT NULL,
+  `mother_income` float(10,2) NOT NULL,
+  `mother_contact` varchar(20) NOT NULL,
+  `father_name` varchar(100) NOT NULL,
+  `father_bday` date NOT NULL,
+  `father_age` int(2) NOT NULL,
+  `father_education` varchar(100) NOT NULL,
+  `father_occupation` varchar(100) NOT NULL,
+  `father_income` float(10,2) NOT NULL,
+  `father_contact` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `scholars_infos`
+--
+
+INSERT INTO `scholars_infos` (`id`, `account_id`, `course_year`, `last_school`, `school_class`, `gwa`, `last_school_year`, `religion`, `tribal`, `civil_status`, `spouse`, `mother_name`, `mother_bday`, `mother_age`, `mother_education`, `mother_occupation`, `mother_income`, `mother_contact`, `father_name`, `father_bday`, `father_age`, `father_education`, `father_occupation`, `father_income`, `father_contact`) VALUES
+(1, 2, 'course year', 'last school attended', 'class of school', 89.00, '2016-2017', 'catholic', 'tribal', 'Single', 'not applicable', 'mother name', '2016-12-07', 40, 'mother educ', 'mother occu', 100.00, '0347', 'father name', '2016-12-08', 50, 'father educ', 'father occu', 200.00, '38748');
 
 -- --------------------------------------------------------
 
@@ -374,6 +418,12 @@ ALTER TABLE `requirements`
 --
 ALTER TABLE `scholarships`
   ADD CONSTRAINT `scholarships_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `scholars_infos`
+--
+ALTER TABLE `scholars_infos`
+  ADD CONSTRAINT `scholars_infos_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `testing_results`
