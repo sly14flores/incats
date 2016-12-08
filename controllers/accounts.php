@@ -25,9 +25,18 @@ switch ($_GET['r']) {
 	
 	if ($perinfo[0]['age'] == 0) $perinfo[0]['age'] = "";
 
+	$scholarinfo = $con->getData("SELECT * FROM scholars_infos WHERE account_id = ".$perinfo[0]['id']);
+	unset($scholarinfo[0]['account_id']);
+	
+	if (($scholarinfo[0]['mother_bday'] == "0000-00-00") || ($scholarinfo[0]['mother_bday'] == "1970-01-01")) $scholarinfo[0]['mother_bday'] = "";
+	else $scholarinfo[0]['mother_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['mother_bday']));
+	
+	if (($scholarinfo[0]['father_bday'] == "0000-00-00") || ($scholarinfo[0]['father_bday'] == "1970-01-01")) $scholarinfo[0]['father_bday'] = "";
+	else $scholarinfo[0]['father_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['father_bday']));		
+	
 	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = ".$perinfo[0]['id']);
 	
-	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0]);
+	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarinfo"=>$scholarinfo[0]);
 	
 	echo json_encode($results);	
 	

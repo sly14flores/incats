@@ -26,16 +26,6 @@
 					<div class="vspace-12-sm"></div>
 
 					<div class="col-xs-12 col-sm-8">		
-						<div ng-class="{'form-group': true, 'has-error': views.frmApplicant.student_id.$touched && views.frmApplicant.student_id.$invalid}">
-							<label class="col-sm-4 control-label no-padding-right">Student ID</label>
-
-							<div class="col-sm-8">
-								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="student_id" ng-model="perinfo.student_id" ng-disabled="true" required>
-								<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.student_id.$touched && views.frmApplicant.student_id.$invalid"> Student ID is required </div>
-							</div>															
-						</div>
-
-						<div class="space-4"></div>
 
 						<div ng-class="{'form-group': true, 'has-error': (views.frmApplicant.first_name.$touched && views.frmApplicant.first_name.$invalid) || (views.frmApplicant.middle_name.$touched && views.frmApplicant.middle_name.$invalid) || (views.frmApplicant.last_name.$touched && views.frmApplicant.last_name.$invalid)}">
 							<label class="col-sm-4 control-label no-padding-right">Name</label>
@@ -46,7 +36,54 @@
 								<input class="input-small" type="text" placeholder="Last" name="last_name" ng-model="perinfo.last_name" ng-disabled="true" required>
 								<div class="help-block inline" style="margin-left: 5px;" ng-show="(views.frmApplicant.first_name.$touched && views.frmApplicant.first_name.$invalid) || (views.frmApplicant.middle_name.$touched && views.frmApplicant.middle_name.$invalid) || (views.frmApplicant.last_name.$touched && views.frmApplicant.last_name.$invalid)"> Full name is required </div>
 							</div>
+						</div>					
+
+						<div class="space-4"></div>
+
+						<div ng-class="{'form-group': true, 'has-error': views.frmApplicant.student_id.$touched && views.frmApplicant.student_id.$invalid}">
+							<label class="col-sm-4 control-label no-padding-right">Student ID</label>
+
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="student_id" ng-model="perinfo.student_id" ng-disabled="true" required>
+								<div class="help-block inline" style="margin-left: 5px;" ng-show="views.frmApplicant.student_id.$touched && views.frmApplicant.student_id.$invalid"> Student ID is required </div>
+							</div>															
 						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Course/Year</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="course_year" ng-model="scholarinfo.course_year" ng-disabled="true">
+							</div>															
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Name of last School attended</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="last_school" ng-model="scholarinfo.last_school" ng-disabled="true">
+							</div>															
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Classification of School</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="school_class" ng-model="scholarinfo.school_class" ng-disabled="true">
+							</div>															
+						</div>														
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">General Weighted Average</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="gwa" ng-model="scholarinfo.gwa" ng-disabled="true">
+							</div>															
+						</div>														
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Year of last School Attended</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="last_school_year" ng-model="scholarinfo.last_school_year" ng-disabled="true">
+							</div>															
+						</div>						
+
 					</div>
 				</div>
 
@@ -97,6 +134,42 @@
 					</div>
 				</div>
 				
+				<hr />												
+				
+				<div class="row">
+					<div class="vspace-12-sm"></div>
+					<div class="col-xs-12 col-sm-8">													
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Religion</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="religion" ng-model="scholarinfo.religion" ng-disabled="true">
+							</div>															
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Tribal Affiliation</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="tribal" ng-model="scholarinfo.tribal" ng-disabled="true">
+							</div>															
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">Civil Status</label>
+							<div class="col-sm-8">
+								<select class="col-xs-6 col-sm-6 col-md-8" name="civil_status" ng-model="scholarinfo.civil_status" ng-disabled="true">
+									<option value="">-</option>																	
+									<option value="Single">Single</option>																	
+									<option value="Married">Married</option>																	
+								</select>
+							</div>															
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-padding-right">If married, Name of Spouse</label>
+							<div class="col-sm-8">
+								<input class="col-xs-6 col-sm-6 col-md-8" type="text" name="spouse" ng-model="scholarinfo.spouse" ng-disabled="true">
+							</div>															
+						</div>														
+					</div>
+				</div>				
+				
 				<div class="space"></div>
 				<h4 class="header blue bolder smaller">Contact</h4>
 
@@ -136,6 +209,74 @@
 						</span>
 					</div>
 				</div>
+				
+				<div class="space"></div>
+				<div class="space"></div>
+				<h4 class="header blue bolder smaller">Family Demographic Characteristics</h4>												
+				
+				<h5 class="bolder smaller">a. Parents Educational and Economic Background</h5>
+				<div class="space"></div>												
+				
+				<div class="row">
+					<div class="vspace-12-sm"></div>
+					<div class="col-xs-12 col-sm-12">
+					
+						<div class="form-group">
+							<label class="col-md-2 control-label no-padding-right">Mother</label>
+							<div class="col-md-10">
+								<input class="input-large" type="text" placeholder="Name" name="mother_name" ng-model="scholarinfo.mother_name" ng-disabled="true">
+								<input class="input-large date-picker" type="text" id="mother_bday" name="mother_bday" placeholder="Birthdate" data-date-format="mm/dd/yyyy" ng-model="scholarinfo.mother_bday" ng-disabled="true">																
+								<input class="input-large" type="text" placeholder="Age" name="mother_age" ng-model="scholarinfo.mother_age" ng-click="computeAge('mother')" ng-model="scholarinfo.mother_age" ng-disabled="true">
+							</div>															
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label no-padding-right">&nbsp;</label>
+							<div class="col-md-10">
+								<input class="input-large" type="text" placeholder="Highest Educational Attainment" name="mother_education" ng-model="scholarinfo.mother_education" ng-disabled="true">
+								<input class="input-large" type="text" placeholder="Occupation" name="mother_occupation" ng-model="scholarinfo.mother_occupation" ng-disabled="true">
+							</div>															
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label no-padding-right">&nbsp;</label>
+							<div class="col-md-10">
+								<input class="input-large" type="text" placeholder="Annual Income" name="mother_income" ng-model="scholarinfo.mother_income" ng-disabled="true">
+								<input class="input-large" type="text" placeholder="Contact No" name="mother_contact" ng-model="scholarinfo.mother_contact" ng-disabled="true">
+							</div>															
+						</div>														
+
+						<div class="space"></div>		
+						<div class="space"></div>		
+
+						<div class="form-group">
+							<label class="col-md-2 control-label no-padding-right">Father</label>
+							<div class="col-md-10">
+								<input class="input-large" type="text" placeholder="Name" name="father_name" ng-model="scholarinfo.father_name" ng-disabled="true">
+								<input class="input-large date-picker" type="text" id="father_bday" name="father_bday" placeholder="Birthdate" data-date-format="mm/dd/yyyy" ng-model="scholarinfo.father_bday" ng-disabled="true">
+								<input class="input-large" type="text" placeholder="Age" name="father_age" ng-model="scholarinfo.father_age" ng-click="computeAge('father')" ng-model="scholarinfo.father_age" ng-disabled="true">
+							</div>															
+						</div>		
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label no-padding-right">&nbsp;</label>
+							<div class="col-md-10">
+								<input class="input-large" type="text" placeholder="Highest Educational Attainment"name="father_education" ng-model="scholarinfo.father_education" ng-disabled="true">
+								<input class="input-large" type="text" placeholder="Occupation"name="father_occupation" ng-model="scholarinfo.father_occupation" ng-disabled="true">
+							</div>															
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label no-padding-right">&nbsp;</label>
+							<div class="col-md-10">
+								<input class="input-large" type="text" placeholder="Annual Income" name="father_income" ng-model="scholarinfo.father_income" ng-disabled="true">
+								<input class="input-large" type="text" placeholder="Contact No" name="father_contact" ng-model="scholarinfo.father_contact" ng-disabled="true">
+							</div>															
+						</div>														
+						
+					</div>
+				</div>				
+				
 				<!--<div class="space-8"></div>												
 				<div class="form-group">
 					<div class="col-sm-12 col-md-12 col-lg-12 col-md-offset-6 col-lg-offset-6">
