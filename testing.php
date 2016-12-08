@@ -313,7 +313,24 @@ require_once 'authentication.php';
 						<div class="row">
 							<div id="content" class="col-xs-12">
 							<div class="space-10"></div>												
-							<button class="btn btn-primary btn-sm no-radius" add-testing="0">Add</button>
+							<!--<button class="btn btn-primary btn-sm no-radius" add-testing="0">Add</button>-->
+							<form class="form-inline">
+							  <div class="form-group">
+								<label>Student Name</label>
+								<input type="text" class="form-control" name="name" ng-model="views.inline_name" uib-typeahead="student as student.full_name for student in students | filter:{full_name:$viewValue}" typeahead-on-select="idSelected($item, $model, $label, $event)">
+							  </div>
+							  <div class="form-group">
+								<label>Testing Type</label>
+								<select class="form-control" name="testing_type" ng-model="inline_testing.testing_type" ng-options="x for (x,y) in views.testing_types track by y">
+									<option value="">-</option>
+								</select>
+							  </div>
+							  <div class="form-group">
+								<label>Rating</label>
+								<input type="text" class="form-control" name="rating" ng-model="inline_testing.rating">
+							  </div>							  
+							  <button type="button" class="btn btn-sm btn-primary" ng-click="add()">Add</button>
+							</form>							
 							<div class="space-10"></div>
 							<hr>							
 								<div ng-include="activeTemplate"></div>

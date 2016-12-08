@@ -60,6 +60,8 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 
 		if (mode == 'update_testing') delete scope.testing.full_name;
 		
+		if (mode == 'add_testing') scope.testing = scope.inline_testing;
+		
 		$http({
 		  method: 'POST',
 		  url: 'controllers/testing.php?r='+mode,
@@ -105,6 +107,10 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 	
 });
 
+/*
+** add testing dialog box
+**
+*/
 app.directive('addTesting',function($http,$timeout,bootstrapModal,blockUI,crud) {
 	
 	return {
@@ -153,7 +159,14 @@ app.directive('addTesting',function($http,$timeout,bootstrapModal,blockUI,crud) 
 app.controller('testingCtrl',function($http,$timeout,$scope,crud,blockUI,bootstrapNotify,bootstrapModal) {
 
 $scope.views = {};
+
 $scope.testing = {};
+$scope.testing.scholar_id = 0;
+$scope.views.name = '';	
+
+$scope.inline_testing = {};
+$scope.inline_testing.scholar_id = 0;
+$scope.views.inline_name = '';	
 
 $scope.views.testing_types = {
 	"Personality Test": "PT",
@@ -171,6 +184,14 @@ $http.get('controllers/testing.php?r=students').then(function(response){
 
 $scope.idSelected = function(item, model, label, event) {
 	$scope.testing.scholar_id = item['id'];
+	$scope.inline_testing.scholar_id = item['id'];
+};
+
+$scope.add = function() {
+	crud.save($scope,'add_testing');
+	$scope.inline_testing = {};
+	$scope.inline_testing.scholar_id = 0;
+	$scope.views.inline_name = '';	
 };
 
 $scope.edit = function(id) {
