@@ -153,6 +153,16 @@ app.service('crud',function($http,$compile,$timeout,bootstrapModal,blockUI,globa
 		
 	}
 	
+	this.getScholar = function(scope,id) {
+		
+		blockUI.show();
+		scope.views.scholarship_status = true;		
+		scope.activeTemplate = 'views/scholar-info.php';
+
+		blockUI.hide();
+		
+	}
+	
 	this.save = function(scope) {	
 		
 		if (scope.views.mode == 'Save') delete scope.applicant.id;
@@ -269,6 +279,12 @@ $scope.list = function() {
 $scope.view = function(id) {
 	
 	crud.view($scope,id);
+	
+}
+
+$scope.getScholar = function(id) {
+
+	crud.getScholar($scope,id);
 	
 }
 

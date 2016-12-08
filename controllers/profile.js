@@ -136,6 +136,11 @@ $http({
 	
 	$scope.perinfo = response.data['perinfo'];
 	$('#birthday').val(response.data['perinfo']['birthdate']);
+	
+	$scope.scholarinfo = response.data['scholarinfo'];
+	$('#mother_bday').val(response.data['scholarinfo']['mother_bday']);
+	$('#father_bday').val(response.data['scholarinfo']['father_bday']);
+	
 	$scope.accinfo = response.data['accinfo'];
 	
 }, function myError(response) {

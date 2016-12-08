@@ -31,9 +31,18 @@ switch ($_GET['r']) {
 	
 	if ($perinfo[0]['age'] == 0) $perinfo[0]['age'] = "";
 
+	$scholarinfo = $con->getData("SELECT * FROM scholars_infos WHERE account_id = '$_SESSION[id]'");
+	unset($scholarinfo[0]['account_id']);
+	
+	if (($scholarinfo[0]['mother_bday'] == "0000-00-00") || ($scholarinfo[0]['mother_bday'] == "1970-01-01")) $scholarinfo[0]['mother_bday'] = "";
+	else $scholarinfo[0]['mother_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['mother_bday']));
+	
+	if (($scholarinfo[0]['father_bday'] == "0000-00-00") || ($scholarinfo[0]['father_bday'] == "1970-01-01")) $scholarinfo[0]['father_bday'] = "";
+	else $scholarinfo[0]['father_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['father_bday']));	
+	
 	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = '$_SESSION[id]'");	
 	
-	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0]);
+	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarinfo"=>$scholarinfo[0]);
 	
 	echo json_encode($results);
 	
@@ -51,19 +60,19 @@ switch ($_GET['r']) {
 	$_POST['scholarinfo']['mother_bday'] = date("Y-m-d",strtotime($_POST['scholarinfo']['mother_bday']));	
 	
 	$con2 = new pdo_db('scholars_infos');
-	
+
 	$checkInfo = $con2->getData("SELECT * FROM scholars_infos WHERE account_id = ".$_POST['perinfo']['id']);
-	
+
 	if (sizeof($checkInfo) == 0) {
-
 		$scholarinfo1 = $con2->insertData(array("account_id"=>$_POST['perinfo']['id']));
-		$scholarinfo_id = $con2->insertId;
-
-		$scholarinfo2 = $con2->updateData($_POST['scholarinfo'],'id');	
-
+		$scholarinfo_id = $con2->insertId;	
+	} else {
+		$scholarinfo_id = $checkInfo[0]['id'];			
 	}
-	
-	
+
+	$_POST['scholarinfo']['id'] = $scholarinfo_id;
+	$scholarinfo2 = $con2->updateData($_POST['scholarinfo'],'id');
+
 	break;
 	
 	case "update_accinfo":

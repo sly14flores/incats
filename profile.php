@@ -554,16 +554,16 @@ require_once 'authentication.php';
 														<div class="form-group">
 															<label class="col-md-2 control-label no-padding-right">&nbsp;</label>
 															<div class="col-md-10">
-																<input class="input-large" type="text" placeholder="Highest Educational Attainment">
-																<input class="input-large" type="text" placeholder="Occupation">
+																<input class="input-large" type="text" placeholder="Highest Educational Attainment"name="father_education" ng-model="scholarinfo.father_education">
+																<input class="input-large" type="text" placeholder="Occupation"name="father_occupation" ng-model="scholarinfo.father_occupation">
 															</div>															
 														</div>
 														
 														<div class="form-group">
 															<label class="col-md-2 control-label no-padding-right">&nbsp;</label>
 															<div class="col-md-10">
-																<input class="input-large" type="text" placeholder="Annual Income">
-																<input class="input-large" type="text" placeholder="Contact No">
+																<input class="input-large" type="text" placeholder="Annual Income" name="father_income" ng-model="scholarinfo.father_income">
+																<input class="input-large" type="text" placeholder="Contact No" name="father_contact" ng-model="scholarinfo.father_contact">
 															</div>															
 														</div>														
 														
