@@ -28,15 +28,20 @@ switch ($_GET['r']) {
 	$scholarinfo = $con->getData("SELECT * FROM scholars_infos WHERE account_id = ".$perinfo[0]['id']);
 	unset($scholarinfo[0]['account_id']);
 	
-	if (($scholarinfo[0]['mother_bday'] == "0000-00-00") || ($scholarinfo[0]['mother_bday'] == "1970-01-01")) $scholarinfo[0]['mother_bday'] = "";
-	else $scholarinfo[0]['mother_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['mother_bday']));
+	if (sizeof($scholarinfo)) {
+		if (($scholarinfo[0]['mother_bday'] == "0000-00-00") || ($scholarinfo[0]['mother_bday'] == "1970-01-01")) $scholarinfo[0]['mother_bday'] = "";
+		else $scholarinfo[0]['mother_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['mother_bday']));
+		
+		if (($scholarinfo[0]['father_bday'] == "0000-00-00") || ($scholarinfo[0]['father_bday'] == "1970-01-01")) $scholarinfo[0]['father_bday'] = "";
+		else $scholarinfo[0]['father_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['father_bday']));		
+	}
 	
-	if (($scholarinfo[0]['father_bday'] == "0000-00-00") || ($scholarinfo[0]['father_bday'] == "1970-01-01")) $scholarinfo[0]['father_bday'] = "";
-	else $scholarinfo[0]['father_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['father_bday']));		
+	$siblings = $con->getData("SELECT id, sibling_name, sibling_age, sibling_grade, sibling_occupation FROM siblings WHERE account_id = ".$perinfo[0]['id']);
 	
 	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = ".$perinfo[0]['id']);
 	
-	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarinfo"=>$scholarinfo[0]);
+	if (sizeof($scholarinfo) == 0) $scholarinfo[0] = [];
+	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarinfo"=>$scholarinfo[0],"siblings"=>$siblings);
 	
 	echo json_encode($results);	
 	

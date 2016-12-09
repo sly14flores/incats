@@ -136,6 +136,8 @@ app.controller('userAccountsCtrl',function($http,$timeout,$scope,blockUI,bootstr
 			$('#mother_bday').val(response.data['scholarinfo']['mother_bday']);
 			$('#father_bday').val(response.data['scholarinfo']['father_bday']);			
 			
+			$scope.siblings = response.data['siblings'];			
+			
 			$scope.accinfo = response.data['accinfo'];
 			blockUI.hide();			
 			

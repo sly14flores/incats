@@ -40,9 +40,11 @@ switch ($_GET['r']) {
 	if (($scholarinfo[0]['father_bday'] == "0000-00-00") || ($scholarinfo[0]['father_bday'] == "1970-01-01")) $scholarinfo[0]['father_bday'] = "";
 	else $scholarinfo[0]['father_bday'] = date("m/d/Y",strtotime($scholarinfo[0]['father_bday']));	
 	
+	$siblings = $con->getData("SELECT id, sibling_name, sibling_age, sibling_grade, sibling_occupation FROM siblings WHERE account_id = '$_SESSION[id]'");
+	
 	$accinfo = $con->getData("SELECT id, username, password, password re_type_password FROM accounts WHERE id = '$_SESSION[id]'");	
 	
-	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarinfo"=>$scholarinfo[0]);
+	$results = array("perinfo"=>$perinfo[0],"accinfo"=>$accinfo[0],"scholarinfo"=>$scholarinfo[0],"siblings"=>$siblings);
 	
 	echo json_encode($results);
 	
@@ -72,6 +74,23 @@ switch ($_GET['r']) {
 
 	$_POST['scholarinfo']['id'] = $scholarinfo_id;
 	$scholarinfo2 = $con2->updateData($_POST['scholarinfo'],'id');
+	
+	$con3 = new pdo_db('siblings');
+	
+	$siblings_add = [];
+	foreach ($_POST['siblings'] as $key => $value) {
+		$_POST['siblings'][$key]['account_id'] = $_POST['perinfo']['id'];
+		if ($_POST['siblings'][$key]['id'] == 0) {
+			unset($_POST['siblings'][$key]['id']);
+			$siblings_add[] = $_POST['siblings'][$key];
+		}
+	}
+
+	$siblings = $con3->insertDataMulti($siblings_add);
+	
+	if (sizeof($_POST['siblingsDelete']) > 0) {
+		$con3->deleteData(array("id"=>implode(",",$_POST['siblingsDelete'])));
+	}
 
 	break;
 	

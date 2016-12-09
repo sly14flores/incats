@@ -570,10 +570,59 @@ require_once 'authentication.php';
 													</div>
 												</div>				
 												
-												<div class="space-8"></div>												
+												<h5 class="bolder smaller">b. Siblings (Brothers &amp; Sisters) Educational and Economic Background</h5>
+												<div class="space"></div>													
+
+													<div class="col-lg-3">
+													<label>Name</label>
+													<input type="text" class="form-control" name="sibling_name" ng-model="views.sibling.sibling_name">
+													</div>
+													<div class="col-lg-1">
+													<label>Age</label>
+													<input type="text" class="form-control" name="sibling_age" ng-model="views.sibling.sibling_age">
+													</div>													
+													<div class="col-lg-3">
+													<label>Grade/Year level Completed</label>
+													<input type="text" class="form-control" name="sibling_grade" ng-model="views.sibling.sibling_grade">
+													</div>
+													<div class="col-lg-3">
+													<label>Occupation</label>
+													<input type="text" class="form-control" name="sibling_occupation" ng-model="views.sibling.sibling_occupation">
+													</div>
+													<div class="col-lg-2">			
+													<button style="margin-top: 26px;" type="button" class="btn btn-sm btn-primary" ng-click="addSibling()">Add</button>
+													</div>
+													
+													<div class="container">
+													<div class="row">
+													<div class="col-lg-9 col-md-9">
+													<table style="margin-top: 25px!important;" id="simple-table" class="table table-striped table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>Name</th>
+																<th>Age</th>
+																<th>Grade/Year level Completed</th>
+																<th>Occupation</th>
+																<th>&nbsp;</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="sibling in siblings">
+																<td>{{sibling.sibling_name}}</td>
+																<td>{{sibling.sibling_age}}</td>
+																<td>{{sibling.sibling_grade}}</td>
+																<td>{{sibling.sibling_occupation}}</td>
+																<td><a class="red" href="javascript:;" ng-click="delSibling(sibling)"><i class="ace-icon glyphicon glyphicon-remove"></i></a></td>
+															</tr>												
+														</tbody>
+													</table>
+													</div>
+													</div>
+													</div>
+													
 												<div class="form-group">
-													<div class="col-sm-12 col-md-12 col-lg-12 col-md-offset-6 col-lg-offset-6">
-														<button class="btn btn-sm btn-info" type="button" ng-click="updatePerInfo()">
+													<div class="col-sm-12 col-md-3 col-lg-3 col-md-offset-9 col-lg-offset-9">
+														<button style="margin-top: 50px;" class="btn btn-sm btn-info" type="button" ng-click="updatePerInfo()">
 															<i class="ace-icon fa fa-check bigger-110"></i>
 															Update
 														</button>

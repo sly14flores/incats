@@ -141,6 +141,8 @@ $http({
 	$('#mother_bday').val(response.data['scholarinfo']['mother_bday']);
 	$('#father_bday').val(response.data['scholarinfo']['father_bday']);
 	
+	$scope.siblings = response.data['siblings'];
+	
 	$scope.accinfo = response.data['accinfo'];
 	
 }, function myError(response) {
@@ -256,7 +258,7 @@ $scope.updatePerInfo = function() {
 	blockUI.show();
 	$http({
 	  method: 'POST',
-	  data: {perinfo: $scope.perinfo, scholarinfo: $scope.scholarinfo},
+	  data: {perinfo: $scope.perinfo, siblings: $scope.siblings, siblingsDelete: $scope.siblingsDelete, scholarinfo: $scope.scholarinfo},
 	  url: 'controllers/profile.php?r=update_perinfo'
 	}).then(function mySucces(response) {			
 
@@ -488,6 +490,25 @@ $scope.viewFile = function(img) {
 	window.open('requirements/'+img);
 	
 }
+
+$scope.addSibling = function() {
+	$scope.siblings.push({id: 0, sibling_name: $scope.views.sibling.sibling_name, sibling_age: $scope.views.sibling.sibling_age, sibling_grade: $scope.views.sibling.sibling_grade, sibling_occupation: $scope.views.sibling.sibling_occupation});
+	$scope.views.sibling = {};
+}
+
+$scope.delSibling = function(item) {
+	
+	var index = $scope.siblings.indexOf(item);
+	$scope.siblings.splice(index, 1);
+	
+	if (item.id > 0) {
+		$scope.siblingsDelete.push(item.id);
+	}
+	
+}
+
+$scope.siblings = [];
+$scope.siblingsDelete = [];
 
 // profileService.list($scope);
 

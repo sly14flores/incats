@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 09, 2016 at 11:29 AM
+-- Generation Time: Dec 09, 2016 at 11:40 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -371,10 +371,10 @@ INSERT INTO `scholars_infos` (`id`, `account_id`, `course_year`, `last_school`, 
 CREATE TABLE IF NOT EXISTS `siblings` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `account_id` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `age` int(10) NOT NULL,
-  `level_completed` varchar(100) NOT NULL,
-  `occupation` varchar(100) NOT NULL,
+  `sibling_name` varchar(100) NOT NULL,
+  `sibling_age` int(10) NOT NULL,
+  `sibling_grade` varchar(100) NOT NULL,
+  `sibling_occupation` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
