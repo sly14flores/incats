@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2016 at 10:23 PM
+-- Generation Time: Dec 09, 2016 at 11:29 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.4.31
 
@@ -365,6 +365,23 @@ INSERT INTO `scholars_infos` (`id`, `account_id`, `course_year`, `last_school`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `siblings`
+--
+
+CREATE TABLE IF NOT EXISTS `siblings` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `account_id` int(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `age` int(10) NOT NULL,
+  `level_completed` varchar(100) NOT NULL,
+  `occupation` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `testing_results`
 --
 
@@ -424,6 +441,12 @@ ALTER TABLE `scholarships`
 --
 ALTER TABLE `scholars_infos`
   ADD CONSTRAINT `scholars_infos_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `siblings`
+--
+ALTER TABLE `siblings`
+  ADD CONSTRAINT `siblings_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `testing_results`
